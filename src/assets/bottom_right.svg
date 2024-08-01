@@ -1,0 +1,18 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339 78" preserveAspectRatio="none">
+	<title>Xf-br-svg</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m380 78h-380v-78h380z"/>
+		</clipPath>
+	</defs>
+	<style>
+		.s0 { fill: #f7eae4 }
+	</style>
+	<g id="Clip-Path" clip-path="url(#cp1)">
+		<g id="Layer">
+			<path id="Layer" class="s0" d="m0.1 78c-36.1 0 36.1 0 36.1 0h73.8v-60c0 0-1 0-41.1 0-40.2 0-32.7 60-68.8 60z"/>
+			<path id="Layer" class="s0" d="m339 78h-230v-60h230z"/>
+			<path id="Layer" class="s0" d="m319 18h20v-18c-0.7 14.1-5.4 17.9-20 18z"/>
+		</g>
+	</g>
+</svg>
