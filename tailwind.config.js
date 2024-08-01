@@ -11,8 +11,9 @@ module.exports = {
   theme: {
     colors: {
       or: "#eb6535",
-      wh: "#f7eae4",
-      bl: "#292524",
+      wh: "#eee9e3",
+      bla: "#292524",
+      blu: "#2176ff",
     },
     container: {
       center: true,
@@ -22,6 +23,12 @@ module.exports = {
       },
     },
     extend: {
+      dropShadow: {
+        or: [
+          "0 1px 3px rgba(235, 64, 52, 0.1)",
+          "0 6px 12px rgba(235, 64, 52, 0.08)"
+        ],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

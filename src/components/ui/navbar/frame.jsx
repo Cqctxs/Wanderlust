@@ -6,7 +6,7 @@ import bottomLeft from "@/assets/bottom_left.svg";
 
 export const Frame = () => {
   return (
-    <div>
+    <div className="drop-shadow-or fixed inset-0">
       <div className="absolute h-full w-6 bg-wh" />
       <div className="absolute right-0 h-full w-6 bg-wh" />
       <div className="absolute h-6 w-full bg-wh" />
