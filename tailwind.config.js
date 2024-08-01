@@ -28,6 +28,10 @@ module.exports = {
           "0 1px 3px rgba(235, 64, 52, 0.1)",
           "0 6px 12px rgba(235, 64, 52, 0.08)"
         ],
+        wh: [
+          "0 1px 3px rgba(238, 233, 227, 0.1)",
+          "0 6px 12px rgba(238, 233, 227, 0.08)"
+        ],
       },
       colors: {
         border: "hsl(var(--border))",
