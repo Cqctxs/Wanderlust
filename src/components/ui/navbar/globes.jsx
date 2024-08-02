@@ -1,28 +1,22 @@
-import React from 'react'
-import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
-import { Canvas, useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three'
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
-const ImagePlane = ({ url }) => {
-    const texture = useLoader(TextureLoader, url)
-    return (
-        <mesh>
-            <planeBufferGeometry args={[5, 5]} />
-            <meshBasicMaterial map={texture} />
-        </mesh>
-    )
-}
+const globes = ["/assets/globe_1.svg", "/assets/globe_2.svg", "/assets/globe_3.svg", "/assets/globe_4.svg"];
 
-export const Globes = () => {
+export const Globes = ({ start = 0 }) => {
+    const [currentGlobeIndex, setCurrentGlobeIndex] = useState(start);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentGlobeIndex((prevIndex) => (prevIndex + 1) % globes.length);
+        }, 1000);
+
+        return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, []);
+
     return (
-        <Canvas>
-            <ImagePlane url="../assets/your_image.jpg" />
-            <EffectComposer>
-                <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
-                <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-                <Noise opacity={0.02} />
-                <Vignette eskil={false} offset={0.1} darkness={1.1} />
-            </EffectComposer>
-        </Canvas>
-    )
-}
+        <div className="z-10 relative w-16 h-16 drop-shadow-bla">
+            <Image src={globes[currentGlobeIndex]} alt={`Globe ${currentGlobeIndex + 1}`} fill={true} />
+        </div>
+    );
+};
