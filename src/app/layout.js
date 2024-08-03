@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
-const inter = Inter({ subsets: ["latin"] });
+const OffBit = localFont({ src: "../../public/fonts/OffBit-DotBold.otf" });
 
 export const metadata = {
   title: "Create Next App",
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <UserProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={OffBit.className}>{children}</body>
       </UserProvider>
     </html>
   );

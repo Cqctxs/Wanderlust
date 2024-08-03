@@ -25,12 +25,12 @@ module.exports = {
     extend: {
       dropShadow: {
         or: [
-          "0 1px 3px rgba(235, 64, 52, 0.1)",
-          "0 6px 12px rgba(235, 64, 52, 0.08)"
+          "0 1px 3px rgba(235, 64, 52, 0.2)",
+          "0 6px 12px rgba(235, 64, 52, 0.16)"
         ],
         wh: [
-          "0 1px 3px rgba(238, 233, 227, 0.1)",
-          "0 6px 12px rgba(238, 233, 227, 0.08)"
+          "0 1px 3px rgba(238, 233, 227, 0.2)",
+          "0 6px 12px rgba(238, 233, 227, 0.16)"
         ],
         bla: [ 
           "0 1px 3px rgba(41, 37, 36, 0.2)",
