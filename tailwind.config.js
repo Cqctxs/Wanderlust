@@ -23,6 +23,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-vinson)"],
+        offbit: ["var(--font-offbit)"]
+      },
       dropShadow: {
         or: [
           "0 1px 3px rgba(235, 64, 52, 0.2)",

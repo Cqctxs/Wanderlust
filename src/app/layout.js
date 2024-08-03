@@ -3,7 +3,28 @@ import "./globals.css";
 
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
-const OffBit = localFont({ src: "../../public/fonts/OffBit-DotBold.otf" });
+const offbit = localFont({
+  src: "../../public/fonts/OffBit-DotBold.ttf",
+  variable: "--font-offbit"
+});
+
+const vinson = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Vinson-Light.ttf",
+      weight: "300"
+    },
+    {
+      path: "../../public/fonts/Vinson-Regular.ttf",
+      weight: "400"
+    },
+    {
+      path: "../../public/fonts/Vinson-Bold.ttf",
+      weight: "700"
+    }
+  ],
+  variable: "--font-vinson"
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -14,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <UserProvider>
-        <body className={OffBit.className}>{children}</body>
+        <body className={`${offbit.variable} ${vinson.variable} font-sans`}>{children}</body>
       </UserProvider>
     </html>
   );
