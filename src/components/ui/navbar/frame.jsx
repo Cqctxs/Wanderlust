@@ -8,7 +8,7 @@ export const Frame = () => {
   return (
     <>
       {/* Background and title */}
-      <div className="  z-50 drop-shadow-or absolute inset-0">
+      <div className="drop-shadow-or absolute inset-0">
         <div className="z-0 absolute h-full w-6 bg-or" />
         <div className="z-0 absolute right-0 h-full w-6 bg-or" />
         <div className="z-0 absolute h-6 w-full bg-or" />
