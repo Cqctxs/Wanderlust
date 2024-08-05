@@ -21,7 +21,7 @@ export default function MapPage() {
                 initialViewState={INITIAL_VIEW_STATE}
                 controller={true}
             >
-                <Map mapStyle="mapbox://styles/mapbox/standard-beta" mapboxAccessToken={TOKEN} />
+                <Map mapStyle="mapbox://styles/mapbox/standard-beta" mapboxAccessToken={TOKEN} maxPitch={85} />
             </DeckGL>
         </div>
     );
