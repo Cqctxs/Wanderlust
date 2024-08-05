@@ -12,7 +12,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 // in a .env file
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
-export default function Map() {
+export default function test() {
   const mapContainer = useRef();
 
   // this is where all of our map logic is going to live
