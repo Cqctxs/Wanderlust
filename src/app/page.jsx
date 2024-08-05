@@ -1,10 +1,29 @@
 import Image from "next/image";
 import { Frame } from "@/components/ui/navbar/frame";
 
+import CityParallax from "../components/ui/city_parallax";
+
 export default function Home() {
   return (
     <div>
-      <Frame />
+      {/*<Frame />*/}
+
+      {/* Parallax background */}
+      <div className="flex-col items-center align-center justify-center m-40 z-50">
+        <div className="absolute inset-0 z-50">
+          <CityParallax 
+            sky_0={"/assets/citybg_day_0.jpg"} 
+            sky_1={"/assets/citybg_day_1.jpg"} 
+            sky_2={"/assets/citybg_day_2.jpg"}
+            city_0={"/assets/citybg_blue_0.jpg"} 
+            city_1={"/assets/citybg_blue_1.jpg"} 
+            city_2={"/assets/citybg_blue_2.jpg"} 
+            city_3={"/assets/citybg_blue_3.jpg"} 
+          />
+        </div>
+      </div>
+
+      {/* Text */}
       <div className="bg-bla text-wh p-52">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a interdum ligula, nec porttitor massa. Donec posuere pellentesque turpis. Nullam a sagittis nibh, eu aliquam turpis. Mauris vulputate at urna nec ullamcorper. Proin venenatis justo nisi, a rhoncus ex pellentesque sed. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consequat eu arcu id fermentum. Morbi a lectus eget turpis mattis lacinia sed vitae ligula. Nulla tempor, tortor vel congue dignissim, nunc enim mattis lectus, a fermentum massa tellus sit amet eros. Nulla id gravida arcu. In viverra et sem sit amet suscipit. Duis non auctor leo.
 
