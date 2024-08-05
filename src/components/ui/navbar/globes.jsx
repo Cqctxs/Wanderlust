@@ -15,7 +15,7 @@ export const Globes = ({ start = 0 }) => {
     }, []);
 
     return (
-        <div className="z-10 relative w-16 h-16 drop-shadow-wh">
+        <div className="z-10 relative w-16 h-16 drop-shadow-or">
             <Image src={globes[currentGlobeIndex]} alt={`Globe ${currentGlobeIndex + 1}`} fill={true} />
         </div>
     );

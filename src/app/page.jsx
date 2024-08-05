@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Frame } from "@/components/ui/navbar/frame";
-
-import CityParallax from "../components/ui/city_parallax";
+import { CityParallax } from "@/components/ui/city_parallax";
 
 export default function Home() {
   return (

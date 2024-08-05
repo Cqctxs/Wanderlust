@@ -3,15 +3,11 @@
 import React from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
-const CityParallax = ({everything_before, sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after}) => {
+export const CityParallax = ({sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after}) => {
   return (
-    <>
-        <Parallax pages={9} style={{ top:'0', left: '0'}} className="animation">
-            <ParallaxLayer offset={0} speed={1}>
-                {everything_before}
-            </ParallaxLayer>
-            
-            <ParallaxLayer offset={0} speed={2}>
+    <div className='overflow-hidden'>
+        <Parallax pages={8} style={{ top:'0', left: '0'}} className="animation">
+            <ParallaxLayer speed={2}>
                 <div className="relative h-screen w-full bg-cover bg-center" style={{ backgroundImage: `url(${sky_2})` }}></div>
             </ParallaxLayer>
 

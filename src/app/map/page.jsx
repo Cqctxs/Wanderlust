@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useRef } from 'react';
+import DeckGL from '@deck.gl/react';
 import { Map } from 'react-map-gl';
-import DeckGL, { GeoJsonLayer } from 'deck.gl';
 
-const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 const INITIAL_VIEW_STATE = {
     latitude: 43.642567,
     longitude: -79.387054,
@@ -12,7 +12,16 @@ const INITIAL_VIEW_STATE = {
     pitch: 0
 };
 
+const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+
 export default function MapPage() {
+    const mapRef = useRef(null);
+
+    const handleMapLoad = () => {
+        const map = mapRef.current.getMap();
+        map.setConfigProperty("basemap", "lightPreset", "dusk");
+    };
+
     return (
         <div onContextMenu={(e) => {
             e.preventDefault();
@@ -21,7 +30,13 @@ export default function MapPage() {
                 initialViewState={INITIAL_VIEW_STATE}
                 controller={true}
             >
-                <Map mapStyle="mapbox://styles/mapbox/standard-beta" mapboxAccessToken={TOKEN} maxPitch={85} />
+                <Map
+                    ref={mapRef}
+                    mapStyle="mapbox://styles/mapbox/standard-beta"
+                    mapboxAccessToken={TOKEN}
+                    maxPitch={85}
+                    onLoad={handleMapLoad}
+                />
             </DeckGL>
         </div>
     );
