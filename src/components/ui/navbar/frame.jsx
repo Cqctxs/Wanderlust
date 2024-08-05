@@ -6,8 +6,8 @@ import Link from "next/link";
 export const Frame = () => {
   return (
     <>
-      {/*  */}
-      <div>
+      {/* Parallax background */}
+      <div className="-z-50 absolute">
         
       </div>
       {/* Background and title */}
