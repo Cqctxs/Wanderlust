@@ -14,7 +14,8 @@ const Plan = () => {
           endDate: "2024-10-15",
           sub: "asdfadfadf" 
         }
-      });
+      }).then((res) => console.log(res))
+      .catch((error) => console.log(error));
     },
   });
 
