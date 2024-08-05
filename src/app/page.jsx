@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Frame } from "@/components/ui/navbar/frame";
-
-import CityParallax from "../components/ui/city_parallax";
+import { CityParallax } from "@/components/ui/city_parallax";
 
 export default function Home() {
   return (
     <div>
+      <Frame />
       {/* Parallax background */}
-      <div className="-z-50">
+      <div className="z-50">
         <CityParallax 
           sky_0={"/assets/citybg_day_0.png"} 
           sky_1={"/assets/citybg_day_1.png"} 
@@ -23,8 +23,6 @@ export default function Home() {
             </div>
           }
         />
-
-        <Frame />
       </div>
     </div>
   );
