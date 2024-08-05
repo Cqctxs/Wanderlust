@@ -9,12 +9,12 @@ const Plan = () => {
   const {data, isPending, isError, error} = useQuery({
     queryKey: ["location"],
     queryFn: async () => {
-      const {data} = await axios.get("http://localhost:8080/api/generate", {
+      const {data} = await axios.get("http://localhost:8080/api/generate", null, { params: {
         "country": "United States",
         "startDate": "2024-10-10",
         "endDate": "2024-10-15",
         "sub": "asdfadfadf"
-      }).then((res) => console.log(res))
+      }}).then((res) => console.log(res))
       .catch((error) => console.log(error));
       return data;
     },
@@ -25,7 +25,7 @@ const Plan = () => {
 
   return (
     <div className="flex-col items-center h-full justify-center align-center">
-        <h1 className="flex justify-center">{JSON.stringify(data, null, 2)}</h1>
+        <h1 className="flex justify-center">{data}</h1>
     </div>
   )
 }
