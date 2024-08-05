@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 const offbit = localFont({
   src: "../../public/fonts/OffBit-DotBold.ttf",
