@@ -5,7 +5,7 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
 const CityParallax = ({sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after}) => {
   return (
-    <>
+    <div>
         <Parallax pages={8} style={{ top:'0', left: '0'}} className="animation">
             <ParallaxLayer speed={0.5}>
                 <div className="relative h-screen w-full bg-cover bg-center" style={{ backgroundImage: `url(${sky_2})` }}></div>
