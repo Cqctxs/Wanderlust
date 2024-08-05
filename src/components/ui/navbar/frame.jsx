@@ -22,7 +22,7 @@ export const Frame = () => {
         </button>
       </Link>
       <Link href="/">
-        <button className="absolute font-offbit top-1 left-4 text-[3.5rem] text-wh drop-shadow-wh">wanderlust</button>
+        <button className="absolute font-offbit top-1 left-4 text-[3.5rem] text-bl drop-shadow-wh">wanderlust</button>
       </Link>
     </div>
   );

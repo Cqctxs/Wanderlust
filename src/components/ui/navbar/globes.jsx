@@ -9,7 +9,7 @@ export const Globes = ({ start = 0 }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentGlobeIndex((prevIndex) => (prevIndex + 1) % globes.length);
-        }, 1000);
+        }, 250);
 
         return () => clearInterval(interval); // Cleanup interval on component unmount
     }, []);
