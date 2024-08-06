@@ -6,15 +6,19 @@ import axios from 'axios'
 
 const Plan = () => {
 
+  const country = "Japan";
+  const startDate = "2024-10-10";
+  const endDate = "2024-10-15";
+
   const {data, isPending, isError, error} = useQuery({
     queryKey: ["location"],
     queryFn: async () => {
-      const {data} = await axios.get("http://localhost:8080/api/generate", {
-        "country": "United States",
-        "startDate": "2024-10-10",
-        "endDate": "2024-10-15",
-        "sub": "asdfadfadf"
-      }).then((res) => console.log(res))
+      const {data} = await axios.post("http://localhost:8080/api/generate",
+        JSON.stringify({country, startDate, endDate}),
+        {
+            headers: { 'Content-Type': 'application/json' },
+        }
+    ).then((res) => console.log(res))
       .catch((error) => console.log(error));
       return data;
     },
