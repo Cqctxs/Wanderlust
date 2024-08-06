@@ -29,7 +29,7 @@ const Plan = () => {
 
   return (
     <div className="flex-col items-center h-full justify-center align-center">
-        <h1 className="flex justify-center">{JSON.stringify(data, null, 2)}</h1>
+        <h1 className="flex justify-center">{data}</h1>
     </div>
   )
 }
