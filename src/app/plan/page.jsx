@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const Plan = () => {
-  const fetchItenerary = async (country, startDate, endDate, sub) => {
+  const fetchItinerary = async (country, startDate, endDate, sub) => {
     const res = await axios.post("http://localhost:8080/api/generate", {
       country,
       startDate,
@@ -18,8 +18,8 @@ const Plan = () => {
   };
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["itenerary"],
-    queryFn: () => fetchItenerary("China", "2024-10-10", "2024-10-15", "asdfadfadf"),
+    queryKey: ["itinerary"],
+    queryFn: () => fetchItinerary("China", "2024-10-10", "2024-10-15", "asdfadfadf"),
   });
 
   if (isPending) return <div>Loading tasks...</div>;
