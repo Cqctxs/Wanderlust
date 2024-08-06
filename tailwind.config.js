@@ -10,9 +10,9 @@ module.exports = {
   prefix: "",
   theme: {
     colors: {
-      or: "#eb6535",
-      wh: "#eee9e3",
-      bla: "#292524",
+      or: "#ff6128",
+      wh: "#f7f5f2",
+      bla: "#252221",
       blu: "#2176ff",
     },
     container: {

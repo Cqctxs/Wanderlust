@@ -2,29 +2,29 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import TanstackProvider from "@/components/providers/TanstackProvider";
+import TanstackProvider from "./provider/tanstackProvider";
 
 const offbit = localFont({
   src: "../../public/fonts/OffBit-DotBold.ttf",
-  variable: "--font-offbit"
+  variable: "--font-offbit",
 });
 
 const vinson = localFont({
   src: [
     {
       path: "../../public/fonts/Vinson-Light.ttf",
-      weight: "300"
+      weight: "300",
     },
     {
       path: "../../public/fonts/Vinson-Regular.ttf",
-      weight: "400"
+      weight: "400",
     },
     {
       path: "../../public/fonts/Vinson-Bold.ttf",
-      weight: "700"
-    }
+      weight: "700",
+    },
   ],
-  variable: "--font-vinson"
+  variable: "--font-vinson",
 });
 
 export const metadata = {
@@ -35,11 +35,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <UserProvider>
-        <TanstackProvider>
-          <body className={`${offbit.variable} ${vinson.variable} font-sans`}>{children}</body>
-        </TanstackProvider>
-      </UserProvider>
+      <body className={`${offbit.variable} ${vinson.variable} font-sans`}>
+        <UserProvider>
+          <TanstackProvider>{children}</TanstackProvider>
+        </UserProvider>
+      </body>
     </html>
   );
 }
