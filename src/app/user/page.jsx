@@ -12,13 +12,12 @@ export default function ProfileClient() {
   return (
     <div>
       <Frame />
-      <div className="min-h-screen bg-[#FF6128] flex items-center justify-center px-12 py-8">
-        <div className="w-full h-[calc(100vh-14rem)] bg-[#FF6128] flex items-center justify-center">
-          <div className="grid grid-cols-4 gap-4 w-full h-full max-w-full">
+      <div className="bg-[#FF6128] flex items-center justify-center px-12 py-24">
+          <div className="grid grid-cols-4 gap-4 w-full h-[calc(100vh-9rem)]">
             {/* Left Column with Two Boxes */}
-            <div className="col-span-1 flex flex-col gap-4 h-full">
+            <div className="col-span-1 flex flex-col gap-4">
               {/* User Profile Picture Box */}
-              <div className="bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
+              <div className="bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p- flex flex-col h-full">
                 <div className="flex flex-col items-center justify-center h-full">
                   <img
                     className="h-36 w-36 rounded-full border-4 border-[#2176FF]"
@@ -66,6 +65,5 @@ export default function ProfileClient() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
