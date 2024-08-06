@@ -12,8 +12,8 @@ export default function ProfileClient() {
   return (
     <div>
       <Frame />
-      <div className="bg-[#FF6128] flex items-center justify-center px-12 py-24">
-          <div className="grid grid-cols-4 gap-4 w-full h-[calc(100vh-9rem)]">
+      <div className="bg-[#FF6128] flex items-center justify-center px-6 py-24">
+          <div className="grid grid-cols-4 gap-4 w-full h-[calc(100vh-8rem)]">
             {/* Left Column with Two Boxes */}
             <div className="col-span-1 flex flex-col gap-4">
               {/* User Profile Picture Box */}
