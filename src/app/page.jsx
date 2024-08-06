@@ -8,71 +8,63 @@ import { Parallax } from 'react-parallax';
 export default function Home() {
   return (
     <div>
+      <img src="/assets/citybg_sunset_2.png" className="h-full w-full fixed"></img>
       <Frame/>
-      <Parallax
-        bgImage="/assets/citybg_day_2.png"
-        strength={0}
-        bgImageStyle={{ height: '100vh', width: '100%' }}
-        style={{ height: '100vh' }}
-      >
-        <div style={{ height: '100vh' }}>
-          <Parallax
-            bgImage="/assets/citybg_day_1.png"
-            strength={900}
-            bgImageStyle={{ height: '100vh', width: '100%' }}
-            style={{ height: '100vh' }}
-          >
-            <div style={{ height: '100vh' }}>
-              <Parallax
-                bgImage="/assets/citybg_day_0.png"
-                strength={700}
-                bgImageStyle={{ height: '100vh', width: '100%' }}
-                style={{ height: '100vh' }}
-              >
-                <div style={{ height: '100vh' }}>
-                  <Parallax
-                    bgImage="/assets/citybg_orange_3.png"
-                    strength={550}
-                    bgImageStyle={{ height: '100vh', width: '100%' }}
-                    style={{ height: '100vh' }}
-                  >
-                    <div style={{ height: '100vh' }}>
-                      <Parallax
-                        bgImage="/assets/citybg_orange_2.png"
-                        strength={450}
-                        bgImageStyle={{ height: '100vh', width: '100%' }}
-                        style={{ height: '100vh' }}
-                      >
-                        <div style={{ height: '100vh' }}>
-                          <Parallax
-                            bgImage="/assets/citybg_orange_1.png"
-                            strength={400}
-                            bgImageStyle={{ height: '100vh', width: '100%' }}
-                            style={{ height: '100vh' }}
-                          >
-                            <div style={{ height: '100vh' }}>
-                              <Parallax
-                                bgImage="/assets/citybg_orange_0.png"
-                                strength={360}
-                                bgImageStyle={{ height: '100vh', width: '100%' }}
-                                style={{ height: '100vh' }}
-                              >
-                                <div className="h-screen flex items-center justify-center">
-                                  <h1 className="text-white text-4xl">City Background</h1>
-                                </div>
-                              </Parallax>
-                            </div>
-                          </Parallax>
-                        </div>
-                      </Parallax>
-                    </div>
-                  </Parallax>
-                </div>
-              </Parallax>
-            </div>
-          </Parallax>
-        </div>
-      </Parallax>
+      <div style={{ height: '100vh' }}>
+        <Parallax
+          bgImage="/assets/citybg_sunset_1.png"
+          strength={500}
+          bgImageStyle={{ height: '100vh', width: '100%' }}
+          style={{ height: '100vh' }}
+        >
+          <div style={{ height: '100vh' }}>
+            <Parallax
+              bgImage="/assets/citybg_sunset_0.png"
+              strength={400}
+              bgImageStyle={{ height: '100vh', width: '100%' }}
+              style={{ height: '100vh' }}
+            >
+              <div style={{ height: '100vh' }}>
+                <Parallax
+                  bgImage="/assets/citybg_orange_3.png"
+                  strength={300}
+                  bgImageStyle={{ height: '100vh', width: '100%' }}
+                  style={{ height: '100vh' }}
+                >
+                  <div style={{ height: '100vh' }}>
+                    <Parallax
+                      bgImage="/assets/citybg_orange_2.png"
+                      strength={200}
+                      bgImageStyle={{ height: '100vh', width: '100%' }}
+                      style={{ height: '100vh' }}
+                    >
+                      <div style={{ height: '100vh' }}>
+                        <Parallax
+                          bgImage="/assets/citybg_orange_1.png"
+                          strength={100}
+                          bgImageStyle={{ height: '100vh', width: '100%' }}
+                          style={{ height: '100vh' }}
+                        >
+                          <div style={{ height: '100vh' }}>
+                            <Parallax
+                              bgImage="/assets/citybg_orange_0.png"
+                              strength={0}
+                              bgImageStyle={{ height: '100vh', width: '100%' }}
+                              style={{ height: '100vh' }}
+                            >
+                              
+                            </Parallax>
+                          </div>
+                        </Parallax>
+                      </div>
+                    </Parallax>
+                  </div>
+                </Parallax>
+              </div>
+            </Parallax>
+          </div>
+        </Parallax>
+      </div>
       <Parallax strength={0}>
         <div
           style={{
