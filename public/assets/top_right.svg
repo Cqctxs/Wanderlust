@@ -1,18 +1,5 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339 78" preserveAspectRatio="none">
-	<title>Xf-br-svg</title>
-	<defs>
-		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
-			<path d="m0 78v-78h380v78z"/>
-		</clipPath>
-	</defs>
-	<style>
-		.s0 { fill: #eee9e3 }
-	</style>
-	<g id="Clip-Path" clip-path="url(#cp1)">
-		<g id="Layer">
-			<path id="Layer" class="s0" d="m0.1 0c-36.1 0 36.1 0 36.1 0h73.8v60c0 0-1 0-41.1 0-40.2 0-32.7-60-68.8-60z"/>
-			<path id="Layer" class="s0" d="m339 0h-230v60h230z"/>
-			<path id="Layer" class="s0" d="m319 60h20v18c-0.7-14.1-5.4-17.9-20-18z"/>
-		</g>
-	</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="339px" height="78px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g><path style="opacity:0.996" fill="#f6f5f1" d="M -0.5,0.5 C -0.5,0.166667 -0.5,-0.166667 -0.5,-0.5C 112.5,-0.5 225.5,-0.5 338.5,-0.5C 338.5,25.5 338.5,51.5 338.5,77.5C 338.167,77.5 337.833,77.5 337.5,77.5C 337.817,64.6554 331.484,58.822 318.5,60C 232.167,59.6667 145.833,59.3333 59.5,59C 52.9497,57.11 47.4497,53.61 43,48.5C 36.0804,36.9962 29.4138,25.3295 23,13.5C 17.5594,4.8626 9.72602,0.529263 -0.5,0.5 Z"/></g>
 </svg>
