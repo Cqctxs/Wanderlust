@@ -10,7 +10,6 @@ export default function Home() {
     <div>
       {/* Parallax background */}
       <div className="flex-col items-center align-center bg-bla justify-center m-40 z-50">
-        <p>parallax goes here</p>
         <CityParallax 
             sky_0={"/assets/citybg_day_0.png"} 
             sky_1={"/assets/citybg_day_1.png"} 
