@@ -1,10 +1,13 @@
 "use client";
 
 import React from "react";
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const Plan = () => {
+  const { user, isLoading } = useUser();
+
   const fetchItinerary = async (country, startDate, endDate, sub) => {
     const res = await axios.post("http://localhost:8080/api/generate", {
       country,
@@ -19,7 +22,7 @@ const Plan = () => {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["itinerary"],
-    queryFn: () => fetchItinerary("China", "2024-10-10", "2024-10-15", "asdfadfadf"),
+    queryFn: () => fetchItinerary("China", "2024-10-10", "2024-10-15", user.sub),
   });
 
   if (isPending) return <div>Loading tasks...</div>;
