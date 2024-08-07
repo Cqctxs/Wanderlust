@@ -1,47 +1,154 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
-export const CityParallax = ({sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after}) => {
+export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Render nothing on the server
+  }
+
   return (
-    <>
-        <Parallax pages={8} style={{ top:'0', left: '0'}} className="animation">
-            <ParallaxLayer speed={1}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${sky_2})` }}></div>
-            </ParallaxLayer>
+    <div>
+      <style>
+        {`
+          #textblock {
+            background-color: #2a2320;
+            height: 100vh;
+          }
 
-            <ParallaxLayer offset={0} speed={1.4}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${sky_1})` }}></div>
-            </ParallaxLayer>
+          #textblock-container {
+            width: 50%;
+            margin: 0 auto;
+            padding-top: 70px;
+          }
 
-            <ParallaxLayer offset={0} speed={1.8}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${sky_0})` }}></div>
-            </ParallaxLayer>
-            {/* City */}
-            <ParallaxLayer offset={0} speed={2.2}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${city_3})` }}></div>
-            </ParallaxLayer>
+          #textblock-title {
+            color: #ffaf1b;
+            font-size: 35px;
+            font-weight: 600;
+            font-family: "Helvetica Neue";
+          }
 
-            <ParallaxLayer offset={0} speed={2.6}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${city_2})` }}></div>
-            </ParallaxLayer>
+          #textblock-content {
+            color: #ffaf1b;
+            font-size: 20px;
+          }
 
-            <ParallaxLayer offset={0} speed={3.0}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${city_1})` }}></div>
-            </ParallaxLayer>
+          #textblock-footer {
+            color: #ffaf1b;
+            font-size: 15px;
+            font-weight: 400;
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+          }
 
-            <ParallaxLayer offset={0} speed={3.4}>
-                <div className="absolute h-full  w-full bg-cover bg-center" style={{ backgroundImage: `url(${city_0})` }}></div>
-            </ParallaxLayer>
+          #textblock-devsense {
+            text-decoration: none;
+            color: #ffaf1b;
+            font-size: 15px;
+            font-weight: 600;
+          }
 
-            {/* Everything After */}
-            <ParallaxLayer offset={0} speed={-1}>
-                {everything_after}
-            </ParallaxLayer>
-        </Parallax>
-    </>
-  )
+          .animation, .animation_layer {
+            height: 1000px;
+          }
+
+          .animation {
+            display: block;
+            position: relative;
+            z-index: 10;
+          }
+
+          .animation_layer {
+            background-position: bottom center;
+            background-size: cover;
+            background-repeat: repeat-x;
+            width: 100%;
+            position: absolute;
+          }
+          .animation_layer.parallax {
+            position: fixed;
+          }
+
+          #artback {
+            background-image: url("/assets/citybg_sunset_2.png");
+          }
+
+          #mountain {
+            background-image: url("/assets/citybg_sunset_1.png");
+          }
+
+          #logoland {
+            background-image: url("/assets/citybg_sunset_0.png");
+          }
+
+          #jungle1 {
+            background-image: url("/assets/citybg_orange_3.png");
+          }
+
+          #jungle2 {
+            background-image: url("/assets/citybg_orange_2.png");
+          }
+
+          #jungle3 {
+            background-image: url("/assets/citybg_orange_1.png");
+          }
+
+          #jungle4 {
+            background-image: url("/assets/citybg_orange_0.png");
+          }
+        `}
+      </style>
+      <Parallax pages={2} style={{ top: '0', left: '0' }} className="animation">
+        <ParallaxLayer offset={0} speed={0.25}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_2.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={-0.2}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_1.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={-0.1}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_0.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.05}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_3.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.15}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_2.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.25}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_1.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.3}>
+          <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1} speed={0.3}>
+          <div id="textblock">
+            <div id="textblock-container">
+              <h1 id="textblock-title">What is Firewatch?</h1>
+              <p id="textblock-content">
+                The year is 1989.<br /><br />
+                You are a man named Henry who has retreated from your messy life to work as a fire lookout in the Wyoming wilderness. Perched atop a mountain, it's your job to find smoke and keep the wilderness safe.<br /><br />
+                An especially hot, dry summer has everyone on edge. Your supervisor, a woman named Delilah, is available to you at all times over a small, handheld radio—and is your only contact with the world you've left behind.<br /><br />
+                But when something strange draws you out of your lookout tower and into the world below, you'll explore a wild and unknown environment, facing questions and making interpersonal choices that can build or destroy the only meaningful relationship you have.
+              </p>
+            </div>
+          </div>
+        </ParallaxLayer>
+      </Parallax>
+    </div>
+  );
 };
 
 export default CityParallax;

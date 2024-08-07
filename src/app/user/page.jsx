@@ -1,9 +1,27 @@
 'use client';
 import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from '@auth0/nextjs-auth0/client';
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 export default function ProfileClient() {
-  const { user, error, isLoading } = useUser();
+  const { user, isLoading } = useUser();
+
+  const fetchPreviousGenerations = async (sub) => {
+    const res = await axios.post("http://localhost:8080/api/user", {
+      sub
+    }, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return res.data; // Return the data from the response
+  };
+
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["previousGenerations"],
+    queryFn: () => fetchPreviousGenerations(user.sub),
+    enabled: !!user
+  });
+
 
   if (!user) return <div className="text-gray-700 text-center mt-4">No user</div>;
   if (isLoading) return <div className="text-gray-700 text-center mt-4">Loading...</div>;
@@ -48,11 +66,7 @@ export default function ProfileClient() {
             <div className="col-span-3 bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
               <h2 className="text-2xl font-semibold text-center text-[#252221] mb-4">Miscellaneous Information</h2>
               <div className="space-y-4 flex-grow">
-                <p className="text-gray-600">
-                  Here you can add more information about the user or display various stats, links, or details relevant to
-                  their profile. Consider including:
-                </p>
-                <ul className="list-disc list-inside text-gray-600">
+              {isPending ? <p className="text-gray-600">Loading...</p> : <p className="text-gray-600">{data}</p>}                <ul className="list-disc list-inside text-gray-600">
                   <li>Recent Activity</li>
                   <li>Favorite Destinations</li>
                   <li>Upcoming Trips</li>
