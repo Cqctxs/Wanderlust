@@ -18,7 +18,8 @@ export default function ProfileClient() {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["previousGenerations"],
-    queryFn: () => fetchPreviousGenerations(user.sub)
+    queryFn: () => fetchPreviousGenerations(user.sub),
+    enabled: !!user
   });
 
 
