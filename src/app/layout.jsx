@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import Head from 'next/head';
 import "./globals.css";
 
 import { UserProvider } from "@auth0/nextjs-auth0/client";
@@ -35,6 +36,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* external stylesheets */}
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+      </head>
       <body className={`${offbit.variable} ${vinson.variable} font-sans`}>
         <UserProvider>
           <TanstackProvider>{children}</TanstackProvider>
