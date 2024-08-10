@@ -8,8 +8,6 @@ import data from '../../app/map/test.json';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
-
-
 const INITIAL_VIEW_STATE = {
     latitude: 0,
     longitude: 0,
@@ -20,6 +18,11 @@ const INITIAL_VIEW_STATE = {
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
+const setTooltip = (message) => {
+    console.log(message);
+    return (<div> {message} </div>);
+}
+
 export const MapWrapper = () => {
     const mapRef = useRef(null);
 
@@ -28,7 +31,16 @@ export const MapWrapper = () => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
         cityData.push(lnglat);
     });
-    console.log(cityData);
+    // console.log(cityData);
+
+    const hotelData = [];
+    data.itinerary.forEach((day) => {
+        if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
+            const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
+            hotelData.push(lnglat);
+        }
+    });
+    console.log(hotelData);
 
     const arcData = [];
     for (let i = 0; i < cityData.length - 1; i++) {
@@ -57,20 +69,33 @@ export const MapWrapper = () => {
         radiusMinPixels: 10, // Minimum radius in pixels
     });
 
-    // const iconLayer = new IconLayer({
-    //     id: 'icon-layer',
-    //     data: cityData,
-    //     getIcon: d => 'marker',
-    //     getPosition: d => d,
-    //     getSize: 5,
-    //     iconAtlas: '/hotel.svg', // Path to the local icon atlas file
-    //     iconMapping: {
-    //         marker: { x: 0, y: 0, width: 128, height: 128, mask: true }
-    //     },
-    //     sizeScale: 15
-    // });
+    const iconLayer = new IconLayer({
+        id: 'icon-layer',
+        data: hotelData,
+        getColor: d => [140, 140, 0],
+        getIcon: d => 'marker',
+        getPosition: d => d,
+        getSize: 40,
+        iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png', // Path to the local icon atlas file
+        iconMapping: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.json',
+        pickable: true,
+        onHover: (info) => setTooltip("among us sussy balls")
+        // sizeScale: 15
+    });
 
-    const layers = [arcLayer, scatterplotLayer];
+    // const layer = new IconLayer({
+    //     id: 'IconLayer',
+    //     data: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-stations.json',
+    //     getColor: d => [Math.sqrt(d.exits), 140, 0],
+    //     getIcon: d => 'marker',
+    //     getPosition: d => d.coordinates,
+    //     getSize: 40,
+    //     iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png',
+    //     iconMapping: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.json',
+    //     pickable: true
+    //   });
+
+    const layers = [arcLayer, scatterplotLayer, iconLayer];
 
     return (
         <div className="relative w-full h-screen">
