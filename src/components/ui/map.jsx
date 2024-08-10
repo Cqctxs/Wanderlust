@@ -19,7 +19,9 @@ const INITIAL_VIEW_STATE = {
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 function getTooltip({object}) {
-    return object && object.message;
+    return object && {
+        html: `<h1><b>${object.message.title}</b></h1> <div>${object.message.address} <br> ${object.message.rating}</div>`,
+    };
 }  
 
 export const MapWrapper = () => {
@@ -30,14 +32,17 @@ export const MapWrapper = () => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
         cityData.push(lnglat);
     });
-    // console.log(cityData);
 
     const hotelData = [];
     data.itinerary.forEach((day) => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
             const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
-            const message = "name: " + day.hotel.name + ", rating: " + day.hotel.rating;
-            const hotelInfo = {position: lnglat, message: message}
+
+            const message = {title: "Name: Error", address: "Address: Error", rating: "Rating: Error"};
+            if (day.hotel["name"]) message["title"] = day.hotel.name;
+            if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["address"] = "Address: " + day.hotel.plus_code.compound_code;
+            if (day.hotel["rating"]) message["info"] = "Rating: " + day.hotel.rating;
+            const hotelInfo = {position: lnglat, message: message};
             hotelData.push(hotelInfo);
         }
     });
