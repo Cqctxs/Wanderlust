@@ -160,32 +160,16 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         </ParallaxLayer>
         {/* logo */}
         <ParallaxLayer offset={0} speed={-3}>
-        <div className="w-full absolute h-auto parallax mt-40 flex justify-center">
+        <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
             <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-[1700%] text-wh
-                        tracking-tight">wanderlust</h1>
+                        tracking-tight" data-aos="fade-up">wanderlust</h1>
         </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
-        <div className="h-full bg-[#252221]">
-            <div className="pt-20 w-full">
-                <h1 className="gradient-title font-sans font-bold text-6xl w-full text-center text-shadow-xl" data-aos="fade-down">Wanderlust</h1>
-                <div className="flex items-center justify-evenly mt-8">
-                    <p className="text-4xl font-sans text-home w-[40%] text-center" data-aos="fade-right">
-                        Powered by <a className="font-bold text-home-dark gradient-text" href="https://gemini.google.com/">Google's Gemini AI</a>, 
-                        Wanderlust uses a <b className="highlight highlight-variant-4 highlight-[#1b2e57]">large database</b> of popular <b className="highlight highlight-variant-4 highlight-[#405a53]">tourism destinations</b> to tailor your travel itinerary.
-                    </p>
-                    <img className="drop-shadow-xl rounded-2xl w-[40%] h-auto" src="/assets/blank_map.png" data-aos="fade-left"></img>
-                </div>
-            </div>
-            <div className="flex justify-center mt-10">
-                <a href="/generate">
-                    <h1 className="font-sans text-home font-bold text-4xl highlight highlight-variant-7 highlight-home-dark">Get Started</h1>
-                </a>
-            </div>
-        </div>
+            {everything_after}
         </ParallaxLayer>
     </Parallax>
     </div>

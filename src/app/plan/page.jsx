@@ -29,10 +29,9 @@ const Plan = () => {
   */
 
   const getInnerContent = () => {
-    
     return (
-      <div className="flex-col items-center h-full justify-center align-center">
-        <h1 className="flex justify-center">{data}</h1>
+      <div className="bg-mt-[20vh] flex-col items-center h-full justify-center align-center">
+        <h1 className="flex justify-center">Step 1. Choose a Country</h1>
       </div>
     );
   }
