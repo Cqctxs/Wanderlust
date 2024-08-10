@@ -30,7 +30,13 @@ export const MapWrapper = () => {
     const cityData = [];
     data.itinerary.forEach((day) => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
-        cityData.push(lnglat);
+
+        const message = {title: "Name: No name found", address: "Address: No address found"};
+        if (day.hotel["name"]) message["title"] = day.hotel.name;
+        if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["address"] = "Address: " + day.hotel.plus_code.compound_code;
+        if (day.hotel["rating"]) message["info"] = "Rating: " + day.hotel.rating;
+        const cityInfo = {position: lnglat, message: message};
+        cityData.push(cityInfo);
     });
 
     const hotelData = [];
@@ -51,8 +57,8 @@ export const MapWrapper = () => {
     const arcData = [];
     for (let i = 0; i < cityData.length - 1; i++) {
         arcData.push({
-            sourcePosition: cityData[i],
-            targetPosition: cityData[i + 1]
+            sourcePosition: cityData[i].position,
+            targetPosition: cityData[i + 1].position
         });
     }
 
@@ -69,10 +75,12 @@ export const MapWrapper = () => {
     const scatterplotLayer = new ScatterplotLayer({
         id: 'scatterplot-layer',
         data: cityData,
-        getPosition: d => d,
+        getPosition: d => d.position,
         getFillColor: [255, 97, 40],
         getRadius: 100,
         radiusMinPixels: 10, // Minimum radius in pixels
+        pickable: true,
+        onHover: console.log("hi chat")
     });
 
     const iconLayer = new IconLayer({
