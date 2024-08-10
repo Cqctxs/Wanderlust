@@ -1,9 +1,17 @@
 import { MapWrapper } from '@/components/ui/map';
+import { ArrowBigLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default function MapPage() {
     return (
-        <MapWrapper>
-            <h1>Map Page</h1>
-        </MapWrapper>
+        <>
+            <MapWrapper />
+            <div className="absolute top-0 left-0 p-4 text-wh drop-shadow-bla">
+                <Link href="/">
+                    <ArrowBigLeft size={64} />
+                </Link>
+            </div>
+        </>
+
     );
 }

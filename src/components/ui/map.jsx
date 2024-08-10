@@ -5,6 +5,9 @@ import DeckGL from '@deck.gl/react';
 import { Map } from 'react-map-gl';
 import { ArcLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import data from '../../app/map/test.json';
+import { ArrowBigLeft } from 'lucide-react';
+import Link from 'next/link';
+
 
 
 const INITIAL_VIEW_STATE = {
@@ -17,7 +20,7 @@ const INITIAL_VIEW_STATE = {
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export const MapWrapper = ({ children }) => {
+export const MapWrapper = () => {
     const mapRef = useRef(null);
 
     const cityData = [];
@@ -70,9 +73,7 @@ export const MapWrapper = ({ children }) => {
     const layers = [arcLayer, scatterplotLayer];
 
     return (
-        <div onContextMenu={(e) => {
-            e.preventDefault();
-        }}>
+        <div className="relative w-full h-screen">
             <DeckGL
                 initialViewState={INITIAL_VIEW_STATE}
                 controller={true}
@@ -84,9 +85,7 @@ export const MapWrapper = ({ children }) => {
                     mapboxAccessToken={TOKEN}
                     maxPitch={85}
                     reuseMaps={true}
-                >
-                    {children}
-                </Map>
+                />
             </DeckGL>
         </div>
     );
