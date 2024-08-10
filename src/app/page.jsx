@@ -8,7 +8,7 @@ import { CityParallax } from '../components/ui/city_parallax'
 
 export default function Home() {
   return (
-    <div>
+    <div className=" h-screen">
       <Frame/>
       <CityParallax 
         sky_0={"/assets/citybg_sunset_0.png"} sky_1={"/assets/citybg_sunset_1.png"} sky_2={"/assets/citybg_sunset_2.png"}
