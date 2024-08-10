@@ -95,7 +95,40 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      textShadow: {
+        'sm': '1px 1px 1px rgba(0, 0, 0, 0.5)',
+        'DEFAULT': '2px 2px 2px rgba(0, 0, 0, 0.5)',
+        'md': '3px 3px 3px rgba(0, 0, 0, 0.5)',
+        'lg': '4px 4px 4px rgba(0, 0, 0, 0.5)',
+        'xl': '5px 5px 5px rgba(0, 0, 0, 0.5)',
+      },
+      gradientColorStops: {
+        'transparent': 'transparent',
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addUtilities, e, theme }) {
+      const textShadow = theme('textShadow');
+      const textShadowUtilities = Object.keys(textShadow).map(key => {
+        return {
+          [`.${e(`text-shadow-${key}`)}`]: {
+            textShadow: textShadow[key],
+          },
+        };
+      });
+      addUtilities(textShadowUtilities, ['responsive', 'hover']);
+    },
+    function({ addUtilities, e, theme }) {
+      addUtilities(
+        {
+          '.bg-radial-gradient': {
+            backgroundImage: 'radial-gradient(circle, var(--tw-gradient-stops))',
+          },
+        },
+        ['responsive', 'hover']
+      );
+    },
+  ],
 };

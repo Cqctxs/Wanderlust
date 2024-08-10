@@ -74,10 +74,19 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
           .animation_layer {
             background-position: bottom center;
             background-size: cover;
-            background-repeat: repeat-x;
+            background-repeat: no-repeat;
             width: 100%;
             position: absolute;
           }
+          
+          .logo_layer {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 1136px;
+            height: 184px;
+          }
+
           .animation_layer.parallax {
             position: fixed;
           }
@@ -129,6 +138,13 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.25}>
           <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_1.png)" }}></div>
+        </ParallaxLayer>
+        {/* logo */}
+        <ParallaxLayer offset={0} speed={-1.1}>
+          <div className="w-full absolute h-auto parallax mt-40 flex justify-center">
+            <h1 className="m-0 p-0 rounded-lg text-center text-shadow-xl font-offbit text-9xl text-or
+                           bg-gradient-to-br from-transparent via-bla to-transparent">wanderlust</h1>
+          </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.3}>
           <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
