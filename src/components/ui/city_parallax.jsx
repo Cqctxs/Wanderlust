@@ -180,6 +180,11 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
                     <img className="drop-shadow-xl rounded-2xl w-[40%] h-auto" src="/assets/blank_map.png" data-aos="fade-left"></img>
                 </div>
             </div>
+            <div className="flex justify-center mt-10">
+                <a href="/generate">
+                    <h1 className="font-sans text-home font-bold text-4xl highlight highlight-variant-7 highlight-home-dark">Get Started</h1>
+                </a>
+            </div>
         </div>
         </ParallaxLayer>
     </Parallax>
