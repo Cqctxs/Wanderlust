@@ -91,6 +91,12 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
             position: fixed;
           }
 
+          .gradient-text:hover {
+            background: linear-gradient(to right, #357cfe, #e74c5c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
           #artback {
             background-image: url("/assets/citybg_sunset_2.png");
           }
@@ -150,14 +156,13 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
           <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0.3}>
-          <div id="textblock">
-            <div id="textblock-container">
-              <h1 id="textblock-title">What is Firewatch?</h1>
+          <div className="h-full bg-[#2a2320]">
+            <div className="m-auto p-[70] w-[80vw]">
+              <h1 id="textblock-title">Wanderlust</h1>
               <p id="textblock-content">
-                The year is 1989.<br /><br />
-                You are a man named Henry who has retreated from your messy life to work as a fire lookout in the Wyoming wilderness. Perched atop a mountain, it's your job to find smoke and keep the wilderness safe.<br /><br />
-                An especially hot, dry summer has everyone on edge. Your supervisor, a woman named Delilah, is available to you at all times over a small, handheld radio—and is your only contact with the world you've left behind.<br /><br />
-                But when something strange draws you out of your lookout tower and into the world below, you'll explore a wild and unknown environment, facing questions and making interpersonal choices that can build or destroy the only meaningful relationship you have.
+                Your adventures begin here! <br></br> <br></br>
+                Powered by <a className="font-bold text-home-dark gradient-text" href="https://gemini.google.com/">Google's Gemini AI</a>, 
+                Wanderlust uses a large database of popular tourism destinations to tailor a travel itinerary for your travels.
               </p>
             </div>
           </div>
