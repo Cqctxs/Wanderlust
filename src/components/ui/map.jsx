@@ -20,7 +20,11 @@ const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 function getTooltip({object}) {
     return object && {
-        html: `<h1><b>${object.message.title}</b></h1> <div>${object.message.address} <br> ${object.message.rating}</div>`,
+        html: `<h1><b>${object.message.title}</b></h1> <div>${object.message.m1} <br> ${object.message.m2}</div>`,
+        style: {
+            "inline-size": "450px",
+            "overflow-wrap": "break-word"
+        }
     };
 }  
 
@@ -31,10 +35,9 @@ export const MapWrapper = () => {
     data.itinerary.forEach((day) => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
 
-        const message = {title: "Name: No name found", address: "Address: No address found"};
-        if (day.hotel["name"]) message["title"] = day.hotel.name;
-        if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["address"] = "Address: " + day.hotel.plus_code.compound_code;
-        if (day.hotel["rating"]) message["info"] = "Rating: " + day.hotel.rating;
+        const message = {title: "Name: No name found", m1: "Overview: No overview found", m2: ""};
+        if (day["city"]) message["title"] = day.city;
+        if (day["overview"]) message["m1"] = "Overview: " + day.overview;
         const cityInfo = {position: lnglat, message: message};
         cityData.push(cityInfo);
     });
@@ -44,10 +47,10 @@ export const MapWrapper = () => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
             const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
 
-            const message = {title: "Name: No name found", address: "Address: No address found", rating: "Rating: No rating found"};
+            const message = {title: "Name: No name found", m1: "Address: No address found", m2: "Rating: No rating found"};
             if (day.hotel["name"]) message["title"] = day.hotel.name;
-            if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["address"] = "Address: " + day.hotel.plus_code.compound_code;
-            if (day.hotel["rating"]) message["info"] = "Rating: " + day.hotel.rating;
+            if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["m1"] = "Address: " + day.hotel.plus_code.compound_code;
+            if (day.hotel["rating"]) message["m2"] = "Rating: " + day.hotel.rating;
             const hotelInfo = {position: lnglat, message: message};
             hotelData.push(hotelInfo);
         }
