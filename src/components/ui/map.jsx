@@ -13,7 +13,7 @@ const INITIAL_VIEW_STATE = {
     longitude: 0,
     zoom: 3,
     bearing: 0,
-    pitch: 0
+    pitch: 15
 };
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -38,7 +38,7 @@ export const MapWrapper = () => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
             const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
 
-            const message = {title: "Name: Error", address: "Address: Error", rating: "Rating: Error"};
+            const message = {title: "Name: No name found", address: "Address: No address found", rating: "Rating: No rating found"};
             if (day.hotel["name"]) message["title"] = day.hotel.name;
             if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["address"] = "Address: " + day.hotel.plus_code.compound_code;
             if (day.hotel["rating"]) message["info"] = "Rating: " + day.hotel.rating;
@@ -82,23 +82,19 @@ export const MapWrapper = () => {
         getIcon: d => 'marker',
         getPosition: d => d.position,
         getSize: 40,
-        iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png', // Path to the local icon atlas file
-        iconMapping: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.json',
+        iconAtlas: 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
+        iconMapping: {
+            "marker": {
+                "x": 0,
+                "y": 0,
+                "width": 71,
+                "height": 71,
+                "anchorY": 71,
+                "mask": true
+            }
+        },
         pickable: true
-        // sizeScale: 15
     });
-
-    // const layer = new IconLayer({
-    //     id: 'IconLayer',
-    //     data: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-stations.json',
-    //     getColor: d => [Math.sqrt(d.exits), 140, 0],
-    //     getIcon: d => 'marker',
-    //     getPosition: d => d.coordinates,
-    //     getSize: 40,
-    //     iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png',
-    //     iconMapping: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.json',
-    //     pickable: true
-    //   });
 
     const layers = [arcLayer, scatterplotLayer, iconLayer];
 
