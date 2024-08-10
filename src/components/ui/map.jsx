@@ -18,10 +18,9 @@ const INITIAL_VIEW_STATE = {
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-const setTooltip = (message) => {
-    console.log(message);
-    return (<div> {message} </div>);
-}
+function getTooltip({object}) {
+    return object && object.message;
+}  
 
 export const MapWrapper = () => {
     const mapRef = useRef(null);
@@ -37,7 +36,9 @@ export const MapWrapper = () => {
     data.itinerary.forEach((day) => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
             const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
-            hotelData.push(lnglat);
+            const message = "name: " + day.hotel.name + ", rating: " + day.hotel.rating;
+            const hotelInfo = {position: lnglat, message: message}
+            hotelData.push(hotelInfo);
         }
     });
     console.log(hotelData);
@@ -74,12 +75,11 @@ export const MapWrapper = () => {
         data: hotelData,
         getColor: d => [140, 140, 0],
         getIcon: d => 'marker',
-        getPosition: d => d,
+        getPosition: d => d.position,
         getSize: 40,
         iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png', // Path to the local icon atlas file
         iconMapping: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.json',
-        pickable: true,
-        onHover: (info) => setTooltip("among us sussy balls")
+        pickable: true
         // sizeScale: 15
     });
 
@@ -103,6 +103,7 @@ export const MapWrapper = () => {
                 initialViewState={INITIAL_VIEW_STATE}
                 controller={true}
                 layers={layers}
+                getTooltip={getTooltip}
             >
                 <Map
                     ref={mapRef}
