@@ -19,20 +19,21 @@ const Plan = () => {
     });
     return res.data; // Return the data from the response
   };
+  
+  // const { data, isPending, isError, error } = useQuery({
+  //   queryKey: ["itinerary"],
+  //   queryFn: () => fetchItinerary("China", "2024-10-10", "2024-10-15", user.sub),
+  // });
 
-  const { data, isPending, isError, error } = useQuery({
-    queryKey: ["itinerary"],
-    queryFn: () => fetchItinerary("China", "2024-10-10", "2024-10-15", user.sub),
-  });
+  // if (isPending) return <div>Loading tasks...</div>;
+  // if (isError) return <div>Error: {error.message}</div>;
 
-  if (isPending) return <div>Loading tasks...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
-
-  return (
-    <div className="flex-col items-center h-full justify-center align-center">
-      <h1 className="flex justify-center">{data}</h1>
-    </div>
-  );
+  // console.log(data);
+  // return (
+  //   <div className="flex-col items-center h-full justify-center align-center">
+  //     <h1 className="flex justify-center">{data}</h1>
+  //   </div>
+  // );
 };
 
 export default Plan;
