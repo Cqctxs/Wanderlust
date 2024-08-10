@@ -5,7 +5,7 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import Head from 'next/head';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import '../../../styles/global.css';
+import '../../app/globals.css';
 
 export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after }) => {
   const [isClient, setIsClient] = useState(false);
