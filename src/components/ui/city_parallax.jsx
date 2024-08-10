@@ -142,8 +142,8 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         {/* logo */}
         <ParallaxLayer offset={0} speed={-1.1}>
           <div className="w-full absolute h-auto parallax mt-40 flex justify-center">
-            <h1 className="m-0 p-0 rounded-lg text-center text-shadow-xl font-offbit text-9xl text-or
-                           bg-gradient-to-br from-transparent via-bla to-transparent">wanderlust</h1>
+            <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-9xl text-or
+                           backdrop-brightness-125 backdrop-blur-xl">wanderlust</h1>
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.3}>

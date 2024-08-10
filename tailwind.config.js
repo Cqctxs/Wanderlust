@@ -105,6 +105,9 @@ module.exports = {
       gradientColorStops: {
         'transparent': 'transparent',
       },
+      backgroundImage: {
+        'radial-gradient': 'radial-gradient(circle, var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [
