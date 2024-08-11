@@ -24,7 +24,7 @@ export default function Home() {
                 Powered by <a className="text-blu gradient-text" href="https://gemini.google.com/">Gemini AI</a>, 
                 Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br /><br />
                 <div className="flex rounded-xl bg-blu justify-center py-8">
-                  <a href="/generate">
+                  <a href="/plan">
                     <h1 className="font-sans text-wh font-extrabold text-7xl">Get Started     </h1>
                   </a>
                 </div>
