@@ -144,7 +144,7 @@ export const CityParallax = ({ hasLogo=true, hasSearch=false, everything_after }
         .animation {
             display: block;
             position: relative;
-            z-index: 10;
+            z-index: 5;
         }
 
         .animation_layer {
@@ -221,9 +221,22 @@ export const CityParallax = ({ hasLogo=true, hasSearch=false, everything_after }
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_1.png)" }}></div>
         </ParallaxLayer>
         {
+            hasLogo ? 
+                <ParallaxLayer offset={0} speed={-3}>
+                    <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
+                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-[1700%] text-wh
+                                    tracking-tight" data-aos="fade-up">wanderlust</h1>
+                    </div>
+                </ParallaxLayer>
+                : <></>
+        }
+        <ParallaxLayer offset={0} speed={0}>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
+        </ParallaxLayer>
+        {
             hasSearch ? 
-            <ParallaxLayer offset={0} speed={0.05}>
-                <div className="animation_layer parallax flex w-full">
+            <ParallaxLayer offset={0} speed={0}>
+                <div className="z-20 animation_layer parallax flex w-full">
                 <ReactSearchAutocomplete className="mt-40 w-[50vw]"
                     items={items}
                     onSearch={handleOnSearch}
@@ -237,19 +250,6 @@ export const CityParallax = ({ hasLogo=true, hasSearch=false, everything_after }
             </ParallaxLayer>
             : <></>
         }
-        {
-            hasLogo ? 
-                <ParallaxLayer offset={0} speed={-3}>
-                    <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
-                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-[1700%] text-wh
-                                    tracking-tight" data-aos="fade-up">wanderlust</h1>
-                    </div>
-                </ParallaxLayer>
-                : <></>
-        }
-        <ParallaxLayer offset={0} speed={0}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
-        </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
             {everything_after}
         </ParallaxLayer>
