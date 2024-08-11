@@ -6,7 +6,6 @@ module.exports = {
     "./components/**/*.{js,jsx}",
     "./app/**/*.{js,jsx}",
     "./src/**/*.{js,jsx}",
-    "./node_modules/flowbite/**/*.js"
   ],
   prefix: "",
   theme: {
@@ -25,7 +24,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-product)"],
+        sans: ["var(--font-vinson)"],
         offbit: ["var(--font-offbit)"]
       },
       dropShadow: {
@@ -116,7 +115,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin'),
     require("tailwindcss-animate"),
     require('tailwindcss-highlights'),
     function({ addUtilities, e, theme }) {
