@@ -212,8 +212,8 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_1.png)" }}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.05}>
-        <div style={{ width: 400 }}>
-          <ReactSearchAutocomplete
+        <div className="animation_layer parallax flex w-full">
+          <ReactSearchAutocomplete className="mt-40 w-[50vw]"
             items={items}
             onSearch={handleOnSearch}
             onHover={handleOnHover}
