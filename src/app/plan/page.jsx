@@ -88,8 +88,8 @@ const Plan = () => {
       <CityParallax
       hasLogo={false}
       searchValue={
-        <div className="z-20 animation_layer parallax flex w-full">
-        <ReactSearchAutocomplete className="mt-40 w-[50vw]"
+        <div className="z-20 animation_layer parallax flex justify-center w-full">
+        <ReactSearchAutocomplete className="mt-[40vh] w-[50vw]"
             items={items}
             onSearch={handleOnSearch}
             onHover={handleOnHover}
