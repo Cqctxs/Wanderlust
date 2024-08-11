@@ -17,7 +17,7 @@ export default function Home() {
         hasLogo={true}
         searchValue={<></>}
         everything_after={
-          <div className="h-full bg-[#252221]">
+          <div className="h-full bg-[#252322]">
             <div className="pt-20 w-full">
               <div className="flex rounded-xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]" data-aos="fade-right">
                 <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20 leading-tight">

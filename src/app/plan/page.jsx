@@ -233,44 +233,46 @@ const Page = () => {
       <CityParallax
         hasLogo={false}
         searchValue={
-          <div className="flex z-20 animation_layer parallax justify-center items-center w-full">
-            <div className="grid grid-rows-4 gap-4">
-              <h1 className="row-span-1 flex rounded-lg text-center justify-center items-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+          <div className="flex z-20 animation_layer parallax justify-center mt-48 h-min">
+            <div>
+              <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
               <form onSubmit={handleSubmit} className="row-span-3 w-[50vw]">
-                <select
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  className="w-full p-2 border rounded"
-                >
-                  <option value="" disabled>Select a country</option>
-                  {countries.map((country) => (
-                    <option key={country.id} value={country.name}>
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full p-2 border rounded mt-4"
-                />
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full p-2 border rounded mt-4"
-                />
-                <button type="submit" onSubmit={handleSubmit} className="w-full p-2 border rounded mt-4 bg-blue-500 text-white">
-                  Submit
-                </button>
+                <div className="flex">
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className="w-6/10 drop-shadow-lg py-3 border-0 rounded-l-full"
+                  >
+                    <option value="" disabled>Select a country</option>
+                    {countries.map((country) => (
+                      <option key={country.id} value={country.name}>
+                        {country.name}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="w-2/10 drop-shadow-lg ml-1 border-0 py-2"
+                  />
+                  <input
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    className="w-2/10 drop-shadow-lg ml-1 py-2 border-0 "
+                  />
+                  <button type="submit" onSubmit={handleSubmit} className="w-16 p-2 drop-shadow-lg border-0 ml-1 rounded-r-full bg-blue-500 text-white">
+                  Go
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         }
-        everything_after={<div className="h-full bg-[#252221]"></div>}
+        everything_after={<div className="h-full bg-[##252322]"></div>}
       ></CityParallax>
     </>
   );
