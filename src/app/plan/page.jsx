@@ -272,7 +272,7 @@ const Page = () => {
             </div>
           </div>
         }
-        everything_after={<div className="h-full bg-[##252322]"></div>}
+        everything_after={<div className="h-full bg-[#252322]"></div>}
       ></CityParallax>
     </>
   );

@@ -180,9 +180,9 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
         </ParallaxLayer>
         {
             hasLogo ? 
-                <ParallaxLayer offset={0} speed={-3}>
+                <ParallaxLayer offset={0} speed={-2}>
                     <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
-                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit font-bold text-[1700%] text-wh
+                        <h1 className="mt-4 p-2 rounded-lg text-center text-shadow-xl font-offbit font-bold text-[1700%] text-wh
                                     tracking-tight" data-aos="fade-up">wanderlust</h1>
                     </div>
                 </ParallaxLayer>
