@@ -1,7 +1,6 @@
 import { MapWrapper } from '@/components/ui/map';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
-import data from './test.json';
 
 export default function MapPage() {
     return (
