@@ -9,8 +9,7 @@ export const Frame = () => {
     <>
       <div className="fixed top-0 left-0 right-0 z-10 bg-white drop-shadow-md">
       {/* Background and title */}
-      <div className="relative h-20 bg-white">
-        <div className="absolute inset-0 w-full h-8 bg-wh"></div>
+      <div className="relative h-[5vh] bg-white">
         <div className="absolute top-8 left-0 bg-[url('/assets/top_left.svg')] bg-no-repeat bg-contain h-20 w-80"></div>
         <div className="absolute top-8 right-0 bg-[url('/assets/top_right.svg')] bg-no-repeat bg-contain h-20 w-80"></div>
 
