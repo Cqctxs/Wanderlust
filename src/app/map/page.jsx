@@ -19,7 +19,7 @@ export default function MapPage() {
         `}
         </style>
         <div className="flex">
-            <div className="relative h-[100vh] w-[50vw] overflow-y-scroll">
+            <div className="relative h-[100vh] w-[40vw] overflow-y-scroll">
                 <h1>Itinerary</h1>
                 {data.itinerary.map((day, index) => (
                     <div key={index} style={{ marginBottom: '20px' }}>
@@ -35,7 +35,7 @@ export default function MapPage() {
                     </div>
                 ))}
             </div>
-            <div className="relative h-[100vh] w-[50vw]">
+            <div className="relative h-[100vh] w-[60vw]">
                 <MapWrapper />
                 <div className="absolute top-0 left-0 p-4 text-wh drop-shadow-bla">
                     <Link href="/">
