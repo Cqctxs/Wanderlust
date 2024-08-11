@@ -5,14 +5,13 @@ import { Frame } from "@/components/ui/navbar/frame";
 import { useEffect, useState } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { CityParallax } from '../components/ui/city_parallax'
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './globals.css';
 
 export default function Home() {
   return (
-    <div className=" h-screen">
+    <div className="h-screen">
       <Frame/>
       <CityParallax 
         sky_0={"/assets/citybg_sunset_0.png"} sky_1={"/assets/citybg_sunset_1.png"} sky_2={"/assets/citybg_sunset_2.png"}
