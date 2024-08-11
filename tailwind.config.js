@@ -6,6 +6,7 @@ module.exports = {
     "./components/**/*.{js,jsx}",
     "./app/**/*.{js,jsx}",
     "./src/**/*.{js,jsx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   prefix: "",
   theme: {
@@ -24,7 +25,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-vinson)"],
+        sans: ["var(--font-product)"],
         offbit: ["var(--font-offbit)"]
       },
       dropShadow: {
@@ -75,6 +76,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        home: {
+          DEFAULT: "#ffaf1b",
+          dark: "#cc6f0b",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -95,7 +100,45 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      textShadow: {
+        'sm': '1px 1px 1px rgba(0, 0, 0, 0.5)',
+        'DEFAULT': '2px 2px 2px rgba(0, 0, 0, 0.5)',
+        'md': '3px 3px 3px rgba(0, 0, 0, 0.5)',
+        'lg': '4px 4px 4px rgba(0, 0, 0, 0.5)',
+        'xl': '5px 5px 5px rgba(0, 0, 0, 0.2)',
+      },
+      gradientColorStops: {
+        'transparent': 'transparent',
+      },
+      backgroundImage: {
+        'radial-gradient': 'radial-gradient(circle, var(--tw-gradient-stops))',
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require('flowbite/plugin'),
+    require("tailwindcss-animate"),
+    require('tailwindcss-highlights'),
+    function({ addUtilities, e, theme }) {
+      const textShadow = theme('textShadow');
+      const textShadowUtilities = Object.keys(textShadow).map(key => {
+        return {
+          [`.${e(`text-shadow-${key}`)}`]: {
+            textShadow: textShadow[key],
+          },
+        };
+      });
+      addUtilities(textShadowUtilities, ['responsive', 'hover']);
+    },
+    function({ addUtilities, e, theme }) {
+      addUtilities(
+        {
+          '.bg-radial-gradient': {
+            backgroundImage: 'radial-gradient(circle, var(--tw-gradient-stops))',
+          },
+        },
+        ['responsive', 'hover']
+      );
+    },
+  ],
 };

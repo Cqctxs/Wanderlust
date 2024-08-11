@@ -15,14 +15,13 @@ export default function ProfileClient() {
     });
     return res.data; // Return the data from the response
   };
-
+  
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["previousGenerations"],
     queryFn: () => fetchPreviousGenerations(user.sub),
     enabled: !!user
   });
-
-
+  
   if (!user) return <div className="text-gray-700 text-center mt-4">No user</div>;
   if (isLoading) return <div className="text-gray-700 text-center mt-4">Loading...</div>;
   if (error) return <div className="text-red-500 text-center mt-4">{error.message}</div>;
@@ -66,7 +65,8 @@ export default function ProfileClient() {
             <div className="col-span-3 bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
               <h2 className="text-2xl font-semibold text-center text-[#252221] mb-4">Miscellaneous Information</h2>
               <div className="space-y-4 flex-grow">
-              {isPending ? <p className="text-gray-600">Loading...</p> : <p className="text-gray-600">{data}</p>}                <ul className="list-disc list-inside text-gray-600">
+              {isPending ? <p className="text-gray-600">Loading...</p> : <p className="text-gray-600">{data}</p>}
+                <ul className="list-disc list-inside text-gray-600">
                   <li>Recent Activity</li>
                   <li>Favorite Destinations</li>
                   <li>Upcoming Trips</li>
