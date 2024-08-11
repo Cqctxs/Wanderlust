@@ -66,16 +66,19 @@ const Plan = () => {
       <CityParallax
       hasLogo={false}
       searchValue={
-        <div className="z-20 animation_layer parallax flex justify-center w-full">
-        <ReactSearchAutocomplete className="mt-[40vh] w-[50vw]"
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-        />
+        <div className="flex z-20 animation_layer parallax justify-center items-center w-full">
+          <div className="grid grid-rows-2">
+            <h1 className="row-span-1 flex rounded-lg text-center justify-center items-center font-sans font-bold text-[1000%] text-wh tracking-tight">where to?</h1>
+            <ReactSearchAutocomplete className="row-span-1 w-[50vw]"
+                items={items}
+                onSearch={handleOnSearch}
+                onHover={handleOnHover}
+                onSelect={handleOnSelect}
+                onFocus={handleOnFocus}
+                autoFocus
+                formatResult={formatResult}
+            />
+        </div>
         </div>
       }
       everything_after={
