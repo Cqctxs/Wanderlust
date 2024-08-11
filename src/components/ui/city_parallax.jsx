@@ -110,10 +110,18 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
             position: fixed;
         }
 
+        .gradient-text:hover {
+            margin: 4px;
+            letter-spacing: 1px;
+        }
+        
         .gradient-text {
             background: linear-gradient(to right, #357cfe, #e74c5c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            transition:all 0.2s ease;
+            margin: 0px;
+}
         }
 
         .gradient-title {
