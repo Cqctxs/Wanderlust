@@ -19,22 +19,22 @@ export default function Home() {
         city_0={"/assets/citybg_orange_0.png"} city_1={"/assets/citybg_orange_1.png"} city_2={"/assets/citybg_orange_2.png"} city_3={"/assets/citybg_orange_3.png"} 
         everything_after={
           <div className="h-full bg-[#252221]">
-            <div className="pt-20 w-full">
-                <h1 className="gradient-title font-sans font-bold text-6xl w-full text-center text-shadow-xl" data-aos="fade-down">Wanderlust</h1>
-                <div className="flex items-center justify-evenly mt-8">
-                    <p className="text-4xl font-sans text-home w-[40%] text-center" data-aos="fade-right">
-                        Powered by <a className="font-bold text-home-dark gradient-text" href="https://gemini.google.com/">Google's Gemini AI</a>, 
-                        Wanderlust uses a <b className="highlight highlight-variant-4 highlight-[#1b2e57]">large database</b> of popular <b className="highlight highlight-variant-4 highlight-[#405a53]">tourism destinations</b> to tailor your travel itinerary.
-                    </p>
-                    <img className="drop-shadow-xl rounded-2xl w-[40%] h-auto" src="/assets/blank_map.png" data-aos="fade-left"></img>
+    <div className="pt-20 w-full">
+        <div className="flex rounded-lg items-center justify-evenly mt-8 m-14 bg-[#353130] py-16 px-16" data-aos="fade-right">
+            <p className="text-4xl font-sans text-wh w-2/5 px-2 text-right leading-snug">
+                Powered by <a className="text-blu gradient-text" href="https://gemini.google.com/">Gemini AI</a>, 
+                Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br /><br />
+                <div className="flex rounded-xl bg-blu justify-center py-8">
+                  <a href="/generate">
+                    <h1 className="font-sans text-wh font-extrabold text-7xl">Get Started     </h1>
+                  </a>
                 </div>
-            </div>
-            <div className="flex justify-center mt-10">
-                <a href="/plan">
-                    <h1 className="font-sans text-home font-bold text-4xl highlight highlight-variant-7 highlight-home-dark">Get Started</h1>
-                </a>
-            </div>
+            </p>
+            <img className="drop-shadow-xl rounded-[2%] w-3/5 ml-10 h-auto" src="/assets/tripexample.png" alt="Trip Example"></img>
         </div>
+    </div>
+</div>
+
         }
       ></CityParallax>
       <div>
