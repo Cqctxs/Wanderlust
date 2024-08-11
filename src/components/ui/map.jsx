@@ -9,9 +9,9 @@ import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
 const INITIAL_VIEW_STATE = {
-    latitude: 43.642567,
-    longitude: -79.387054,
-    zoom: 15,
+    latitude: 0,
+    longitude: 0,
+    zoom: 3,
     bearing: 0,
     pitch: 15
 };
@@ -110,19 +110,21 @@ export const MapWrapper = () => {
     const layers = [arcLayer, scatterplotLayer, iconLayer];
 
     return (
-        <DeckGL
-            initialViewState={INITIAL_VIEW_STATE}
-            controller={true}
-            layers={layers}
-            getTooltip={getTooltip}
-        >
-            <Map
-                ref={mapRef}
-                mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
-                mapboxAccessToken={TOKEN}
-                maxPitch={85}
-                reuseMaps={true}
-            />
-        </DeckGL>
+        <div className="relative w-full h-screen">
+            <DeckGL
+                initialViewState={INITIAL_VIEW_STATE}
+                controller={true}
+                layers={layers}
+                getTooltip={getTooltip}
+            >
+                <Map
+                    ref={mapRef}
+                    mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
+                    mapboxAccessToken={TOKEN}
+                    maxPitch={85}
+                    reuseMaps={true}
+                />
+            </DeckGL>
+        </div>
     );
 }
