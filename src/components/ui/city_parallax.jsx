@@ -164,10 +164,10 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_2.png)"}}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.45}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_1.png)", backgroundSize: "60%", backgroundPosition: "center top"}}></div>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_1.png)", backgroundSize: "60%", backgroundPosition: "53% 42%"}}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.4}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_0.png)", backgroundSize: "cover" }}></div>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_0.png)", backgroundSize: "cover", backgroundPosition: "45% 40%"}}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.2}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_3.png)" }}></div>
