@@ -15,13 +15,13 @@ export default function ProfileClient() {
     });
     return res.data; // Return the data from the response
   };
-
+  
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["previousGenerations"],
     queryFn: () => fetchPreviousGenerations(user.sub),
     enabled: !!user
   });
-
+  
   if (!user) return <div className="text-gray-700 text-center mt-4">No user</div>;
   if (isLoading) return <div className="text-gray-700 text-center mt-4">Loading...</div>;
   if (error) return <div className="text-red-500 text-center mt-4">{error.message}</div>;
