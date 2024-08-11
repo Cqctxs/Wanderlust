@@ -12,28 +12,27 @@ import './globals.css';
 export default function Home() {
   return (
     <div className="h-screen">
-      <Frame/>
-      <CityParallax 
+      <Frame />
+      <CityParallax
         hasLogo={true}
         searchValue={<></>}
         everything_after={
           <div className="h-full bg-[#252221]">
             <div className="pt-20 w-full">
-                <div className="flex rounded-xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]" data-aos="fade-right">
-                    <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20  leading-tight">
-                        Powered by <a className="text-blu gradient-text" href="https://gemini.google.com/">Gemini AI</a>, 
-                        Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br /><br />
-                        <div className="flex  rounded-lg bg-blu justify-center py-6 mr-24">
-                          <a href="/plan">
-                            <h1 className="font-sans text-wh font-extrabold text-5xl">Get started     </h1>
-                          </a>
-                        </div>
-                    </p>
-                    <img className="w-[55%] rounded-r-xl ml-10 h-max" src="/assets/tripexample.png" alt="Trip Example"></img>
-                </div>
+              <div className="flex rounded-xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]" data-aos="fade-right">
+                <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20 leading-tight">
+                  Powered by <a className="text-blu gradient-text" href="https://gemini.google.com/">Gemini AI</a>,
+                  Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br /><br />
+                  <a href="/plan" className="flex rounded-lg bg-blu justify-center py-6 mr-24 transition duration-200 ease-in-out hover:bg-[#ff6128] transform hover:scale-105">
+                    <h1 className="font-sans text-wh font-extrabold text-5xl">Get started</h1>
+                  </a>
+                </p>
+                <a href="/map" className="m-0 p-0 w-[55%] ml-10 h-max">
+                  <img className=" rounded-r-xl duration-200 transform hover:scale-105" src="/assets/tripexample.png" alt="Trip Example"></img>
+                </a>
+              </div>
             </div>
           </div>
-
         }
       ></CityParallax>
       <div>
