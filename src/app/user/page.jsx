@@ -27,6 +27,7 @@ export default function ProfileClient() {
   if (isLoading) return <div className="text-gray-700 text-center mt-4">Loading...</div>;
   if (error) return <div className="text-red-500 text-center mt-4">{error.message}</div>;
 
+  console.log(data)
   return (
     <div>
       <Frame />

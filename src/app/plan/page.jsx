@@ -27,10 +27,11 @@ const Plan = () => {
 
   if (isPending) return <div>Loading tasks...</div>;
   if (isError) return <div>Error: {error.message}</div>;
+  console.log(data)
 
   return (
     <div className="flex-col items-center h-full justify-center align-center">
-      <h1 className="flex justify-center">{data}</h1>
+      <h1 className="flex justify-center">{data }</h1>
     </div>
   );
 };
