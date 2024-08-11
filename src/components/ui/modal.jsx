@@ -63,7 +63,7 @@ export const Modal = () => {
                                         <PaginationPrevious onClick={handlePreviousClick} />
                                     </PaginationItem>
                                     <PaginationItem>
-                                        <PaginationLink href="#">1</PaginationLink>
+                                        <PaginationLink href="#">{index+1}</PaginationLink>
                                     </PaginationItem>
                                     <PaginationItem>
                                         <PaginationEllipsis />
