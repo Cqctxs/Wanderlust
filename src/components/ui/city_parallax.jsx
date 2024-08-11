@@ -8,60 +8,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ hasLogo=true, hasSearch=false, everything_after }) => {
+export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) => {
   const [isClient, setIsClient] = useState(false);
 
-  const items = [
-    {
-      id: 0,
-      name: 'Cobol'
-    },
-    {
-      id: 1,
-      name: 'JavaScript'
-    },
-    {
-      id: 2,
-      name: 'Basic'
-    },
-    {
-      id: 3,
-      name: 'PHP'
-    },
-    {
-      id: 4,
-      name: 'Java'
-    }
-  ]
-
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results)
-  }
-
-  const handleOnHover = (result) => {
-    // the item hovered
-    console.log(result)
-  }
-
-  const handleOnSelect = (item) => {
-    // the item selected
-    console.log(item)
-  }
-
-  const handleOnFocus = () => {
-    console.log('Focused')
-  }
-
-  const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
-      </>
-    )
-  }
+  
 
   useEffect(() => {
     setIsClient(true);
@@ -233,23 +183,9 @@ export const CityParallax = ({ hasLogo=true, hasSearch=false, everything_after }
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
         </ParallaxLayer>
-        {
-            hasSearch ? 
-            <ParallaxLayer offset={0} speed={0}>
-                <div className="z-20 animation_layer parallax flex w-full">
-                <ReactSearchAutocomplete className="mt-40 w-[50vw]"
-                    items={items}
-                    onSearch={handleOnSearch}
-                    onHover={handleOnHover}
-                    onSelect={handleOnSelect}
-                    onFocus={handleOnFocus}
-                    autoFocus
-                    formatResult={formatResult}
-                />
-                </div>
-            </ParallaxLayer>
-            : <></>
-        }
+        <ParallaxLayer offset={0} speed={0}>
+        {searchValue}
+        </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
             {everything_after}
         </ParallaxLayer>
