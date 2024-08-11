@@ -11,7 +11,7 @@ import Link from 'next/link';
 const INITIAL_VIEW_STATE = {
     latitude: 0,
     longitude: 0,
-    zoom: 3,
+    zoom: 1,
     bearing: 0,
     pitch: 15
 };
@@ -110,21 +110,19 @@ export const MapWrapper = () => {
     const layers = [arcLayer, scatterplotLayer, iconLayer];
 
     return (
-        <div className="relative w-full h-screen">
-            <DeckGL
-                initialViewState={INITIAL_VIEW_STATE}
-                controller={true}
-                layers={layers}
-                getTooltip={getTooltip}
-            >
-                <Map
-                    ref={mapRef}
-                    mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
-                    mapboxAccessToken={TOKEN}
-                    maxPitch={85}
-                    reuseMaps={true}
-                />
-            </DeckGL>
-        </div>
+        <DeckGL
+            initialViewState={INITIAL_VIEW_STATE}
+            controller={true}
+            layers={layers}
+            getTooltip={getTooltip}
+        >
+            <Map
+                ref={mapRef}
+                mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
+                mapboxAccessToken={TOKEN}
+                maxPitch={85}
+                reuseMaps={true}
+            />
+        </DeckGL>
     );
 }
