@@ -29,9 +29,18 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
 
   return (
     <>
-    <div class = "overflow-y-scroll no-scrollbar">
+    <div>
     <style>
         {`
+        ::-webkit-scrollbar {
+        display: none;
+        }
+
+        body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        }
+
         #textblock {
             background-color: #2a2320;
             height: 100vh;
