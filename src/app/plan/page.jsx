@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useQuery } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
@@ -10,6 +10,9 @@ import { CityParallax } from "../../components/ui/city_parallax.jsx";
 
 const Plan = () => {
   const { user, isLoading } = useUser();
+  const { country, setCountry } = useState("None");
+  const { startDate, setStartDate } = useState("None");
+  const { endDate, setEndDate } = useState("None");
 
   /*
   const fetchItinerary = async (country, startDate, endDate, sub) => {
@@ -66,36 +69,38 @@ const Plan = () => {
       <CityParallax
       hasLogo={false}
       searchValue={
-        <div className="z-20 animation_layer parallax flex justify-center w-full">
-        <ReactSearchAutocomplete className="mt-[40vh] w-[50vw]"
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-        />
+        <div className="flex z-20 animation_layer parallax justify-center items-center w-full">
+          <div className="grid grid-rows-2">
+            <h1 className="row-span-1 flex rounded-lg text-center justify-center items-center font-sans font-bold text-[1000%] text-wh tracking-tight">where to?</h1>
+            <ReactSearchAutocomplete className="row-span-1 w-[50vw]"
+                items={items}
+                onSearch={handleOnSearch}
+                onHover={handleOnHover}
+                onSelect={handleOnSelect}
+                onFocus={handleOnFocus}
+                autoFocus
+                formatResult={formatResult}
+            />
+        </div>
         </div>
       }
       everything_after={
         <div className="h-full bg-[#252221]">
-          <div className="pt-20 w-full">
-              <h1 className="gradient-title font-sans font-bold text-6xl w-full text-center text-shadow-xl" data-aos="fade-down">Wanderlust</h1>
-              <div className="flex items-center justify-evenly mt-8">
-                  <p className="text-4xl font-sans text-home w-[40%] text-center" data-aos="fade-right">
-                      Powered by <a className="font-bold text-home-dark gradient-text" href="https://gemini.google.com/">Google's Gemini AI</a>, 
-                      Wanderlust uses a <b className="highlight highlight-variant-4 highlight-[#1b2e57]">large database</b> of popular <b className="highlight highlight-variant-4 highlight-[#405a53]">tourism destinations</b> to tailor your travel itinerary.
-                  </p>
-                  <img className="drop-shadow-xl rounded-2xl w-[40%] h-auto" src="/assets/blank_map.png" data-aos="fade-left"></img>
-              </div>
+            <div className="pt-20 w-full">
+                <div className="flex rounded-xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]" data-aos="fade-right">
+                    <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20  leading-tight">
+                        Powered by <a className="text-blu gradient-text" href="https://gemini.google.com/">Gemini AI</a>, 
+                        Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br /><br />
+                        <div className="flex  rounded-lg bg-blu justify-center py-6 mr-24">
+                          <a href="/plan">
+                            <h1 className="font-sans text-wh font-extrabold text-5xl">Get started     </h1>
+                          </a>
+                        </div>
+                    </p>
+                    <img className="w-[55%] rounded-r-xl ml-10 h-max" src="/assets/tripexample.png" alt="Trip Example"></img>
+                </div>
+            </div>
           </div>
-          <div className="flex justify-center mt-10">
-              <a href="/plan">
-                  <h1 className="font-sans text-home font-bold text-4xl highlight highlight-variant-7 highlight-home-dark">Get Started</h1>
-              </a>
-          </div>
-        </div>
       }
       ></CityParallax>
     );
