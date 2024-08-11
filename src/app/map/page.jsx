@@ -17,12 +17,20 @@ export default function MapPage() {
         }
         `}
         </style>
-            <MapWrapper />
-            <div className="absolute top-0 left-0 p-4 text-wh drop-shadow-bla">
-                <Link href="/">
-                    <ArrowBigLeft size={64} />
-                </Link>
+        <div className="flex">
+            <div className="relative h-[100vh] w-[50vw]">
+                <h1>Itinerary</h1>
+                <p>put itinerary here</p>
             </div>
+            <div className="relative h-[100vh] w-[50vw]">
+                <MapWrapper />
+                <div className="absolute top-0 left-0 p-4 text-wh drop-shadow-bla">
+                    <Link href="/">
+                        <ArrowBigLeft size={64} />
+                    </Link>
+                </div>
+            </div>
+        </div>
         </>
 
     );
