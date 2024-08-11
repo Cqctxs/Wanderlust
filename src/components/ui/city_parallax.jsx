@@ -98,7 +98,7 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
             position: fixed;
         }
 
-        .gradient-text:hover {
+        .gradient-text {
             background: linear-gradient(to right, #357cfe, #e74c5c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;

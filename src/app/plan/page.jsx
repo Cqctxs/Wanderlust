@@ -5,7 +5,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useQuery } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
 import axios from "axios";
-
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import { CityParallax } from "../../components/ui/city_parallax.jsx";
 
 const Plan = () => {
