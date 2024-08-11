@@ -2,20 +2,23 @@
 
 import React, { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import Head from 'next/head';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import '../../../styles/global.css';
+import '../../app/globals.css';
 
-export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after }) => {
+export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) => {
   const [isClient, setIsClient] = useState(false);
+
+  
 
   useEffect(() => {
     setIsClient(true);
     // initializes animate on scroll
     AOS.init({
-        duration: 2400, 
-        delay: 1,
+        duration: 2000, 
+        delay: 1, 
         once: false,
         easing: 'ease',
     });
@@ -32,6 +35,15 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
     <div>
     <style>
         {`
+        ::-webkit-scrollbar {
+        display: none;
+        }
+
+        body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        }
+
         #textblock {
             background-color: #2a2320;
             height: 100vh;
@@ -82,7 +94,7 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         .animation {
             display: block;
             position: relative;
-            z-index: 10;
+            z-index: 5;
         }
 
         .animation_layer {
@@ -99,9 +111,17 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         }
 
         .gradient-text:hover {
+            margin: 4px;
+            letter-spacing: 1px;
+        }
+        
+        .gradient-text {
             background: linear-gradient(to right, #357cfe, #e74c5c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            transition:all 0.2s ease;
+            margin: 0px;
+}
         }
 
         .gradient-title {
@@ -158,29 +178,24 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         <ParallaxLayer offset={0} speed={0.05}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_1.png)" }}></div>
         </ParallaxLayer>
-        {/* logo */}
-        <ParallaxLayer offset={0} speed={-1}>
-        <div className="w-full absolute h-auto parallax mt-40 flex justify-center">
-            <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-9xl text-or
-                        backdrop-brightness-125 backdrop-blur-xl">wanderlust</h1>
-        </div>
-        </ParallaxLayer>
+        {
+            hasLogo ? 
+                <ParallaxLayer offset={0} speed={-3}>
+                    <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
+                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit font-bold text-[1700%] text-wh
+                                    tracking-tight" data-aos="fade-up">wanderlust</h1>
+                    </div>
+                </ParallaxLayer>
+                : <></>
+        }
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
         </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0}>
+        {searchValue}
+        </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
-        <div className="h-full bg-[#252221]">
-            <div className="pt-20 w-full">
-                <h1 className="gradient-title font-sans font-bold text-6xl w-full text-center text-shadow-xl" data-aos="fade-down">Wanderlust</h1>
-                <div className="flex items-center justify-evenly mt-8">
-                    <p className="text-4xl font-sans text-home w-[40%] text-center" data-aos="fade-right">
-                        Powered by <a className="font-bold text-home-dark gradient-text" href="https://gemini.google.com/">Google's Gemini AI</a>, 
-                        Wanderlust uses a <b className="highlight highlight-variant-4 highlight-[#1b2e57]">large database</b> of popular <b className="highlight highlight-variant-4 highlight-[#405a53]">tourism destinations</b> to tailor your travel itinerary.
-                    </p>
-                    <img className="drop-shadow-xl rounded-2xl w-[40%] h-auto" src="/assets/blank_map.png" data-aos="fade-left"></img>
-                </div>
-            </div>
-        </div>
+            {everything_after}
         </ParallaxLayer>
     </Parallax>
     </div>
