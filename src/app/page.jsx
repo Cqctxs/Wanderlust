@@ -5,18 +5,17 @@ import { Frame } from "@/components/ui/navbar/frame";
 import { useEffect, useState } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { CityParallax } from '../components/ui/city_parallax'
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './globals.css';
 
 export default function Home() {
   return (
-    <div className=" h-screen">
+    <div className="h-screen">
       <Frame/>
       <CityParallax 
-        sky_0={"/assets/citybg_sunset_0.png"} sky_1={"/assets/citybg_sunset_1.png"} sky_2={"/assets/citybg_sunset_2.png"}
-        city_0={"/assets/citybg_orange_0.png"} city_1={"/assets/citybg_orange_1.png"} city_2={"/assets/citybg_orange_2.png"} city_3={"/assets/citybg_orange_3.png"} 
+        hasLogo={true}
+        searchValue={<></>}
         everything_after={
           <div className="h-full bg-[#252221]">
     <div className="pt-20 w-full">
@@ -33,7 +32,7 @@ export default function Home() {
             <img className="drop-shadow-xl rounded-[2%] w-3/5 ml-10 h-auto" src="/assets/tripexample.png" alt="Trip Example"></img>
         </div>
     </div>
-</div>
+  </div>
 
         }
       ></CityParallax>

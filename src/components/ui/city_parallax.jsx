@@ -2,13 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import Head from 'next/head';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, hasLogo=true, hasSearch=false, everything_after }) => {
+export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) => {
   const [isClient, setIsClient] = useState(false);
+
+  
 
   useEffect(() => {
     setIsClient(true);
@@ -29,9 +32,18 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
 
   return (
     <>
-    <div class = "overflow-y-scroll no-scrollbar">
+    <div>
     <style>
         {`
+        ::-webkit-scrollbar {
+        display: none;
+        }
+
+        body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        }
+
         #textblock {
             background-color: #2a2320;
             height: 100vh;
@@ -82,7 +94,7 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         .animation {
             display: block;
             position: relative;
-            z-index: 10;
+            z-index: 5;
         }
 
         .animation_layer {
@@ -170,6 +182,9 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         }
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0}>
+        {searchValue}
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
             {everything_after}
