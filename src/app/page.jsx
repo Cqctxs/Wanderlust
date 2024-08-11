@@ -53,7 +53,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <footer className="bg-[#252322] text-wh py-2">
+            <footer className="bg-[#252322] text-wh py-12 mb-12">
               <div className="flex justify-center space-x-8">
                 <a
                   href="#our-team"
