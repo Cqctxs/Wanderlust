@@ -15,7 +15,7 @@ export default function Home() {
       <Frame/>
       <CityParallax 
         hasLogo={true}
-        hasSearch={false}
+        searchValue={<></>}
         everything_after={
           <div className="h-full bg-[#252221]">
             <div className="pt-20 w-full">
