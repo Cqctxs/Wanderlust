@@ -17,9 +17,9 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
     setIsClient(true);
     // initializes animate on scroll
     AOS.init({
-        duration: 2400, 
-        delay: 1,
-        once: true,
+        duration: 2000, 
+        delay: 1, 
+        once: false,
         easing: 'ease',
     });
 
@@ -174,7 +174,7 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
             hasLogo ? 
                 <ParallaxLayer offset={0} speed={-3}>
                     <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
-                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-[1700%] text-wh
+                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit font-bold text-[1700%] text-wh
                                     tracking-tight" data-aos="fade-up">wanderlust</h1>
                     </div>
                 </ParallaxLayer>

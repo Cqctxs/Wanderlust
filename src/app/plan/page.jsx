@@ -69,29 +69,38 @@ const Plan = () => {
       <CityParallax
       hasLogo={false}
       searchValue={
-        <div className="z-20 animation_layer parallax flex justify-center w-full">
-        <ReactSearchAutocomplete className="mt-[40vh] w-[50vw]"
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-        />
+        <div className="flex z-20 animation_layer parallax justify-center items-center w-full">
+          <div className="grid grid-rows-2">
+            <h1 className="row-span-1 flex rounded-lg text-center justify-center items-center font-sans font-bold text-[1000%] text-wh tracking-tight">where to?</h1>
+            <ReactSearchAutocomplete className="row-span-1 w-[50vw]"
+                items={items}
+                onSearch={handleOnSearch}
+                onHover={handleOnHover}
+                onSelect={handleOnSelect}
+                onFocus={handleOnFocus}
+                autoFocus
+                formatResult={formatResult}
+            />
+        </div>
         </div>
       }
       everything_after={
         <div className="h-full bg-[#252221]">
-          <div class="relative max-w-sm">
-            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-              </svg>
+            <div className="pt-20 w-full">
+                <div className="flex rounded-xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]" data-aos="fade-right">
+                    <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20  leading-tight">
+                        Powered by <a className="text-blu gradient-text" href="https://gemini.google.com/">Gemini AI</a>, 
+                        Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br /><br />
+                        <div className="flex  rounded-lg bg-blu justify-center py-6 mr-24">
+                          <a href="/plan">
+                            <h1 className="font-sans text-wh font-extrabold text-5xl">Get started     </h1>
+                          </a>
+                        </div>
+                    </p>
+                    <img className="w-[55%] rounded-r-xl ml-10 h-max" src="/assets/tripexample.png" alt="Trip Example"></img>
+                </div>
             </div>
-            <input datepicker id="default-datepicker" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
           </div>
-        </div>
       }
       ></CityParallax>
     );
