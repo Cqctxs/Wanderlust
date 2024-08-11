@@ -7,7 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, everything_after }) => {
+export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city_3, hasLogo=true, hasSearch=false, everything_after }) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
     AOS.init({
         duration: 2400, 
         delay: 1,
-        once: false,
+        once: true,
         easing: 'ease',
     });
 
@@ -158,13 +158,21 @@ export const CityParallax = ({ sky_0, sky_1, sky_2, city_0, city_1, city_2, city
         <ParallaxLayer offset={0} speed={0.05}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_1.png)" }}></div>
         </ParallaxLayer>
-        {/* logo */}
-        <ParallaxLayer offset={0} speed={-3}>
-        <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
-            <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-[1700%] text-wh
-                        tracking-tight" data-aos="fade-up">wanderlust</h1>
-        </div>
+        <ParallaxLayer offset={0} speed={0.05}>
+            <div>
+
+            </div>
         </ParallaxLayer>
+        {
+            hasLogo ? 
+                <ParallaxLayer offset={0} speed={-3}>
+                    <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
+                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit text-[1700%] text-wh
+                                    tracking-tight" data-aos="fade-up">wanderlust</h1>
+                    </div>
+                </ParallaxLayer>
+                : <></>
+        }
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
         </ParallaxLayer>
