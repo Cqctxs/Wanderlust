@@ -24,7 +24,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-vinson)"],
+        sans: ["var(--font-product)"],
         offbit: ["var(--font-offbit)"]
       },
       dropShadow: {
