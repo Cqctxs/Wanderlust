@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useQuery } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
@@ -10,6 +10,9 @@ import { CityParallax } from "../../components/ui/city_parallax.jsx";
 
 const Plan = () => {
   const { user, isLoading } = useUser();
+  const { country, setCountry } = useState("None");
+  const { startDate, setStartDate } = useState("None");
+  const { endDate, setEndDate } = useState("None");
 
   /*
   const fetchItinerary = async (country, startDate, endDate, sub) => {
@@ -80,20 +83,13 @@ const Plan = () => {
       }
       everything_after={
         <div className="h-full bg-[#252221]">
-          <div className="pt-20 w-full">
-              <h1 className="gradient-title font-sans font-bold text-6xl w-full text-center text-shadow-xl" data-aos="fade-down">Wanderlust</h1>
-              <div className="flex items-center justify-evenly mt-8">
-                  <p className="text-4xl font-sans text-home w-[40%] text-center" data-aos="fade-right">
-                      Powered by <a className="font-bold text-home-dark gradient-text" href="https://gemini.google.com/">Google's Gemini AI</a>, 
-                      Wanderlust uses a <b className="highlight highlight-variant-4 highlight-[#1b2e57]">large database</b> of popular <b className="highlight highlight-variant-4 highlight-[#405a53]">tourism destinations</b> to tailor your travel itinerary.
-                  </p>
-                  <img className="drop-shadow-xl rounded-2xl w-[40%] h-auto" src="/assets/blank_map.png" data-aos="fade-left"></img>
-              </div>
-          </div>
-          <div className="flex justify-center mt-10">
-              <a href="/plan">
-                  <h1 className="font-sans text-home font-bold text-4xl highlight highlight-variant-7 highlight-home-dark">Get Started</h1>
-              </a>
+          <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </div>
+            <input datepicker id="default-datepicker" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
           </div>
         </div>
       }
