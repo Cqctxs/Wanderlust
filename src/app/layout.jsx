@@ -10,22 +10,14 @@ const offbit = localFont({
   variable: "--font-offbit",
 });
 
-const vinson = localFont({
+const product = localFont({
   src: [
     {
-      path: "../../public/fonts/Vinson-Light.ttf",
+      path: "../../public/fonts/ProductSans.ttf",
       weight: "300",
     },
-    {
-      path: "../../public/fonts/Vinson-Regular.ttf",
-      weight: "400",
-    },
-    {
-      path: "../../public/fonts/Vinson-Bold.ttf",
-      weight: "700",
-    },
   ],
-  variable: "--font-vinson",
+  variable: "--font-product",
 });
 
 export const metadata = {
@@ -40,7 +32,7 @@ export default function RootLayout({ children }) {
         {/* external stylesheets */}
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
       </head>
-      <body className={`${offbit.variable} ${vinson.variable} font-sans`}>
+      <body className={`${offbit.variable} ${product.variable} font-sans`}>
         <UserProvider>
           <TanstackProvider>{children}</TanstackProvider>
         </UserProvider>
