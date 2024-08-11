@@ -9,9 +9,9 @@ import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
 const INITIAL_VIEW_STATE = {
-    latitude: 0,
-    longitude: 0,
-    zoom: 1,
+    latitude: 43.642567,
+    longitude: -79.387054,
+    zoom: 15,
     bearing: 0,
     pitch: 15
 };
