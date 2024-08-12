@@ -8,7 +8,6 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import ReactHowler from 'react-howler';
 import { ThreeDots } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
