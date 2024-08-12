@@ -9,7 +9,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import { MagnifyingGlass } from "react-loader-spinner";
+import { Circles } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
   const res = await axios.get("http://localhost:8080/api/generate", {
@@ -116,8 +116,17 @@ const Page = () => {
           </div>
         }
         everything_after={ dataLoading || !travelData ? 
-          <div className="h-full flex justify-center bg-[#252322]">
-            <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
+          <div className="h-full flex items-center justify-center bg-[#252322]">
+            <Circles
+              height="40vh"
+              width="40vh"
+              color="#4fa94d"
+              ariaLabel="circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+            <h1 className="text-">Loading... {loadingTime.toFixed(1)}s</h1>
           </div> 
           : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
