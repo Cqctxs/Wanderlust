@@ -13,6 +13,7 @@ const Page = () => {
   const [country, setCountry] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [dataLoading, setDataLoading] = useState(false);
 
   const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
     const res = await axios.get("http://localhost:8080/api/generate", {
@@ -28,24 +29,13 @@ const Page = () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
 
     const params = {
-      country: {country},
-      startDate: {startDate},
-      endDate: {endDate},
+      country: country,
+      startDate: startDate,
+      endDate: endDate,
     };
-    console.log(params);
 
     try {
-      /*
-      const response = await axios.get('http://localhost:8080/api/generate', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        params: params,
-      });
-      */
-     const response = await axios.get('http://localhost:8080/api/generate');
-
-      console.log(`the value is ${response.data}`);
+      const response = await axios.get('http://localhost:8080/api/generate', { params });
     } catch (error) {
       console.error(`omg there's an error ${error}`);
     } finally {
@@ -61,7 +51,7 @@ const Page = () => {
         searchValue={
           <div className="flex z-20 animation_layer parallax justify-center mt-48 h-min">
             <div>
-              <h1 className="flex pr-4 text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+              <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
               <form onSubmit={handleSubmit} className="row-span-3 w-[50vw]">
@@ -90,7 +80,7 @@ const Page = () => {
                     onChange={(e) => setEndDate(e.target.value)}
                     className="w-2/10 drop-shadow-lg ml-1 py-2 border-0 "
                   />
-                  <button type="button" onClick={handleSubmit} className="w-16 p-2 drop-shadow-lg border-0 ml-1 rounded-r-full bg-blue-500 text-white">
+                  <button type="button" onClick={handleSubmit} className="w-20 p-2 drop-shadow-lg border-0 ml-1 rounded-r-full bg-blue-500 text-white">
                     Go
                   </button>
                 </div>
