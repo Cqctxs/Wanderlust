@@ -15,7 +15,7 @@ export const Globes = ({ start = 0 }) => {
     }, []);
 
     return (
-        <div className="z-10 relative w-14 h-14 drop-shadow-or">
+        <div className="z-10 relative w-12 h-14 drop-shadow-or transition-transform transform hover:scale-110">
             <Image src={globes[currentGlobeIndex]} alt={`Globe ${currentGlobeIndex + 1}`} fill={true} />
         </div>
     );
