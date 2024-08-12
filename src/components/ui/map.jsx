@@ -9,10 +9,10 @@ import data from '../../app/map/test.json';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
-const INITIAL_VIEW_STATE = {
+let INITIAL_VIEW_STATE = {
     latitude: 43.642567,
     longitude: -79.387054,
-    zoom: 15,
+    zoom: 14,
     bearing: 0,
     pitch: 15
 };
@@ -57,6 +57,8 @@ export const MapWrapper = ({ data, location }) => {
     }, [location, mapRef]);
 
     const cityData = [];
+    INITIAL_VIEW_STATE.latitude = data.itinerary[0].cityCoordinates.lat;
+    INITIAL_VIEW_STATE.longitude = data.itinerary[0].cityCoordinates.lng;
     data.itinerary.forEach((day) => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
 
@@ -66,6 +68,7 @@ export const MapWrapper = ({ data, location }) => {
         const cityInfo = { position: lnglat, message: message };
         cityData.push(cityInfo);
     });
+
 
     const hotelData = [];
     data.itinerary.forEach((day) => {

@@ -1,11 +1,9 @@
-'use client'
+"use client";
 
 import { useState, useEffect } from 'react';
 import { MapWrapper } from '@/components/ui/map';
-import { ArrowBigLeft } from 'lucide-react';
-import Link from 'next/link';
-import data from '@/app/map/test.json';
 import { Modal } from '@/components/ui/modal';
+import data from '@/app/map/test.json';
 
 export default function MapPage() {
     const [travelData, setTravelData] = useState(null);
@@ -13,34 +11,29 @@ export default function MapPage() {
 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('travelData'));
-        console.log("storedData");
-        console.log(storedData);
         if (storedData) {
             setTravelData(storedData);
-            // Optionally remove the item from localStorage if you no longer need it
-            // localStorage.removeItem('travelData');
+            // Set initial location
+            if (storedData.itinerary && storedData.itinerary.length > 0) {
+                setLocation(storedData.itinerary[0].cityCoordinates);
+            }
         }
     }, []);
-    
+
     useEffect(() => {
         if (travelData) {
-            console.log("travelData");
-            console.log(travelData);
-            console.log(typeof travelData);
-            // setLocation(travelData.itinerary[0].cityCoordinates);
+            console.log("travelData", travelData);
         }
     }, [travelData]);
-      
+
     return (
         <>
-        {(travelData) && (
-            <>
-                <MapWrapper data={travelData} location={location} />
-                <Modal data={travelData} onLocationChange={setLocation} />
-            </>
-        )}
-
+            {travelData && (
+                <>
+                    <MapWrapper data={travelData} location={location} />
+                    <Modal data={travelData} onLocationChange={setLocation} />
+                </>
+            )}
         </>
-
     );
 }
