@@ -115,7 +115,7 @@ const Page = () => {
             </div>
           </div>
         }
-        everything_after={ dataLoading ? 
+        everything_after={ dataLoading || !travelData ? 
           <div className="h-full flex justify-center bg-[#252322]">
             <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
           </div> 
@@ -127,7 +127,7 @@ const Page = () => {
           <div className="flex h-min w-screen mx-8 px-12  space-x-8">
             {/* Left Card - Map */}
             <div className="relative  flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
-              <MapSmall />
+              <MapSmall data={travelData} />
             </div>
             {/* Right Card Container */}
             <div className="flex flex-col w-2/5 space-y-4">

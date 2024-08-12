@@ -4,18 +4,9 @@ import React, { useRef } from 'react';
 import DeckGL from '@deck.gl/react';
 import { Map } from 'react-map-gl';
 import { ArcLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
-import data from '../../app/map/test.json';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
-// Define the initial view state of the map
-const INITIAL_VIEW_STATE = {
-    latitude: data.itinerary[0].cityCoordinates.lat,
-    longitude: data.itinerary[0].cityCoordinates.lng,
-    zoom: 5,
-    bearing: 0,
-    pitch: 15
-};
 
 // Mapbox token for accessing map styles
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -31,8 +22,16 @@ function getTooltip({ object }) {
     };
 }  
 
-export const MapSmall = () => {
+export const MapSmall = ({data}) => {
     const mapRef = useRef(null);
+
+    const INITIAL_VIEW_STATE = {
+        latitude: data.itinerary[0].cityCoordinates.lat,
+        longitude: data.itinerary[0].cityCoordinates.lng,
+        zoom: 7,
+        bearing: 0,
+        pitch: 15
+    };
 
     // Process city data for visualization
     const cityData = [];
