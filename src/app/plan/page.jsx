@@ -19,9 +19,10 @@ const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
 
 const Page = () => {
   const { user, isLoading } = useUser();
-  const [country, setCountry] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [country, setCountry] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [dataLoading, setDataLoading] = useState(false);
 
   const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
     const res = await axios.get("http://localhost:8080/api/generate", {
@@ -41,20 +42,9 @@ const Page = () => {
       startDate: { startDate },
       endDate: { endDate },
     };
-    console.log(params);
 
     try {
-      /*
-      const response = await axios.get('http://localhost:8080/api/generate', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        params: params,
-      });
-      */
-      const response = await axios.get("http://localhost:8080/api/generate");
-
-      console.log(`the value is ${response.data}`);
+      const response = await axios.get('http://localhost:8080/api/generate', { params });
     } catch (error) {
       console.error(`omg there's an error ${error}`);
     } finally {
@@ -70,7 +60,7 @@ const Page = () => {
         searchValue={
           <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
             <div>
-              <h1 className="flex pr-4 text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+              <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
               <form onSubmit={handleSubmit} className="row-span-3 w-[50vw]">
