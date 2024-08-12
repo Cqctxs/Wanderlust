@@ -36,34 +36,38 @@ export const Modal = () => {
             </div>
             <div className='flex items-center justify-center h-screen relative p-12'>
                 <div className='drop-shadow-bla pointer-events-auto'>
-                    <div className='font-offbit rounded-2xl h-28 bg-wh w-[36em] flex-col flex justify-center p-5 pt-8 text-bla'>
-                        <div className='text-5xl'>
+                    <div className='rounded-2xl h-28 bg-wh w-[36em] flex-col flex justify-center p-5 pt-8 text-bla'>
+                        <div className='text-5xl font-offbit'>
                             Day {index + 1}
                         </div>
                         <div className='text-lg text-bla/50'>
                             Day {index + 1} Trip Itinerary
                         </div>
                     </div>
-                    <div className='w-[36em] h-[48em] flex flex-col'>
-                        <div className='flex-grow p-5 bg-wh rounded-2xl overflow-auto'>
-                            <h2>Day {index + 1}: {data.itinerary[index].date}</h2>
-                            <h3>Overview</h3>
-                            <p>{data.itinerary[index].overview}</p>
-                            <h3>Activities</h3>
+                    <div className='w-[36em] h-[48em] flex flex-col rounded-2xl bg-wh p-6'>
+                        <div className='flex-grow p-5 bg-wh rounded-2xl overflow-auto drop-shadow-bla'>
+                            <h2 className='flex text-2xl justify-center'>
+                                {/* #TODO Make calender icon */}<ArrowBigLeft size={36} />
+                                {data.itinerary[index].date}
+                            </h2>
+                            <hr className='my-3'/>
+                            <p className='text-center text-bla/80 text-xl'>{data.itinerary[index].overview}</p>
+                            <hr className='my-3'/>
+                            <h3 className='text-2xl'>Activities</h3>
                             <ul>
                                 {data.itinerary[index].activities.map((activity, i) => (
-                                    <li key={i}>{activity}</li>
+                                    <li key={i} className='text-lg text-bla/80 list-decimal ml-6 my-2'>{activity}</li>
                                 ))}
                             </ul>
                         </div>
-                        <div className='flex-shrink-0 bg-wh rounded-2xl'>
+                        <div className='flex-shrink-0 mt-6'>
                             <Pagination>
                                 <PaginationContent>
                                     <PaginationItem>
                                         <PaginationPrevious onClick={handlePreviousClick} />
                                     </PaginationItem>
                                     <PaginationItem>
-                                        <PaginationLink href="#">{index+1}</PaginationLink>
+                                        <PaginationLink href="#">{index + 1}</PaginationLink>
                                     </PaginationItem>
                                     <PaginationItem>
                                         <PaginationEllipsis />
