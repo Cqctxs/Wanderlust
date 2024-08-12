@@ -117,10 +117,10 @@ const Page = () => {
         }
         everything_after={ dataLoading || !travelData ? 
           <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
-            <h1 className="text-wh text-4xl">Generating trip... {loadingTime.toFixed(1)}s</h1>
+            <h1 className="text-wh text-4xl">Generating your trip... {loadingTime.toFixed(1)}s</h1>
             <ThreeDots
                 visible={true}
-                height="10vw"
+                height="12vw"
                 width="15vw"
                 color="#2176ff"
                 radius="9"
@@ -128,6 +128,7 @@ const Page = () => {
                 wrapperStyle={{}}
                 wrapperClass=""
             />
+            
           </div> 
           : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
