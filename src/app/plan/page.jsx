@@ -116,12 +116,12 @@ const Page = () => {
           </div>
         }
         everything_after={ dataLoading || !travelData ? 
-          <div className="h-full flex-col align-center items-center justify-center bg-[#252322]">
-            <h1 className="text-wh text-4xl p-4">{loadingTime.toFixed(1)}s Generating</h1>
+          <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
+            <h1 className="text-wh text-4xl">Generating trip... {loadingTime.toFixed(1)}s</h1>
             <ThreeDots
                 visible={true}
-                height="40vw"
-                width="40vw"
+                height="10vw"
+                width="15vw"
                 color="#2176ff"
                 radius="9"
                 ariaLabel="three-dots-loading"
