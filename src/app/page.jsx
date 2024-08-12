@@ -53,8 +53,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <footer className="bg-[#252322] text-wh py-12 mb-12">
-              <div className="flex justify-center space-x-8">
+            <footer className="bg-[#252322] text-wh py-8">
+              <div className="flex justify-center space-x-8 pb-4 mb-20 ">
                 <a
                   href="#our-team"
                   className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-200 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
