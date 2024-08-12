@@ -2,8 +2,11 @@
 
 import { Globes } from "@/components/ui/navbar/globes";
 import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export const Frame = () => {
+  const { user, isLoading } = useUser();
+
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-10 bg-white drop-shadow-md">
@@ -27,7 +30,15 @@ export const Frame = () => {
             </button>
           </Link>
           <Link href="/user">
-            <button className="absolute top-[22px] -right-[166px] bg-[url('/assets/userIcon.png')] bg-no-repeat bg-contain h-[50px] w-60 transition-transform transform hover:scale-110 hover:translate-x-[10px]"></button>
+            {user ? (
+              <img
+                className="absolute top-[21px] right-[24px] h-[50px] w-[50px] rounded-full border-4 border-[#2176FF] transition-transform transform hover:scale-110"
+                src={user.picture}
+                alt={user.name}
+              />
+            ) : (
+              <button className="absolute top-[21px] -right-[166px] bg-[url('/assets/userIcon.png')] bg-no-repeat bg-contain h-[50px] w-60 transition-transform transform hover:scale-110"></button>
+            )}
           </Link>
         </div>
       </div>
