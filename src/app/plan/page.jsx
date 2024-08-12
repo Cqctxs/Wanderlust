@@ -150,13 +150,47 @@ const Page = () => {
               </div>
               {/* Button Below the Right Card */}
               <div className="flex justify-center">
-                <button className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-110">
+                <a href="/map"
+                className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-105"
+                 >
                   Explore This Trip
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
+        }
+        everything_after_everything_after={
+          <div className="bg-[#252323] border-[#252323] text-wh h-full p-0">
+              <div className="flex justify-center space-x-8">
+                <a
+                  href="#our-team"
+                  className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  Our Team
+                </a>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  Github
+                </a>
+                <a
+                  href="#contact"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  Contact Us
+                </a>
+                <a
+                  href="#other"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  ???
+                </a>
+              </div>
+            </div>
         }
       ></CityParallax>
     </>
