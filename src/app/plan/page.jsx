@@ -61,7 +61,7 @@ const Page = () => {
         searchValue={
           <div className="flex z-20 animation_layer parallax justify-center mt-48 h-min">
             <div>
-              <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+              <h1 className="flex pr-4 text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
               <form onSubmit={handleSubmit} className="row-span-3 w-[50vw]">
@@ -69,7 +69,7 @@ const Page = () => {
                   <select
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    className="w-6/10 drop-shadow-lg py-3 border-0 rounded-l-full"
+                    className="w-6/10 drop-shadow-lg pl-6 py-3 border-0 rounded-l-full"
                   >
                     <option value="" disabled>Select a country</option>
                     {countries.map((country) => (
