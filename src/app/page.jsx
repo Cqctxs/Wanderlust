@@ -36,7 +36,7 @@ export default function Home() {
                   <br />
                   <a
                     href="/plan"
-                    className="flex rounded-full bg-blu justify-center py-8 mr-24 transition duration-200 ease-in-out hover:bg-[#ff6128] transform hover:scale-105"
+                    className="flex rounded-full bg-blu justify-center py-8 mr-24 transition duration-100 ease-in-out hover:bg-[#ff6128] transform hover:scale-105"
                   >
                     <h1 className="font-sans text-wh font-extrabold text-5xl">
                       Get started
@@ -45,7 +45,7 @@ export default function Home() {
                 </p>
                 <a href="/map" className="m-0 p-0 w-[55%] ml-10 h-max">
                   <img
-                    className="rounded-r-xl duration-200 transform hover:scale-105"
+                    className="rounded-r-xl duration-100 transform hover:scale-105"
                     src="/assets/tripexample.png"
                     alt="Trip Example"
                   />
@@ -59,7 +59,7 @@ export default function Home() {
               <div className="flex justify-center space-x-8">
                 <a
                   href="#our-team"
-                  className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-200 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                  className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
                 >
                   Our Team
                 </a>
@@ -67,19 +67,19 @@ export default function Home() {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-200 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
                 >
                   Github
                 </a>
                 <a
                   href="#contact"
-                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-200 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
                 >
                   Contact Us
                 </a>
                 <a
                   href="#other"
-                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-200 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
                 >
                   ???
                 </a>
