@@ -115,16 +115,11 @@ const Page = () => {
           {/* Heading */}
           <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData.country}</h1>
         
-          <div className="flex h-min max-w-screen mx-8 space-x-8">
+          <div className="flex h-min w-screen mx-8 px-12  space-x-8">
             {/* Left Card - Map */}
-            <div className="w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
-              <img
-                src="/assets/tripexample.png"
-                alt="Map Example"
-                className="w-full h-full object-cover rounded-lg"
-              />
+            <div className="relative  flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
+              <MapSmall />
             </div>
-        
             {/* Right Card Container */}
             <div className="flex flex-col w-2/5 space-y-4">
               {/* Right Card - Scrollable Paragraph */}
