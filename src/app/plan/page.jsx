@@ -37,9 +37,9 @@ const Page = () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
 
     const params = {
-      country: {country},
-      startDate: {startDate},
-      endDate: {endDate},
+      country: { country },
+      startDate: { startDate },
+      endDate: { endDate },
     };
     console.log(params);
 
@@ -52,13 +52,13 @@ const Page = () => {
         params: params,
       });
       */
-     const response = await axios.get('http://localhost:8080/api/generate');
+      const response = await axios.get("http://localhost:8080/api/generate");
 
       console.log(`the value is ${response.data}`);
     } catch (error) {
       console.error(`omg there's an error ${error}`);
     } finally {
-      console.log('yay yay we are done');
+      console.log("yay yay we are done");
     }
   };
 
@@ -68,7 +68,7 @@ const Page = () => {
       <CityParallax
         hasLogo={false}
         searchValue={
-          <div className="flex z-20 animation_layer parallax justify-center mt-48 h-min">
+          <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
             <div>
               <h1 className="flex pr-4 text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
@@ -128,12 +128,62 @@ const Page = () => {
       />
     </div>
 
-    {/* Right Card - Paragraph */}
-    <div className="w-2/5 bg-[#353130] rounded-2xl shadow-lg px-12 flex items-center justify-center">
-      <p className="text-wh text-lg">
-        Experience the world like never before. With our comprehensive travel guides and personalized itineraries, you can explore new destinations, immerse yourself in local cultures, and make memories that will last a lifetime. Whether you're planning a quick getaway or a long-term adventure, we've got you covered with the best tips and recommendations.
-      </p>
+    {/* Right Card - Scrollable Paragraph */}
+    <div className="relative w-2/5 bg-[#353130] rounded-2xl rounded-b-4xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[470px]">
+      {/* Content Container */}
+      <div className="text-wh text-lg flex-1">
+        <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
+        <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
+          <li>
+            Beijing
+            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
+              <li>Beijing Capital International Airport</li>
+              <li>Dongcheng District</li>
+              <li>Tiananmen Square</li>
+              <li>Forbidden City</li>
+            </ul>
+          </li>
+          <li>
+            Beijing
+            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+              <li>Great Wall of China at Mutianyu</li>
+              <li>Ming Tombs</li>
+            </ul>
+          </li>
+          <li>
+            Beijing
+            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+              <li>Summer Palace</li>
+              <li>Temple of Heaven</li>
+              <li>Hutongs</li>
+            </ul>
+          </li>
+          <li>
+            Xi'an
+            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+              <li>Xi'an Xianyang International Airport</li>
+              <li>Terracotta Army</li>
+              <li>Xi'an City Walls</li>
+            </ul>
+          </li>
+          <li>
+            Xi'an
+            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+              <li>Giant Wild Goose Pagoda</li>
+              <li>Muslim Quarter</li>
+              <li>Xi'an Xianyang International Airport</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+    {/* Overlay Button */}
+    <a
+        href="#more-info"
+        className="absolute right-36 bottom-4 bg-blu m-12 text-wh font-sans text-4xl font-bold py-6 px-12 rounded-full shadow-md transition-transform transform hover:scale-105"
+      >
+        Explore This Trip
+      </a>
   </div>
 </div>
 
