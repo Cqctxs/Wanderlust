@@ -8,7 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ pages=2, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
+export const CityParallax = ({ pages=3, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

@@ -9,6 +9,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
   const res = await axios.get("http://localhost:8080/api/generate", {
@@ -25,6 +26,7 @@ const Page = () => {
   const [endDate, setEndDate] = useState('');
 
   // for the loading screen
+  const [initialLoad, setInitialLoad] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
 
@@ -39,14 +41,18 @@ const Page = () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
 
     try {
+      setInitialLoad(false);
+      setLoadingTime(0);
       setDataLoading(true);
-      const response = await axios.get('http://localhost:8080/api/jojothewarrior', {
-        params: {
+
+      const response = await axios.post('http://localhost:8080/api/generate', 
+        { 
           country: country,
           startDate: startDate,
           endDate: endDate,
+          sub: user.sub,
         }
-      });
+      );
       setDataLoading(false);
       console.log(response.data);
     } catch (error) {
@@ -59,7 +65,7 @@ const Page = () => {
   return (
     <>
       <Frame />
-      <CityParallax
+      <CityParallax 
         hasLogo={false}
         searchValue={
           <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
@@ -108,10 +114,20 @@ const Page = () => {
           </div>
         }
         everything_after={ dataLoading ? 
-          <div className="h-full flex">
-          <h1>Loading... {loadingTime}s</h1>
-        </div> : 
-        <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
+          <div className="h-full flex justify-center bg-[#252322]">
+            <Audio
+              height="80"
+              width="80"
+              radius="9"
+              color="green"
+              ariaLabel="loading"
+              wrapperStyle
+              wrapperClass
+            />
+            <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
+          </div> 
+          : 
+          <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
           {/* Heading */}
           <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData.country}</h1>
         
