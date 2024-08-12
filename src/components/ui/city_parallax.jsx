@@ -8,10 +8,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) => {
+export const CityParallax = ({ pages=2, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
-
-  
 
   useEffect(() => {
     setIsClient(true);
@@ -159,15 +157,15 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
         }
         `}
     </style>
-    <Parallax pages={2} style={{ top: '0', left: '0' }} className="animation">
+    <Parallax pages={pages} style={{ top: '0', left: '0' }} className="animation">
         <ParallaxLayer offset={0} speed={0}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_2.png)", backgroundSize: "cover" }}></div>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_2.png)"}}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.45}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_1.png)", backgroundSize: "cover", background: "center center" }}></div>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_1.png)", backgroundSize: "60%", backgroundPosition: "53% 42%"}}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.4}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_0.png)", backgroundSize: "cover", background: "center center" }}></div>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_0.png)", backgroundSize: "cover", backgroundPosition: "45% 40%"}}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.2}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_3.png)" }}></div>
@@ -180,22 +178,25 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
         </ParallaxLayer>
         {
             hasLogo ? 
-                <ParallaxLayer offset={0} speed={-3}>
+                <ParallaxLayer offset={0} speed={-2}>
                     <div className="w-full absolute h-auto parallax mt-[15vh] flex justify-center">
-                        <h1 className="m-0 p-2 rounded-lg text-center text-shadow-xl font-offbit font-bold text-[1700%] text-wh
+                        <h1 className="mt-4 p-2 rounded-lg text-center text-shadow-xl font-offbit font-bold text-[1700%] text-wh
                                     tracking-tight" data-aos="fade-up">wanderlust</h1>
                     </div>
                 </ParallaxLayer>
                 : <></>
         }
         <ParallaxLayer offset={0} speed={0}>
-        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/darkest.png)" }}></div>
+        <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_0.png)" }}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0}>
-        {searchValue}
+            {searchValue}
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
             {everything_after}
+        </ParallaxLayer>
+        <ParallaxLayer offset={2} speed={0}>
+            {everything_after_everything_after}
         </ParallaxLayer>
     </Parallax>
     </div>
