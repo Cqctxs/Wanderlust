@@ -1,14 +1,18 @@
 "use client";
-
+import React from "react";
+import { DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Box } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
 import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { UserRoundX } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Footer from "@/components/ui/navbar/footer";
 import axios from "axios";
+import { MapSmall } from "@/components/ui/mapsmall";
 
 export default function ProfileClient() {
   const { user, isLoading } = useUser();
+  const [open, setOpen] = React.useState(false);
 
   const fetchPreviousGenerations = async (sub) => {
     const res = await axios.post(
@@ -22,6 +26,14 @@ export default function ProfileClient() {
     );
     return res.data; // Return the data from the response
   };
+  const handleClickToOpen = () => {
+    setOpen(true);
+  };
+
+  const handleToClose = (value) => {
+    setOpen(false);
+  };
+
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["previousGenerations"],
@@ -64,21 +76,22 @@ export default function ProfileClient() {
       <div className="bg-[#FF6128] flex items-center justify-center px-6 pt-24 pb-12">
         <div className="grid grid-cols-4 gap-4 w-full mt-3 h-[calc(100vh-8rem)]">
           {/* Left Column with Two Boxes */}
-          <div className="col-span-1 flex flex-col gap-4">
-            {/* User Profile Picture Box */}
-            <div className="bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p- flex flex-col h-full">
-              <div className="flex flex-col items-center justify-center h-full">
-                <img
-                  className="h-36 w-36 rounded-full border-4 border-[#2176FF]"
-                  src={user.picture}
-                  alt={user.name}
-                />
-                <h2 className="text-5xl font-semibold text-center text-[#252221] mt-4">
-                  {user.name}
-                </h2>
-                <p className="text-center text-gray-800 mt-2">{user.email}</p>
+          {(!open) &&
+            <div className="col-span-1 flex flex-col gap-4">
+              {/* User Profile Picture Box */}
+              <div className="bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p- flex flex-col h-full">
+                <div className="flex flex-col items-center justify-center h-full">
+                  <img
+                    className="h-36 w-36 rounded-full border-4 border-[#2176FF]"
+                    src={user.picture}
+                    alt={user.name}
+                  />
+                  <h2 className="text-5xl font-semibold text-center text-[#252221] mt-4">
+                    {user.name}
+                  </h2>
+                  <p className="text-center text-gray-800 mt-2">{user.email}</p>
+                </div>
               </div>
-            </div>
 
             {/* Additional User Information Box */}
             <div className="bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
@@ -112,14 +125,10 @@ export default function ProfileClient() {
                 <div className="text-gray-600">
                   {data.previousGenerations.map((travelPlan, index) => (
                     <div key={index} className="mb-4">
-                      <h2 className="font-bold">{travelPlan.country}</h2>
-                      <p>
-                        {travelPlan.itinerary[0].date} to{" "}
-                        {
-                          travelPlan.itinerary[travelPlan.itinerary.length - 1]
-                            .date
-                        }
-                      </p>
+                      <h2 className="font-bold">
+                        {travelPlan.country}
+                      </h2>
+                      <p>{travelPlan.itinerary[0].date} to {travelPlan.itinerary[travelPlan.itinerary.length - 1].date}</p>
                     </div>
                   ))}
                 </div>
