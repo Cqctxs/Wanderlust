@@ -1,4 +1,5 @@
 "use client";
+
 import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useQuery } from "@tanstack/react-query";
