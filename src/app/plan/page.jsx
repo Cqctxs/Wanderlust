@@ -78,7 +78,7 @@ const Page = () => {
         searchValue={
           <div className="flex z-20 animation_layer parallax text-center align-center justify-center mt-56 h-min">
             <div>
-              <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+              <h1 id="top" className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
               <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex row-span-3 w-[50vw] justify-center">
@@ -188,9 +188,6 @@ const Page = () => {
             </div>
           </div>
           )
-        }
-        everything_after_everything_after={
-          <Footer />
         }
       />
     </>

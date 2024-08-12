@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Footer = () => {
   return (
@@ -27,7 +27,7 @@ const Footer = () => {
             Contact Us
             </a>
             <a
-            href="#other"
+            onClick={scrollDivUp}
             className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
             >
             Back to Top
