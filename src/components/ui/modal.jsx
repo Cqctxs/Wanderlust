@@ -18,6 +18,8 @@ import data from "@/app/map/test.json";
 export const Modal = ({ data, onLocationChange }) => {
   const [index, setIndex] = useState(0);
   const maxIndex = data.itinerary.length - 1;
+  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const [travData, setTravData] = React.useState();
 
   const handlePreviousClick = () => {
     setIndex((prevIndex) => {
@@ -52,7 +54,7 @@ export const Modal = ({ data, onLocationChange }) => {
             </div>
             <div className="border-or  flex-row p-8 bg-wh rounded-t-lg h-[400px] text-[gray] overflow-y-auto">
               <h2 className="text-2xl mb-4 text-bla text-center">
-                Trip itinerary for Day {index + 1}: {data.itinerary[index].date}
+                Trip itinerary for {month[parseInt(data.itinerary[0].date.substring(5,7))]} {data.itinerary[0].date.substring(8,10)}, {data.itinerary[0].date.substr(0, 4)}
               </h2>
               <h3 className="font-bold my-2 text-lg">Overview</h3>
               <p className="text-justify">{data.itinerary[index].overview}</p>
