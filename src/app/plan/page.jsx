@@ -115,15 +115,6 @@ const Page = () => {
         }
         everything_after={ dataLoading ? 
           <div className="h-full flex justify-center bg-[#252322]">
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
             <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
           </div> 
           : 
