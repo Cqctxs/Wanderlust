@@ -24,6 +24,7 @@ const Page = () => {
   const [endDate, setEndDate] = useState('');
 
   // for the loading screen
+  const [initialLoad, setInitialLoad] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
 
@@ -38,12 +39,18 @@ const Page = () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
 
     try {
+      setInitialLoad(false);
+      setLoadingTime(0);
       setDataLoading(true);
-      const response = await axios.get('http://localhost:8080/api/jojothewarrior', { 
+
+      console.log(`current user is ${user.sub}`);
+
+      const response = await axios.get('http://localhost:8080/api/generate', { 
         params: {
           country: country,
           startDate: startDate,
           endDate: endDate,
+          sub: user.sub,
         }
       });
       setDataLoading(false);
@@ -58,7 +65,8 @@ const Page = () => {
   return (
     <>
       <Frame />
-      <CityParallax
+      <CityParallax 
+        pages={initialLoad ? 1 : 2}
         hasLogo={false}
         searchValue={
           <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
@@ -107,9 +115,10 @@ const Page = () => {
           </div>
         }
         everything_after={ dataLoading ? 
-        <div className="h-full flex">
-          <h1>Loading... {loadingTime}s</h1>
-        </div> : 
+          <div className="h-full flex justify-center">
+            <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
+          </div> 
+          : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
           {/* Heading */}
           <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to China</h1>
