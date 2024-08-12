@@ -51,8 +51,6 @@ const Page = () => {
         }
       );
       setTravelData(response.data);
-      console.log("travel data");
-      console.log(response.data);
     } catch (error) {
       console.error(`omg there's an error ${error}`);
     } finally {
