@@ -43,16 +43,14 @@ const Page = () => {
       setLoadingTime(0);
       setDataLoading(true);
 
-      console.log(`current user is ${user.sub}`);
-
-      const response = await axios.get('http://localhost:8080/api/generate', { 
-        params: {
+      const response = await axios.post('http://localhost:8080/api/generate', 
+        { 
           country: country,
           startDate: startDate,
           endDate: endDate,
           sub: user.sub,
         }
-      });
+      );
       setDataLoading(false);
       console.log(response.data);
     } catch (error) {

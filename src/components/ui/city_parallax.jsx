@@ -192,20 +192,12 @@ export const CityParallax = ({ pages=2, hasLogo=true, searchValue, everything_af
         <ParallaxLayer offset={0} speed={0}>
             {searchValue}
         </ParallaxLayer>
-        {
-            pages >= 2 
-            ?
-            <>
-                <ParallaxLayer offset={1} speed={0}>
-                    {everything_after}
-                </ParallaxLayer>
-                <ParallaxLayer offset={2} speed={0}>
-                    {everything_after_everything_after}
-                </ParallaxLayer>
-            </>
-            :
-            <></>
-        }
+        <ParallaxLayer offset={1} speed={0}>
+            {everything_after}
+        </ParallaxLayer>
+        <ParallaxLayer offset={2} speed={0}>
+            {everything_after_everything_after}
+        </ParallaxLayer>
     </Parallax>
     </div>
     </>
