@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useMutation } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
@@ -22,29 +22,32 @@ const Page = () => {
   const [country, setCountry] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  // for the loading screen
   const [dataLoading, setDataLoading] = useState(false);
+  const [loadingTime, setLoadingTime] = useState(0);
 
-  const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
-    const res = await axios.get("http://localhost:8080/api/generate", {
-      params: { country, startDate, endDate },
-      headers: { "Content-Type": "application/json" },
-    });
-    return res.data;
-  };
-
-  const mutation = useMutation(fetchItinerary);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (dataLoading) setLoadingTime(loadingTime + 0.1);
+    }, 100);
+    return () => clearInterval(intervalId);
+  });
 
   const handleSubmit = async () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
 
-    const params = {
-      country: { country },
-      startDate: { startDate },
-      endDate: { endDate },
-    };
-
     try {
-      const response = await axios.get('http://localhost:8080/api/generate', { params });
+      setDataLoading(true);
+      const response = await axios.get('http://localhost:8080/api/jojothewarrior', { 
+        params: {
+          country: country,
+          startDate: startDate,
+          endDate: endDate,
+        }
+      });
+      setDataLoading(false);
+      console.log(response.data);
     } catch (error) {
       console.error(`omg there's an error ${error}`);
     } finally {
@@ -93,7 +96,7 @@ const Page = () => {
                   />
                   <button
                     type="button"
-                    onSubmit={handleSubmit}
+                    onClick={handleSubmit}
                     className="w-20 p-2 pr-3 drop-shadow-lg border-0 ml-1 text-2xl rounded-r-full bg-blue-500 text-white"
                   >
                     Go
@@ -103,79 +106,82 @@ const Page = () => {
             </div>
           </div>
         }
-        everything_after={
+        everything_after={ dataLoading ? 
+        <div className="h-full flex">
+          <h1>Loading... {loadingTime}s</h1>
+        </div> : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
-  {/* Heading */}
-  <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to China</h1>
+          {/* Heading */}
+          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to China</h1>
 
-  <div className="flex h-min max-w-screen mx-8 space-x-8">
-    {/* Left Card - Map */}
-    <div className="w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
-      <img
-        src="/assets/tripexample.png"
-        alt="Map Example"
-        className="w-full h-full object-cover rounded-lg"
-      />
-    </div>
+          <div className="flex h-min max-w-screen mx-8 space-x-8">
+          {/* Left Card - Map */}
+          <div className="w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
+            <img
+              src="/assets/tripexample.png"
+              alt="Map Example"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
 
-    {/* Right Card - Scrollable Paragraph */}
-    <div className="relative w-2/5 bg-[#353130] rounded-2xl rounded-b-4xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[470px]">
-      {/* Content Container */}
-      <div className="text-wh text-lg flex-1">
-        <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
-        <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
-          <li>
-            Beijing
-            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
-              <li>Beijing Capital International Airport</li>
-              <li>Dongcheng District</li>
-              <li>Tiananmen Square</li>
-              <li>Forbidden City</li>
+          {/* Right Card - Scrollable Paragraph */}
+          <div className="relative w-2/5 bg-[#353130] rounded-2xl rounded-b-4xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[470px]">
+          {/* Content Container */}
+          <div className="text-wh text-lg flex-1">
+            <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
+            <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
+              <li>
+                Beijing
+                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
+                  <li>Beijing Capital International Airport</li>
+                  <li>Dongcheng District</li>
+                  <li>Tiananmen Square</li>
+                  <li>Forbidden City</li>
+                </ul>
+              </li>
+              <li>
+                Beijing
+                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+                  <li>Great Wall of China at Mutianyu</li>
+                  <li>Ming Tombs</li>
+                </ul>
+              </li>
+              <li>
+                Beijing
+                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+                  <li>Summer Palace</li>
+                  <li>Temple of Heaven</li>
+                  <li>Hutongs</li>
+                </ul>
+              </li>
+              <li>
+                Xi'an
+                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+                  <li>Xi'an Xianyang International Airport</li>
+                  <li>Terracotta Army</li>
+                  <li>Xi'an City Walls</li>
+                </ul>
+              </li>
+              <li>
+                Xi'an
+                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
+                  <li>Giant Wild Goose Pagoda</li>
+                  <li>Muslim Quarter</li>
+                  <li>Xi'an Xianyang International Airport</li>
+                </ul>
+              </li>
             </ul>
-          </li>
-          <li>
-            Beijing
-            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-              <li>Great Wall of China at Mutianyu</li>
-              <li>Ming Tombs</li>
-            </ul>
-          </li>
-          <li>
-            Beijing
-            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-              <li>Summer Palace</li>
-              <li>Temple of Heaven</li>
-              <li>Hutongs</li>
-            </ul>
-          </li>
-          <li>
-            Xi'an
-            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-              <li>Xi'an Xianyang International Airport</li>
-              <li>Terracotta Army</li>
-              <li>Xi'an City Walls</li>
-            </ul>
-          </li>
-          <li>
-            Xi'an
-            <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-              <li>Giant Wild Goose Pagoda</li>
-              <li>Muslim Quarter</li>
-              <li>Xi'an Xianyang International Airport</li>
-            </ul>
-          </li>
-        </ul>
+          </div>
+        </div>
+        {/* Overlay Button */}
+        <a
+            href="#more-info"
+            className="absolute right-36 bottom-4 bg-blu m-12 text-wh font-sans text-4xl font-bold py-6 px-12 rounded-full shadow-md transition-transform transform hover:scale-105"
+          >
+            Explore This Trip
+          </a>
       </div>
     </div>
-    {/* Overlay Button */}
-    <a
-        href="#more-info"
-        className="absolute right-36 bottom-4 bg-blu m-12 text-wh font-sans text-4xl font-bold py-6 px-12 rounded-full shadow-md transition-transform transform hover:scale-105"
-      >
-        Explore This Trip
-      </a>
-  </div>
-</div>
 
         }
       ></CityParallax>
