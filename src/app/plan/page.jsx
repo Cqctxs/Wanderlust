@@ -8,7 +8,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import Footer from "@/components/ui/navbar/footer";
+import Footer from "../../components/ui/navbar/footer";
 import { ThreeDots } from "react-loader-spinner";
 
 const Page = () => {
@@ -21,6 +21,10 @@ const Page = () => {
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
   const [travelData, setTravelData] = useState(null);
+
+  const handleExploreClick = () => {
+    localStorage.setItem('travelData', JSON.stringify(travelData));
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -168,7 +172,7 @@ const Page = () => {
                 </div>
                 {/* Button Below the Right Card */}
                 <div className="flex justify-center">
-                  <a href="/map"
+                  <a href="/map" onClick={handleExploreClick}
                   className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-105"
                   >
                     Explore This Trip
