@@ -127,6 +127,14 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
             -webkit-text-fill-color: transparent;
         }
 
+        .gradient-title-animation {
+            background: linear-gradient(90deg, #ffaf1b, #cc6f0b, #ffaf1b);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         #artback {
             background-image: url("/assets/citybg_sunset_2.png");
         }

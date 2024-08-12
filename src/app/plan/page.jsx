@@ -9,7 +9,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import { Circles } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
   const res = await axios.get("http://localhost:8080/api/generate", {
@@ -116,17 +116,18 @@ const Page = () => {
           </div>
         }
         everything_after={ dataLoading || !travelData ? 
-          <div className="h-full flex items-center justify-center bg-[#252322]">
-            <Circles
-              height="40vh"
-              width="40vh"
-              color="#4fa94d"
-              ariaLabel="circles-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
+          <div className="h-full flex-col align-center items-center justify-center bg-[#252322]">
+            <h1 className="text-wh text-4xl p-4">{loadingTime.toFixed(1)}s Generating</h1>
+            <ThreeDots
+                visible={true}
+                height="40vw"
+                width="40vw"
+                color="#2176ff"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
             />
-            <h1 className="text-">Loading... {loadingTime.toFixed(1)}s</h1>
           </div> 
           : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
