@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useMutation } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
@@ -25,16 +25,14 @@ const Page = () => {
 
   // for the loading screen
   const [dataLoading, setDataLoading] = useState(false);
+  const [loadingTime, setLoadingTime] = useState(0);
 
-  const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
-    const res = await axios.get("http://localhost:8080/api/generate", {
-      params: { country, startDate, endDate },
-      headers: { "Content-Type": "application/json" },
-    });
-    return res.data;
-  };
-
-  const mutation = useMutation(fetchItinerary);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (dataLoading) setLoadingTime(loadingTime + 0.1);
+    }, 100);
+    return () => clearInterval(intervalId);
+  });
 
   const handleSubmit = async () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
@@ -110,7 +108,7 @@ const Page = () => {
         }
         everything_after={ dataLoading ? 
         <div className="h-full flex">
-          <h1>Loading...</h1>
+          <h1>Loading... {loadingTime}s</h1>
         </div> : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
           {/* Heading */}
