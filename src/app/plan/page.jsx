@@ -6,7 +6,16 @@ import { useMutation } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
 import axios from "axios";
 import { CityParallax } from "../../components/ui/city_parallax.jsx";
-import countries from "./countries.js";
+import countries from "./countries";
+import travelData from "./travelData";
+
+const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
+  const res = await axios.get("http://localhost:8080/api/generate", {
+    params: { country, startDate, endDate, sub },
+    headers: { "Content-Type": "application/json" },
+  });
+  return res.data;
+};
 
 const Page = () => {
   const { user, isLoading } = useUser();
@@ -16,7 +25,7 @@ const Page = () => {
 
   const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
     const res = await axios.get("http://localhost:8080/api/generate", {
-      params: { country, startDate, endDate, sub },
+      params: { country, startDate, endDate },
       headers: { "Content-Type": "application/json" },
     });
     return res.data;
@@ -92,15 +101,11 @@ const Page = () => {
                     onChange={(e) => setEndDate(e.target.value)}
                     className="w-2/10 drop-shadow-lg ml-1 py-2 border-0 "
                   />
-<<<<<<< HEAD
                   <button
-                    type="submit"
+                    type="button"
                     onSubmit={handleSubmit}
                     className="w-20 p-2 pr-3 drop-shadow-lg border-0 ml-1 text-2xl rounded-r-full bg-blue-500 text-white"
                   >
-=======
-                  <button type="button" onClick={handleSubmit} className="w-16 p-2 drop-shadow-lg border-0 ml-1 rounded-r-full bg-blue-500 text-white">
->>>>>>> ba9c7862c22c39e77ec63617711bb14836ecd602
                     Go
                   </button>
                 </div>
