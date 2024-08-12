@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { Frame } from "@/components/ui/navbar/frame";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { CityParallax } from '../components/ui/city_parallax'
+import { CityParallax } from "@/components/ui/city_parallax"; 
 import AOS from 'aos';
+import { Footer } from '../components/ui/navbar/footer';
 import 'aos/dist/aos.css';
 import './globals.css';
 
 export default function Home() {
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
     <div className="h-screen bg-[#252322]">
       <Frame />
@@ -32,7 +38,8 @@ export default function Home() {
                   >
                     Gemini AI
                   </a>
-                  , Wanderlust uses a large database of popular tourism destinations to tailor your travel itinerary. <br />
+                  , Wanderlust uses a large database of popular tourism
+                  destinations to tailor your travel itinerary. <br />
                   <br />
                   <a
                     href="/plan"
@@ -55,40 +62,10 @@ export default function Home() {
           </div>
         }
         everything_after_everything_after={
-          <div className="bg-[#252323] border-[#252323] text-wh h-full p-0">
-              <div className="flex justify-center space-x-8">
-                <a
-                  href="#our-team"
-                  className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-                >
-                  Our Team
-                </a>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-                >
-                  Github
-                </a>
-                <a
-                  href="#contact"
-                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-                >
-                  Contact Us
-                </a>
-                <a
-                  href="#other"
-                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-                >
-                  ???
-                </a>
-              </div>
-            </div>
+          <Footer />
         }
       ></CityParallax>
-      <div className="bg-[#252322]">
-      </div>
+      <div className="bg-[#252322]"></div>
     </div>
   );
 }

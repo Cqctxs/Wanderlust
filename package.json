@@ -30,6 +30,7 @@
     "next": "^14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-howler": "^5.2.0",
     "react-loader-spinner": "^6.1.6",
     "react-map-gl": "^7.1.7",
     "react-parallax": "^3.5.1",

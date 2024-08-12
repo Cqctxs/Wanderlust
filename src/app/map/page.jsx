@@ -41,9 +41,9 @@ export default function MapPage() {
                 ))}
             </div>
             <div className="relative h-[100vh] w-[60vw]">
-                <MapWrapper />
+                <MapWrapper /plan>
                 <div className="absolute top-0 left-0 p-4 text-wh drop-shadow-bla">
-                    <Link href="/">
+                    <Link href="/plan">
                         <ArrowBigLeft size={64} />
                     </Link>
                 </div>
