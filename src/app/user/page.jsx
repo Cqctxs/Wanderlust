@@ -15,6 +15,7 @@ export default function ProfileClient() {
   const { user, isLoading } = useUser();
   const [open, setOpen] = React.useState(false);
   const [travData, setTravData] = React.useState();
+  const [travelData, setTravelData] = React.useState();
   const [loading, setLoading] = React.useState(true)
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -29,7 +30,6 @@ export default function ProfileClient() {
     setOpen(false);
   };
   const fetchPreviousGenerations = async (sub) => {
-    console.log("joshua")
     const res = await axios.post(
       "https://portfolio-backend-430914.nn.r.appspot.com/api/user",
       {
@@ -40,6 +40,8 @@ export default function ProfileClient() {
       }
     );
     setLoading(false)
+    setTravelData([...res.data.previousGenerations].reverse())
+    console.log(travelData)
     return res.data; // Return the data from the response
   };
 
@@ -48,6 +50,7 @@ export default function ProfileClient() {
     queryFn: () => fetchPreviousGenerations(user.sub),
     enabled: !!user,
     onSuccess: (data) => {
+      console.log(data)
       console.log("query succeeded with data: ", data);
       
     },
@@ -196,7 +199,7 @@ export default function ProfileClient() {
                   <p>Could not find any previous data. Try generating a trip!</p>
                 ) : (
                   <div className="text-gray-600">
-                  {data.previousGenerations.map((travelPlan, index) => (
+                  {travelData.map((travelPlan, index) => (
                     <div key={index} className="mb-6">
                       <div className="grid gap-6 grid-cols-2">
                         <div>
