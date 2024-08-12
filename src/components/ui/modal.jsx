@@ -38,7 +38,7 @@ export const Modal = ({ onLocationChange }) => {
     return (
         <div className="absolute w-full h-screen flex justify-between pointer-events-none">
             <div className="top-0 left-0 p-4 text-wh drop-shadow-bla pointer-events-auto">
-                <Link href="/">
+                <Link href="/plan">
                     <ArrowBigLeft size={64} />
                 </Link>
             </div>
