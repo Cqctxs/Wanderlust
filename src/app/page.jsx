@@ -5,6 +5,7 @@ import { Frame } from "@/components/ui/navbar/frame";
 import { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { CityParallax } from "@/components/ui/city_parallax"; 
+import Head from 'next/head';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './globals.css';
