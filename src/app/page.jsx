@@ -5,6 +5,7 @@ import { Frame } from "@/components/ui/navbar/frame";
 import { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { CityParallax } from "@/components/ui/city_parallax"; 
+import Head from 'next/head';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './globals.css';
@@ -13,6 +14,9 @@ export default function Home() {
   return (
     <div className="h-screen bg-[#252322]">
       <Frame />
+        <Head>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        </Head>
       <CityParallax
         pages={2.15}
         hasLogo={true}
