@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import DeckGL from '@deck.gl/react';
-import { Map, MapProvider, useMap } from 'react-map-gl';
+import { Map } from 'react-map-gl';
 import { ArcLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import data from '../../app/map/test.json';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
+// Define the initial view state of the map
 const INITIAL_VIEW_STATE = {
     latitude: data.itinerary[0].cityCoordinates.lat,
     longitude: data.itinerary[0].cityCoordinates.lng,
@@ -16,9 +17,11 @@ const INITIAL_VIEW_STATE = {
     pitch: 15
 };
 
+// Mapbox token for accessing map styles
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-function getTooltip({object}) {
+// Tooltip configuration for the layers
+function getTooltip({ object }) {
     return object && {
         html: `<h1><b>${object.message.title}</b></h1> <div>${object.message.m1} <br> ${object.message.m2}</div>`,
         style: {
@@ -31,6 +34,7 @@ function getTooltip({object}) {
 export const MapSmall = () => {
     const mapRef = useRef(null);
 
+    // Process city data for visualization
     const cityData = [];
     data.itinerary.forEach((day) => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
@@ -42,6 +46,7 @@ export const MapSmall = () => {
         cityData.push(cityInfo);
     });
 
+    // Process hotel data for visualization
     const hotelData = [];
     data.itinerary.forEach((day) => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
@@ -56,6 +61,7 @@ export const MapSmall = () => {
         }
     });
 
+    // Create arc layer for routes between cities
     const arcData = [];
     for (let i = 0; i < cityData.length - 1; i++) {
         arcData.push({
@@ -74,17 +80,19 @@ export const MapSmall = () => {
         getWidth: 5
     });
 
+    // Scatterplot layer for city points
     const scatterplotLayer = new ScatterplotLayer({
         id: 'scatterplot-layer',
         data: cityData,
         getPosition: d => d.position,
         getFillColor: [255, 97, 40],
         getRadius: 100,
-        radiusMinPixels: 10, // Minimum radius in pixels
+        radiusMinPixels: 10,
         pickable: true,
-        onHover: console.log("hi chat")
+        onHover: info => console.log(info) // Example hover behavior
     });
 
+    // Icon layer for hotel markers
     const iconLayer = new IconLayer({
         id: 'icon-layer',
         data: hotelData,
@@ -114,14 +122,16 @@ export const MapSmall = () => {
             controller={true}
             layers={layers}
             getTooltip={getTooltip}
+            style={{ width: '100%', height: '100%' }}
         >
             <Map
-                id = "map"
+                id="map"
                 ref={mapRef}
                 mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
                 mapboxAccessToken={TOKEN}
                 maxPitch={85}
                 reuseMaps={true}
+                style={{ width: '100%', height: '100%' }}
             />
         </DeckGL>
     );
