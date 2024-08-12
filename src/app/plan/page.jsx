@@ -5,9 +5,10 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useMutation } from "@tanstack/react-query";
 import { Frame } from "@/components/ui/navbar/frame";
 import axios from "axios";
-import { CityParallax } from "../../components/ui/city_parallax.jsx";
+import { CityParallax } from "@/components/ui/city_parallax.jsx";
+import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
-import travelData from "./travelData";
+import travelData from "./sampleTravelData";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
   const res = await axios.get("http://localhost:8080/api/generate", {
@@ -119,77 +120,43 @@ const Page = () => {
           : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
           {/* Heading */}
-          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to China</h1>
-
-          <div className="flex h-min max-w-screen mx-8 space-x-8">
-          {/* Left Card - Map */}
-          <div className="w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
-            <img
-              src="/assets/tripexample.png"
-              alt="Map Example"
-              className="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-
-          {/* Right Card - Scrollable Paragraph */}
-          <div className="relative w-2/5 bg-[#353130] rounded-2xl rounded-b-4xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[470px]">
-          {/* Content Container */}
-          <div className="text-wh text-lg flex-1">
-            <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
-            <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
-              <li>
-                Beijing
-                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
-                  <li>Beijing Capital International Airport</li>
-                  <li>Dongcheng District</li>
-                  <li>Tiananmen Square</li>
-                  <li>Forbidden City</li>
-                </ul>
-              </li>
-              <li>
-                Beijing
-                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-                  <li>Great Wall of China at Mutianyu</li>
-                  <li>Ming Tombs</li>
-                </ul>
-              </li>
-              <li>
-                Beijing
-                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-                  <li>Summer Palace</li>
-                  <li>Temple of Heaven</li>
-                  <li>Hutongs</li>
-                </ul>
-              </li>
-              <li>
-                Xi'an
-                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-                  <li>Xi'an Xianyang International Airport</li>
-                  <li>Terracotta Army</li>
-                  <li>Xi'an City Walls</li>
-                </ul>
-              </li>
-              <li>
-                Xi'an
-                <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#dad8d8]">
-                  <li>Giant Wild Goose Pagoda</li>
-                  <li>Muslim Quarter</li>
-                  <li>Xi'an Xianyang International Airport</li>
-                </ul>
-              </li>
-            </ul>
+          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData.country}</h1>
+        
+          <div className="flex h-min w-screen mx-8 px-12  space-x-8">
+            {/* Left Card - Map */}
+            <div className="relative  flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
+              <MapSmall />
+            </div>
+            {/* Right Card Container */}
+            <div className="flex flex-col w-2/5 space-y-4">
+              {/* Right Card - Scrollable Paragraph */}
+              <div className="relative bg-[#353130] rounded-2xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[500px]">
+                {/* Content Container */}
+                <div className="text-wh text-lg flex-1">
+                  <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
+                  <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
+                    {travelData.itinerary.map((day, index) => (
+                      <li key={index}>
+                        {day.city} - {day.date}
+                        <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
+                          {day.locations.map((activity, i) => (
+                            <li key={i}>{activity}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              {/* Button Below the Right Card */}
+              <div className="flex justify-center">
+                <button className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-110">
+                  Explore This Trip
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        {/* Overlay Button */}
-        <a
-            href="#more-info"
-            className="absolute right-36 bottom-4 bg-blu m-12 text-wh font-sans text-4xl font-bold py-6 px-12 rounded-full shadow-md transition-transform transform hover:scale-105"
-          >
-            Explore This Trip
-          </a>
-      </div>
-    </div>
-
         }
       ></CityParallax>
     </>
