@@ -15,16 +15,24 @@ import React, { useState } from 'react';
 
 import data from '@/app/map/test.json';
 
-export const Modal = () => {
+export const Modal = ({ onLocationChange }) => {
     const [index, setIndex] = useState(0);
     const maxIndex = data.itinerary.length - 1;
 
     const handlePreviousClick = () => {
-        setIndex(prevIndex => Math.max(prevIndex - 1, 0));
+        setIndex(prevIndex => {
+            const newIndex = Math.max(prevIndex - 1, 0);
+            onLocationChange(data.itinerary[newIndex].cityCoordinates);
+            return newIndex;
+        });
     };
 
     const handleNextClick = () => {
-        setIndex(prevIndex => Math.min(prevIndex + 1, maxIndex));
+        setIndex(prevIndex => {
+            const newIndex = Math.min(prevIndex + 1, maxIndex);
+            onLocationChange(data.itinerary[newIndex].cityCoordinates);
+            return newIndex;
+        });
     };
 
     return (

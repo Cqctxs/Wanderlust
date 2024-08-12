@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import DeckGL from '@deck.gl/react';
-import { Map } from 'react-map-gl';
+import { Map, MapProvider, useMap } from 'react-map-gl';
 import { ArcLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import data from '../../app/map/test.json';
 import { ArrowBigLeft } from 'lucide-react';
@@ -28,8 +28,22 @@ function getTooltip({object}) {
     };
 }  
 
-export const MapWrapper = () => {
+export const MapWrapper = ({location}) => {
     const mapRef = useRef(null);
+
+    useEffect(() => {
+        const map = mapRef.current;
+        if (map && location) {
+            const { lat, lng } = location;
+            console.log("Flying to:", location);
+            map.flyTo({
+                center: [lng, lat],
+                zoom: 7
+            });
+        } else {
+            console.error("Map is not loaded yet or location is undefined.");
+        }
+    }, [location, mapRef]);
 
     const cityData = [];
     data.itinerary.forEach((day) => {
@@ -55,7 +69,6 @@ export const MapWrapper = () => {
             hotelData.push(hotelInfo);
         }
     });
-    console.log(hotelData);
 
     const arcData = [];
     for (let i = 0; i < cityData.length - 1; i++) {
@@ -116,13 +129,16 @@ export const MapWrapper = () => {
             layers={layers}
             getTooltip={getTooltip}
         >
-            <Map
-                ref={mapRef}
-                mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
-                mapboxAccessToken={TOKEN}
-                maxPitch={85}
-                reuseMaps={true}
-            />
+            <MapProvider>
+                <Map
+                    id = "map"
+                    ref={mapRef}
+                    mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
+                    mapboxAccessToken={TOKEN}
+                    maxPitch={85}
+                    reuseMaps={true}
+                />
+            </MapProvider>
         </DeckGL>
     );
 }
