@@ -17,12 +17,12 @@ import data from "@/app/map/test.json";
 
 export const Modal = ({ data, onLocationChange }) => {
   const [index, setIndex] = useState(0);
-  const maxIndex = data.itinerary.length - 1;
+  const maxIndex = data?.itinerary.length - 1;
 
   const handlePreviousClick = () => {
     setIndex((prevIndex) => {
       const newIndex = Math.max(prevIndex - 1, 0);
-      onLocationChange(data.itinerary[newIndex].cityCoordinates);
+      onLocationChange(data?.itinerary[newIndex].cityCoordinates);
       return newIndex;
     });
   };
@@ -30,7 +30,7 @@ export const Modal = ({ data, onLocationChange }) => {
   const handleNextClick = () => {
     setIndex((prevIndex) => {
       const newIndex = Math.min(prevIndex + 1, maxIndex);
-      onLocationChange(data.itinerary[newIndex].cityCoordinates);
+      onLocationChange(data?.itinerary[newIndex].cityCoordinates);
       return newIndex;
     });
   };
@@ -55,13 +55,13 @@ export const Modal = ({ data, onLocationChange }) => {
           <div className="w-[36em] h-[48em] flex flex-col">
             <div className="flex-grow p-5 bg-wh rounded-2xl overflow-auto">
               <h2>
-                Day {index + 1}: {data.itinerary[index].date}
+                Day {index + 1}: {data?.itinerary[index].date}
               </h2>
               <h3>Overview</h3>
-              <p>{data.itinerary[index].overview}</p>
+              <p>{data?.itinerary[index].overview}</p>
               <h3>Activities</h3>
               <ul>
-                {data.itinerary[index].activities.map((activity, i) => (
+                {data?.itinerary[index].activities.map((activity, i) => (
                   <li key={i}>{activity}</li>
                 ))}
               </ul>

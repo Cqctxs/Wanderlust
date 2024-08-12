@@ -25,8 +25,8 @@ export const MapSmall = ({data}) => {
     const mapRef = useRef(null);
 
     const INITIAL_VIEW_STATE = {
-        latitude: data.itinerary[0].cityCoordinates.lat,
-        longitude: data.itinerary[0].cityCoordinates.lng,
+        latitude: data?.itinerary[0].cityCoordinates.lat,
+        longitude: data?.itinerary[0].cityCoordinates.lng,
         zoom: 7,
         bearing: 0,
         pitch: 15
@@ -34,7 +34,7 @@ export const MapSmall = ({data}) => {
 
     // Process city data for visualization
     const cityData = [];
-    data.itinerary.forEach((day) => {
+    data?.itinerary.forEach((day) => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
 
         const message = {title: "Name: No name found", m1: "Overview: No overview found", m2: ""};
@@ -46,7 +46,7 @@ export const MapSmall = ({data}) => {
 
     // Process hotel data for visualization
     const hotelData = [];
-    data.itinerary.forEach((day) => {
+    data?.itinerary.forEach((day) => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
             const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import Footer from "./navbar/footer";
@@ -9,7 +9,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = forwardRef(({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }, ref) => {
+export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }, ref) => {
   const [isClient, setIsClient] = useState(false);
   const parallaxRef = useRef(null);
 
@@ -20,16 +20,7 @@ export const CityParallax = forwardRef(({ pages=2.15, hasLogo=true, searchValue,
         parallaxRef.current.scrollTo(-100);
     }
   }
-
-  // expose the ref to the parent
-  useImperativeHandle(ref, () => ({
-    scrollTo: (position) => {
-        if (parallaxRef.current){
-            parallaxRef.current.scrollTo(position);
-        }
-    }
-  }));
-
+  
   useEffect(() => {
     setIsClient(true);
     // initializes animate on scroll
@@ -257,6 +248,6 @@ export const CityParallax = forwardRef(({ pages=2.15, hasLogo=true, searchValue,
     </div>
     </>
   );
-});
+};
 
 export default CityParallax;
