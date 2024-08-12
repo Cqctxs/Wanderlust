@@ -17,12 +17,12 @@ import data from "@/app/map/test.json";
 
 export const Modal = ({ data, onLocationChange }) => {
   const [index, setIndex] = useState(0);
-  const maxIndex = data?.itinerary.length - 1;
+  const maxIndex = data.itinerary.length - 1;
 
   const handlePreviousClick = () => {
     setIndex((prevIndex) => {
       const newIndex = Math.max(prevIndex - 1, 0);
-      onLocationChange(data?.itinerary[newIndex].cityCoordinates);
+      onLocationChange(data.itinerary[newIndex].cityCoordinates);
       return newIndex;
     });
   };
@@ -30,7 +30,7 @@ export const Modal = ({ data, onLocationChange }) => {
   const handleNextClick = () => {
     setIndex((prevIndex) => {
       const newIndex = Math.min(prevIndex + 1, maxIndex);
-      onLocationChange(data?.itinerary[newIndex].cityCoordinates);
+      onLocationChange(data.itinerary[newIndex].cityCoordinates);
       return newIndex;
     });
   };
@@ -53,11 +53,6 @@ export const Modal = ({ data, onLocationChange }) => {
             <div className="border-or  flex-row p-8 bg-wh rounded-t-lg h-[400px] text-[gray] overflow-y-auto">
               <h2 className="text-2xl mb-4 text-bla text-center">
                 Trip itinerary for Day {index + 1}: {data.itinerary[index].date}
-          </div>
-          <div className="w-[36em] h-[48em] flex flex-col">
-            <div className="flex-grow p-5 bg-wh rounded-2xl overflow-auto">
-              <h2>
-                Day {index + 1}: {data?.itinerary[index].date}
               </h2>
               <h3 className="font-bold my-2 text-lg">Overview</h3>
               <p className="text-justify">{data.itinerary[index].overview}</p>
