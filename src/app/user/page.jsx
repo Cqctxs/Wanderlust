@@ -15,8 +15,7 @@ export default function ProfileClient() {
   const { user, isLoading } = useUser();
   const [open, setOpen] = React.useState(false);
   const [travData, setTravData] = React.useState();
-  const [loading, setLoading] = React.useState(true)
-
+  const [loading, setLoading] = React.useState(true);
 
   const handleClickToOpen = (value) => {
     setOpen(true);
