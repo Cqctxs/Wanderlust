@@ -2,6 +2,7 @@
 import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useQuery } from "@tanstack/react-query";
+import Footer from "../../components/ui/navbar/footer";
 import axios from "axios";
 
 export default function ProfileClient() {
@@ -36,8 +37,8 @@ export default function ProfileClient() {
   return (
     <div>
       <Frame />
-      <div className="bg-[#FF6128] flex items-center justify-center px-6 py-24">
-        <div className="grid grid-cols-4 gap-4 w-full h-[calc(100vh-8rem)]">
+      <div className="bg-[#FF6128] flex items-center justify-center px-6 pt-24 pb-12">
+        <div className="grid grid-cols-4 gap-4 w-full mt-3 h-[calc(100vh-8rem)]">
           {/* Left Column with Two Boxes */}
           <div className="col-span-1 flex flex-col gap-4">
             {/* User Profile Picture Box */}
@@ -57,7 +58,7 @@ export default function ProfileClient() {
 
             {/* Additional User Information Box */}
             <div className="bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
-              <h2 className="text-xl font-semibold text-center text-[#252221] mb-4">
+              <h2 className="text-xl font-semibold text-center text-[#252221] mb-2">
                 Additional Information
               </h2>
               <p className="text-gray-600">
@@ -75,7 +76,7 @@ export default function ProfileClient() {
 
           {/* Right Column */}
           <div className="col-span-3 bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
-            <h2 className="text-2xl font-semibold text-center text-[#252221] mb-4">
+            <h2 className="text-2xl font-semibold text-center text-[#252221] mb-2">
               Miscellaneous Information
             </h2>
             <div className="space-y-4 flex-grow">
@@ -101,6 +102,7 @@ export default function ProfileClient() {
           </div>
         </div>
       </div>
+    <Footer />
     </div>
   );
 }
