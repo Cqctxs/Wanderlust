@@ -14,16 +14,20 @@ import axios from "axios";
 export default function ProfileClient() {
   const { user, isLoading } = useUser();
   const [open, setOpen] = React.useState(false);
+  const [travData, setTravData] = React.useState();
 
 
-  const handleClickToOpen = () => {
+  const handleClickToOpen = (value) => {
     setOpen(true);
+    setTravData(data.previousGenerations[value])
+    console.log(travData)
   };
 
   const handleToClose = (value) => {
     setOpen(false);
   };
   const fetchPreviousGenerations = async (sub) => {
+    console.log("joshua")
     const res = await axios.post(
       "https://portfolio-backend-430914.nn.r.appspot.com/api/user",
       {
@@ -74,6 +78,45 @@ export default function ProfileClient() {
   return (
     <div>
       <Frame />
+      <Box>
+      <Dialog open={open} onClose={handleToClose} fullScreen={true}>
+        <DialogContent>
+          <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
+            <h1 className="text-wh font-sans text-8xl mb-12">Your trip to {travData?.country}</h1>
+            <div className="flex h-min w-screen mx-8 px-12 space-x-8">
+              <div className="relative flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
+                <MapSmall data={travData} />
+              </div>
+              <div className="flex flex-col w-2/5 space-y-4">
+                <div className="relative bg-[#353130] rounded-2xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[500px]">
+                  <div className="text-wh text-lg flex-1">
+                    <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
+                    <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
+                      {travData?.itinerary.map((day, index) => (
+                        <li key={index}>
+                          {day.city} - {day.date}
+                          <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
+                            {day.locations.map((activity, i) => (
+                              <li key={i}>{activity}</li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleToClose}
+            color="primary" autoFocus>
+              Close
+            </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
       <div className="bg-[#FF6128] flex items-center justify-center px-6 pt-24 pb-12">
         <div className="grid grid-cols-4 gap-4 w-full mt-3 h-[calc(100vh-8rem)]">
           {/* Left Column with Two Boxes */}
@@ -138,7 +181,7 @@ export default function ProfileClient() {
                         <div className="flex justify-end items-center">
                           <a 
                             className="bg-blu text-wh font-sans text-1xl font-bold py-4 px-7 rounded-full shadow-md transition-transform hover:scale-105"
-                            onClick={handleClickToOpen}
+                            onClick={() => {handleClickToOpen(index)}}
                           >
                             Review Trip
                           </a>
@@ -146,45 +189,7 @@ export default function ProfileClient() {
                       </div>
                       
                       <hr style={{width: "100%"}}></hr>
-                      <Box>
-                          <Dialog open={open} onClose={handleToClose} fullScreen={true}>
-                            <DialogContent>
-                              <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
-                                <h1 className="text-wh font-sans text-8xl mb-12">Your trip to {travelPlan?.country}</h1>
-                                <div className="flex h-min w-screen mx-8 px-12 space-x-8">
-                                  <div className="relative flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
-                                    <MapSmall data={travelPlan} />
-                                  </div>
-                                  <div className="flex flex-col w-2/5 space-y-4">
-                                    <div className="relative bg-[#353130] rounded-2xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[500px]">
-                                      <div className="text-wh text-lg flex-1">
-                                        <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
-                                        <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
-                                          {travelPlan?.itinerary.map((day, index) => (
-                                            <li key={index}>
-                                              {day.city} - {day.date}
-                                              <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
-                                                {day.locations.map((activity, i) => (
-                                                  <li key={i}>{activity}</li>
-                                                ))}
-                                              </ul>
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={handleToClose}
-                                color="primary" autoFocus>
-                                  Close
-                                </Button>
-                            </DialogActions>
-                          </Dialog>
-                        </Box>
+                      
                       {/* {travelPlan?.itinerary.map((day, index) => (
                         <li key={index}>
                           {day.city} - {day.date}3
