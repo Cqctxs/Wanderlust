@@ -37,36 +37,35 @@ export const Modal = ({ data, onLocationChange }) => {
 
   return (
     <div className="absolute w-full h-screen flex justify-between pointer-events-none">
-      <div className="top-0 left-0 p-4 text-wh drop-shadow-bla pointer-events-auto">
+      <div className="absolute p-4 right-0 text-wh drop-shadow-bla pointer-events-auto">
         <Link href="/plan">
           <div className="transform transition duration-200 ease-in-out hover:scale-110">
             <CircleArrowLeft size={56} />
           </div>
         </Link>
       </div>
-      <div className="flex items-center justify-center h-screen relative p-12">
-        <div className="drop-shadow-bla pointer-events-auto">
-          <div className="font-offbit rounded-2xl h-28 bg-wh w-[36em] flex-col flex justify-center p-5 pt-8 text-bla">
-            <div className="text-5xl">Day {index + 1}</div>
-            <div className="text-lg text-bla/50">
-              Day {index + 1} Trip Itinerary
+      <div className="absolute top-0 left-0 items-center justify-center h-screen p-12">
+        <div className="drop-shadow-bla w-[450px] pointer-events-auto">
+          <div className="w-[450px] h-[48em] items-center flex flex-col">
+            <div className="font-offbit border-or border-[6px] tracking-wide text-7xl mb-5 text-center rounded-full h-28 bg-wh w-max px-16 flex-col flex py-4 pt-5 text-bla">
+              Day {index + 1}
             </div>
-          </div>
-          <div className="w-[36em] h-[48em] flex flex-col">
-            <div className="flex-grow p-5 bg-wh rounded-2xl overflow-auto">
-              <h2>
-                Day {index + 1}: {data.itinerary[index].date}
+            <div className="border-or  flex-row p-8 bg-wh rounded-t-lg h-[400px] text-[gray] overflow-y-auto">
+              <h2 className="text-2xl mb-4 text-bla text-center">
+                Trip itinerary for Day {index + 1}: {data.itinerary[index].date}
               </h2>
-              <h3>Overview</h3>
-              <p>{data.itinerary[index].overview}</p>
-              <h3>Activities</h3>
-              <ul>
+              <h3 className="font-bold my-2 text-lg">Overview</h3>
+              <p className="text-justify">{data.itinerary[index].overview}</p>
+              <h3 className="font-bold my-2 text-lg">Activities</h3>
+              <ul className="text-justify">
                 {data.itinerary[index].activities.map((activity, i) => (
                   <li key={i}>{activity}</li>
                 ))}
               </ul>
             </div>
-            <div className="flex-shrink-0 bg-wh rounded-2xl">
+            <div className="h-[25px] w-full bg-wh mt-0">
+            </div>
+            <div className="flex-shrink-0 w-full bg-or text-wh rounded-b-lg mt-0">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>
