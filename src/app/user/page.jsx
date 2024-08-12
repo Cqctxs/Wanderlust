@@ -94,7 +94,7 @@ export default function ProfileClient() {
                       <p>{travelPlan.itinerary[0].date} to {travelPlan.itinerary[travelPlan.itinerary.length - 1].date}</p>
                     </div>
                   ))}
-                </div>
+                  </div>
                 )
               )}
             </div>
