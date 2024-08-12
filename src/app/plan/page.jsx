@@ -127,7 +127,7 @@ const Page = () => {
         }
         everything_after={ dataLoading ? 
           <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
-            <h1 className="text-wh text-4xl">Generating your trip... {loadingTime.toFixed(1)}s</h1>
+            <h1 className="text-wh text-4xl" data-aos="fade-down">Generating your trip... {loadingTime.toFixed(1)}s</h1>
             <ThreeDots
                 visible={true}
                 height="12vw"
@@ -141,7 +141,7 @@ const Page = () => {
           </div> 
           : ( !travelData ? 
             <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
-              <h1 className="text-wh text-4xl">Enter Trip Details <a href="#search-bar">Above</a></h1>
+              <h1 className="text-wh text-4xl" data-aos="fade-down">Enter Trip Details <a href="#search-bar">Above</a></h1>
               <ThreeDots
                   visible={true}
                   height="12vw"
@@ -156,15 +156,15 @@ const Page = () => {
             :
             <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
             {/* Heading */}
-            <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData?.country}</h1>
+            <h1 className="text-wh font-sans text-8xl mb-12" data-aos="fade-up">Your Trip to {travelData?.country}</h1>
           
             <div className="flex h-min w-screen mx-8 px-12  space-x-8">
               {/* Left Card - Map */}
-              <div className="relative  flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden">
+              <div className="relative  flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden" data-aos="fade-right">
                 <MapSmall data={travelData} />
               </div>
               {/* Right Card Container */}
-              <div className="flex flex-col w-2/5 space-y-4">
+              <div className="flex flex-col w-2/5 space-y-4" data-aos="fade-left">
                 {/* Right Card - Scrollable Paragraph */}
                 <div className="relative bg-[#353130] rounded-2xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[500px]">
                   {/* Content Container */}
