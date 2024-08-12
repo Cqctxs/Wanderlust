@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { Frame } from "@/components/ui/navbar/frame";
-import { useEffect } from "react";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import { CityParallax } from "../components/ui/city_parallax";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import "./globals.css";
+import { useEffect, useState } from 'react'
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { CityParallax } from "@/components/ui/city_parallax"; 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import './globals.css';
 
 export default function Home() {
 
