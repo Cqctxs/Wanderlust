@@ -24,6 +24,12 @@ export default function ProfileClient() {
     queryKey: ["previousGenerations"],
     queryFn: () => fetchPreviousGenerations(user.sub),
     enabled: !!user,
+    onSuccess: (data) => {
+      console.log('query succeeded with data: ', data)
+    },
+    onError: (error) => {
+      console.log(`query failed with: ${error}`)
+    }
   });
 
   if (!user) return (<p>No user authenticated, please log in first.</p>);
@@ -76,7 +82,7 @@ export default function ProfileClient() {
               {isPending ? (
                 <p className="text-gray-600">Loading...</p>
               ) : (
-                error ? (
+                (error && !data) ? (
                   <p>Could not find any previous data. Try generating a trip!</p>
                 ) : (
                   <div className="text-gray-600">

@@ -8,10 +8,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) => {
+export const CityParallax = ({ pages=2, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
-
-  
 
   useEffect(() => {
     setIsClient(true);
@@ -159,7 +157,7 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
         }
         `}
     </style>
-    <Parallax pages={2} style={{ top: '0', left: '0' }} className="animation">
+    <Parallax pages={pages} style={{ top: '0', left: '0' }} className="animation">
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_2.png)"}}></div>
         </ParallaxLayer>
@@ -192,10 +190,13 @@ export const CityParallax = ({ hasLogo=true, searchValue, everything_after }) =>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_orange_0.png)" }}></div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0}>
-        {searchValue}
+            {searchValue}
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
             {everything_after}
+        </ParallaxLayer>
+        <ParallaxLayer offset={2} speed={0}>
+            {everything_after_everything_after}
         </ParallaxLayer>
     </Parallax>
     </div>
