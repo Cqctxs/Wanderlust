@@ -9,6 +9,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
   const res = await axios.get("http://localhost:8080/api/generate", {
@@ -65,7 +66,6 @@ const Page = () => {
     <>
       <Frame />
       <CityParallax 
-        pages={initialLoad ? 1 : 2}
         hasLogo={false}
         searchValue={
           <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
@@ -114,7 +114,16 @@ const Page = () => {
           </div>
         }
         everything_after={ dataLoading ? 
-          <div className="h-full flex justify-center">
+          <div className="h-full flex justify-center bg-[#252322]">
+            <Audio
+              height="80"
+              width="80"
+              radius="9"
+              color="green"
+              ariaLabel="loading"
+              wrapperStyle
+              wrapperClass
+            />
             <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
           </div> 
           : 
