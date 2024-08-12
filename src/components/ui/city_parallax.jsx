@@ -9,7 +9,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
+export const CityParallax = ({ pages=2.5, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
   const parallaxRef = useRef(null);
 
