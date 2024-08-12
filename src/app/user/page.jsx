@@ -111,9 +111,9 @@ export default function ProfileClient() {
             </div>
           </div>
 
-          <div className="col-span-3 bg-[#F7F5F2] rounded-lg shadow-md overflow-hidden p-6 flex flex-col h-full">
-            <h2 className="text-2xl font-semibold text-center text-[#252221] mb-4">
-              Miscellaneous Information
+          <div className="col-span-3 bg-[#F7F5F2] rounded-lg shadow-md overflow-y-auto p-12 px-16 flex flex-col h-full">
+            <h2 className="text-5xl font-semibold text-center text-[#252221] mt-2 mb-4">
+              Generation History
             </h2>
             <div className="space-y-4 flex-grow">
               {isPending ? (
@@ -124,21 +124,21 @@ export default function ProfileClient() {
                 ) : (
                   <div className="text-gray-600">
                   {data.previousGenerations.map((travelPlan, index) => (
-                    <div key={index} className="mb-4">
-                      <div className="grid gap-4 grid-cols-2">
+                    <div key={index} className="mb-6">
+                      <div className="grid gap-6 grid-cols-2">
                         <div>
-                          <h2 className="font-bold">
+                          <h2 className="font-normal text-blu text-3xl">
                             {travelPlan.country}
                           </h2>
-                          <p>{travelPlan.itinerary[0].date} to {travelPlan.itinerary[travelPlan.itinerary.length - 1].date}</p>
+                          <p className="font-normal text-gray text-lg mb-2">{travelPlan.itinerary[0].date} to {travelPlan.itinerary[travelPlan.itinerary.length - 1].date}</p>
                         </div>
                         
-                        <div className="flex justify-end">
+                        <div className="flex justify-end items-center">
                           <a 
-                            className="bg-blu text-wh font-sans text-1xl font-bold py-3 px-5 rounded shadow-md transition-transform hover:scale-105"
+                            className="bg-blu text-wh font-sans text-1xl font-bold py-4 px-7 rounded-full shadow-md transition-transform hover:scale-105"
                             onClick={handleClickToOpen}
                           >
-                            Review This Trip
+                            Review Trip
                           </a>
                         </div>
                       </div>
