@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* external stylesheets */}
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
         <Script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js" strategy="lazyOnload" />
