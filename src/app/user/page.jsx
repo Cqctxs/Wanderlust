@@ -56,7 +56,7 @@ export default function ProfileClient() {
     return (
       <div>
       <div className="flex bg-or h-screen w-screen justify-center items-center">
-      <div className="bg-[#F7F5F2] justify-center items-center mt-12 rounded-xl shadow-md overflow-hidden px-24 pt-24 pb-12 flex flex-col">
+      <div className="bg-[#F7F5F2] justify-center items-center mt-8 rounded-xl shadow-md overflow-hidden px-24 pt-24 pb-12 flex flex-col">
         <div className="flex flex-col items-center justify-center h-full">
             <UserRoundX size={128} />
           <h2 className="text-3xl font-semibold text-center text-[#252221] mt-4">
