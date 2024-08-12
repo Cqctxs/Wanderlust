@@ -6,19 +6,10 @@ import { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { CityParallax } from "@/components/ui/city_parallax"; 
 import AOS from 'aos';
-import Footer from '../components/ui/navbar/footer';
 import 'aos/dist/aos.css';
 import './globals.css';
 
 export default function Home() {
-
-  AOS.init({
-    duration: 2000, 
-    delay: 1000, 
-    once: false,
-    easing: 'ease',
-  });
-
   return (
     <div className="h-screen bg-[#252322]">
       <Frame />
@@ -27,10 +18,9 @@ export default function Home() {
         hasLogo={true}
         searchValue={<></>}
         everything_after={
-          <div className="h-full mb-[0] bg-[#252322]" id="top">
-            <div className="pt-20 w-full bg-[#252322]">
+          <div className="bg-[#252322] h-screen pt-36 w-full">
               <div
-                className="flex rounded-2xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]"
+                className="flex rounded-2xl drop-shadow-xl items-center justify-evenly mt-16 ml-32 mr-32 bg-[#353130]"
                 data-aos="fade-right"
               >
                 <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20 leading-tight">
@@ -61,7 +51,6 @@ export default function Home() {
                   />
                 </a>
               </div>
-            </div>
           </div>
         }
       ></CityParallax>

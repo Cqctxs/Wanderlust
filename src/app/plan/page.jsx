@@ -8,7 +8,6 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import Footer from "../../components/ui/navbar/footer";
 import { ThreeDots } from "react-loader-spinner";
 
 const Page = () => {
@@ -30,16 +29,6 @@ const Page = () => {
   }, [dataLoading, loadingTime]);
 
   useEffect(() => {
-    console.log("dataLoading: " + dataLoading);
-    console.log("travelData: " + travelData);
-    if (dataLoading || travelData) {
-      setPageNumber(2.15);
-      console.log(2.15);
-    }
-    console.log("Page number: " + pageNumber);
-  }, [dataLoading, travelData]);
-
-  useEffect(() => {
     // Add a small timeout or force update mechanism if necessary
     const timer = setTimeout(() => {
       // Force component update
@@ -48,6 +37,7 @@ const Page = () => {
   }, [pageNumber]);
 
   const handleSubmit = async () => {
+    if (dataLoading) return;
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
     try {
       setDataLoading(true);
@@ -133,7 +123,7 @@ const Page = () => {
           </div> 
           : ( !travelData ? 
             <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
-              <h1 className="text-wh text-4xl" data-aos="fade-down">Enter Trip Details <a href="#search-bar">Above</a></h1>
+              <h1 className="text-wh text-4xl" data-aos="fade-down">Enter trip details <a href="#search-bar">above</a></h1>
               <ThreeDots
                   visible={true}
                   height="12vw"

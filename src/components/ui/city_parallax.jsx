@@ -3,7 +3,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-import { useSpring, animated } from 'react-spring';
 import Footer from "./navbar/footer";
 import Head from 'next/head';
 import AOS from 'aos';
@@ -12,7 +11,6 @@ import '../../app/globals.css';
 
 export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
-  const [{ parallaxY }, setParallaxY] = useSpring(() => ({ parallaxY : 0 }));
   const parallaxRef = useRef(null);
 
   const scrollToTop = () => {
@@ -28,7 +26,7 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
     // initializes animate on scroll
     AOS.init({
         duration: 2000, 
-        delay: 1000, 
+        delay: 100, 
         once: false,
         easing: 'ease',
     });
@@ -39,8 +37,6 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
   if (!isClient) {
     return null; // Render nothing on the server
   }
-
-  console.log("Rendering CityParallax with pages:", pages);
 
   return (
     <>
