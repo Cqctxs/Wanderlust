@@ -80,15 +80,6 @@ const Page = () => {
 
   return (
     <>
-      <ReactHowler 
-        src="/assets/jazz.mp3"
-        playing={playing}
-        volume={1.0}
-        html5={true}
-        onEnd={() => console.log('Playback ended')}
-        onLoad={() => console.log('Audio loaded')}
-        onError={(e) => console.error('Audio error:', e)}
-      />
       <Frame />
       <CityParallax 
         pages={2.15}
