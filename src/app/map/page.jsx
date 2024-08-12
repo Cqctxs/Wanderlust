@@ -33,7 +33,7 @@ export default function MapPage() {
       
     return (
         <>
-        {travelData && (
+        {(travelData) && (
             <>
                 <MapWrapper data={travelData} location={location} />
                 <Modal data={travelData} onLocationChange={setLocation} />

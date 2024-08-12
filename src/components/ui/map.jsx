@@ -2,7 +2,8 @@
 
 import React, { useRef, useEffect } from 'react';
 import DeckGL from '@deck.gl/react';
-import { Map, MapProvider, useMap } from 'react-map-gl';
+import { Map, MapProvider, useControl } from 'react-map-gl';
+import { MapboxOverlay } from '@deck.gl/mapbox';
 import { ArcLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import data from '../../app/map/test.json';
 import { ArrowBigLeft } from 'lucide-react';
@@ -18,7 +19,17 @@ const INITIAL_VIEW_STATE = {
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-function getTooltip({object}) {
+function DeckGLOverlay(props) {
+    const overlay = useControl(() => new MapboxOverlay(props));
+
+    useEffect(() => {
+        overlay.setProps(props);
+    }, [props, overlay]);
+
+    return null;
+}
+
+function getTooltip({ object }) {
     return object && {
         html: `<h1><b>${object.message.title}</b></h1> <div>${object.message.m1} <br> ${object.message.m2}</div>`,
         style: {
@@ -26,7 +37,7 @@ function getTooltip({object}) {
             "overflow-wrap": "break-word"
         }
     };
-}  
+}
 
 export const MapWrapper = ({ data, location }) => {
     const mapRef = useRef(null);
@@ -38,7 +49,7 @@ export const MapWrapper = ({ data, location }) => {
             console.log("Flying to:", location);
             map.flyTo({
                 center: [lng, lat],
-                zoom: 15
+                zoom: 14
             });
         } else {
             console.error("Map is not loaded yet or location is undefined.");
@@ -46,26 +57,26 @@ export const MapWrapper = ({ data, location }) => {
     }, [location, mapRef]);
 
     const cityData = [];
-    data?.itinerary.forEach((day) => {
+    data.itinerary.forEach((day) => {
         const lnglat = [day.cityCoordinates.lng, day.cityCoordinates.lat];
 
-        const message = {title: "Name: No name found", m1: "Overview: No overview found", m2: ""};
+        const message = { title: "Name: No name found", m1: "Overview: No overview found", m2: "" };
         if (day["city"]) message["title"] = day.city;
         if (day["overview"]) message["m1"] = "Overview: " + day.overview;
-        const cityInfo = {position: lnglat, message: message};
+        const cityInfo = { position: lnglat, message: message };
         cityData.push(cityInfo);
     });
 
     const hotelData = [];
-    data?.itinerary.forEach((day) => {
+    data.itinerary.forEach((day) => {
         if (day["hotel"] && day.hotel["geometry"] && day.hotel.geometry["location"] && day.hotel.geometry.location["lng"] && day.hotel.geometry.location["lat"]) {
             const lnglat = [day.hotel.geometry.location.lng, day.hotel.geometry.location.lat];
 
-            const message = {title: "Name: No name found", m1: "Address: No address found", m2: "Rating: No rating found"};
+            const message = { title: "Name: No name found", m1: "Address: No address found", m2: "Rating: No rating found" };
             if (day.hotel["name"]) message["title"] = day.hotel.name;
             if (day.hotel["plus_code"] && day.hotel.plus_code["compound_code"]) message["m1"] = "Address: " + day.hotel.plus_code.compound_code;
             if (day.hotel["rating"]) message["m2"] = "Rating: " + day.hotel.rating;
-            const hotelInfo = {position: lnglat, message: message};
+            const hotelInfo = { position: lnglat, message: message };
             hotelData.push(hotelInfo);
         }
     });
@@ -123,22 +134,20 @@ export const MapWrapper = ({ data, location }) => {
     const layers = [arcLayer, scatterplotLayer, iconLayer];
 
     return (
-        <DeckGL
-            initialViewState={INITIAL_VIEW_STATE}
-            controller={true}
-            layers={layers}
-            getTooltip={getTooltip}
-        >
+        <div className='fixed w-full h-screen'>
             <MapProvider>
                 <Map
-                    id = "map"
+                    id="map"
                     ref={mapRef}
                     mapStyle="mapbox://styles/wanderlust-ai/clzhqt1ma005x01paht0n1n89"
                     mapboxAccessToken={TOKEN}
                     maxPitch={85}
                     reuseMaps={true}
-                />
+                    initialViewState={INITIAL_VIEW_STATE}
+                >
+                    <DeckGLOverlay layers={layers} getTooltip={getTooltip} />
+                </Map>
             </MapProvider>
-        </DeckGL>
+        </div>
     );
 }
