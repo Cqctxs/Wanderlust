@@ -17,6 +17,8 @@ import React, { useState } from "react";
 export const Modal = ({ data, onLocationChange }) => {
   const [index, setIndex] = useState(0);
   const maxIndex = data.itinerary.length - 1;
+  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const [travData, setTravData] = React.useState();
 
   const handlePreviousClick = () => {
     setIndex((prevIndex) => {
@@ -36,40 +38,35 @@ export const Modal = ({ data, onLocationChange }) => {
 
   return (
     <div className="absolute w-full h-screen flex justify-between pointer-events-none">
-      <div className="top-0 left-0 p-4 text-wh drop-shadow-bla pointer-events-auto">
+      <div className="absolute p-4 right-0 text-wh drop-shadow-bla pointer-events-auto">
         <Link href="/plan">
           <div className="transform transition duration-200 ease-in-out hover:scale-110">
             <CircleArrowLeft size={56} />
           </div>
         </Link>
       </div>
-      <div className='flex items-center justify-center h-screen relative p-12'>
-        <div className='drop-shadow-bla pointer-events-auto'>
-          <div className='rounded-2xl h-28 bg-wh w-[36em] flex-col flex justify-center p-5 pt-8 text-bla'>
-            <div className='text-5xl font-offbit'>
+      <div className="absolute top-0 left-0 items-center justify-center h-screen p-12">
+        <div className="drop-shadow-bla w-[450px] pointer-events-auto">
+          <div className="w-[450px] h-[48em] items-center flex flex-col">
+            <div className="font-offbit border-or border-[6px] tracking-wide text-7xl mb-5 text-center rounded-full h-28 bg-wh w-max px-16 flex-col flex py-4 pt-5 text-bla">
               Day {index + 1}
             </div>
-            <div className='text-lg text-bla/50'>
-              Day {index + 1} Trip Itinerary
-            </div>
-          </div>
-          <div className='w-[36em] h-[48em] flex flex-col rounded-2xl bg-wh p-6'>
-            <div className='flex-grow p-5 bg-wh rounded-2xl overflow-auto drop-shadow-bla'>
-              <h2 className='flex text-2xl justify-center'>
-                <CalendarClock size={36} />
-                {data.itinerary[index].date}
+            <div className="border-or  flex-row p-8 bg-wh rounded-t-lg h-[400px] text-[gray] overflow-y-auto">
+              <h2 className="text-2xl mb-4 text-bla text-center">
+                Trip itinerary for {month[parseInt(data.itinerary[index].date.substring(5,7))]} {data.itinerary[index].date.substring(8,10)}, {data.itinerary[index].date.substr(0, 4)}
               </h2>
-              <hr className='my-3' />
-              <p className='text-center text-bla/80 text-xl'>{data.itinerary[index].overview}</p>
-              <hr className='my-3' />
-              <h3 className='text-2xl'>Activities</h3>
-              <ul>
+              <h3 className="font-bold my-2 text-lg">Overview</h3>
+              <p className="text-justify">{data.itinerary[index].overview}</p>
+              <h3 className="font-bold my-2 text-lg">Activities</h3>
+              <ul className="text-justify">
                 {data.itinerary[index].activities.map((activity, i) => (
                   <li key={i} className='text-lg text-bla/80 list-decimal ml-6 my-2'>{activity}</li>
                 ))}
               </ul>
             </div>
-            <div className='flex-shrink-0 mt-6'>
+            <div className="h-[25px] w-full bg-wh mt-0">
+            </div>
+            <div className="flex-shrink-0 w-full bg-or text-wh rounded-b-lg mt-0">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>

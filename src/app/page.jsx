@@ -13,6 +13,9 @@ export default function Home() {
   return (
     <div className="h-screen bg-[#252322]">
       <Frame />
+        <Head>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        </Head>
       <CityParallax
         pages={2.15}
         hasLogo={true}
