@@ -15,7 +15,9 @@ export default function ProfileClient() {
   const { user, isLoading } = useUser();
   const [open, setOpen] = React.useState(false);
   const [travData, setTravData] = React.useState();
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true)
+  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 
   const handleClickToOpen = (value) => {
     setOpen(true);
@@ -205,14 +207,7 @@ export default function ProfileClient() {
                           <h2 className="font-normal text-blu text-3xl">
                             {travelPlan.country}
                           </h2>
-                          <p className="font-normal text-gray text-lg mb-2">
-                            {travelPlan.itinerary[0].date} to{" "}
-                            {
-                              travelPlan.itinerary[
-                                travelPlan.itinerary.length - 1
-                              ].date
-                            }
-                          </p>
+                          <p className="font-normal text-gray text-lg mb-2">{month[parseInt(travelPlan.itinerary[0].date.substring(5,7))]} {travelPlan.itinerary[0].date.substring(8,10)}, {travelPlan.itinerary[0].date.substr(0, 4)}  to {month[parseInt(travelPlan.itinerary[travelPlan.itinerary.length-1].date.substring(5,7))]} {travelPlan.itinerary[travelPlan.itinerary.length-1].date.substring(8,10)}, {travelPlan.itinerary[travelPlan.itinerary.length-1].date.substr(0, 4)}</p>
                         </div>
 
                         <div className="flex justify-end items-center">

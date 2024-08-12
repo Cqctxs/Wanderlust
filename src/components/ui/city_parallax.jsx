@@ -9,18 +9,18 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../../app/globals.css';
 
-export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
+export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }, ref) => {
   const [isClient, setIsClient] = useState(false);
   const parallaxRef = useRef(null);
 
   const scrollToTop = () => {
     console.log("here i am");
-    console.log(!!parallaxRef);
+    console.log(!!parallaxRef.current);
     if (parallaxRef.current){
         parallaxRef.current.scrollTo(-100);
     }
   }
-
+  
   useEffect(() => {
     setIsClient(true);
     // initializes animate on scroll
