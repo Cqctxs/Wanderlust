@@ -28,8 +28,6 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
     return null; // Render nothing on the server
   }
 
-  console.log("Rendering CityParallax with pages:", pages);
-
   return (
     <>
     <div>

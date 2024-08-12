@@ -30,16 +30,6 @@ const Page = () => {
   }, [dataLoading, loadingTime]);
 
   useEffect(() => {
-    console.log("dataLoading: " + dataLoading);
-    console.log("travelData: " + travelData);
-    if (dataLoading || travelData) {
-      setPageNumber(2.15);
-      console.log(2.15);
-    }
-    console.log("Page number: " + pageNumber);
-  }, [dataLoading, travelData]);
-
-  useEffect(() => {
     // Add a small timeout or force update mechanism if necessary
     const timer = setTimeout(() => {
       // Force component update
@@ -52,7 +42,7 @@ const Page = () => {
     try {
       setDataLoading(true);
       setLoadingTime(0);
-      const response = await axios.post('https://portfolio-backend-430914.nn.r.appspot.com/api/generate', 
+      const response = await axios.post('http://localhost:8080/api/generate', 
         { 
           country,
           startDate,
@@ -61,6 +51,8 @@ const Page = () => {
         }
       );
       setTravelData(response.data);
+      console.log("travel data");
+      console.log(response.data);
     } catch (error) {
       console.error(`omg there's an error ${error}`);
     } finally {
