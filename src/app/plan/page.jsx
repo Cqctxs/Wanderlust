@@ -29,6 +29,7 @@ const Page = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
+  const [travelData, setTravelData] = useState(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -54,6 +55,7 @@ const Page = () => {
         }
       );
       setDataLoading(false);
+      setTravelData(response.data);
       console.log(response.data);
     } catch (error) {
       console.error(`omg there's an error ${error}`);
@@ -120,7 +122,7 @@ const Page = () => {
           : 
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
           {/* Heading */}
-          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData.country}</h1>
+          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData?.country}</h1>
         
           <div className="flex h-min w-screen mx-8 px-12  space-x-8">
             {/* Left Card - Map */}
@@ -135,7 +137,7 @@ const Page = () => {
                 <div className="text-wh text-lg flex-1">
                   <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
                   <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
-                    {travelData.itinerary.map((day, index) => (
+                    {travelData?.itinerary.map((day, index) => (
                       <li key={index}>
                         {day.city} - {day.date}
                         <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
