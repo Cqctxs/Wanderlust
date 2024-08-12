@@ -54,7 +54,7 @@ export const Modal = ({ data, onLocationChange }) => {
             </div>
             <div className="border-or  flex-row p-8 bg-wh rounded-t-lg h-[400px] text-[gray] overflow-y-auto">
               <h2 className="text-2xl mb-4 text-bla text-center">
-                Trip itinerary for {month[parseInt(data.itinerary[0].date.substring(5,7))]} {data.itinerary[0].date.substring(8,10)}, {data.itinerary[0].date.substr(0, 4)}
+                Trip itinerary for {month[parseInt(data.itinerary[index].date.substring(5,7))]} {data.itinerary[index].date.substring(8,10)}, {data.itinerary[index].date.substr(0, 4)}
               </h2>
               <h3 className="font-bold my-2 text-lg">Overview</h3>
               <p className="text-justify">{data.itinerary[index].overview}</p>
