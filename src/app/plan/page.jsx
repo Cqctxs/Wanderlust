@@ -8,7 +8,8 @@ import axios from "axios";
 import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
-// import travelData from "./sampleTravelData";
+import travelData from "./sampleTravelData";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
   const res = await axios.get("http://localhost:8080/api/generate", {
@@ -25,6 +26,7 @@ const Page = () => {
   const [endDate, setEndDate] = useState('');
 
   // for the loading screen
+  const [initialLoad, setInitialLoad] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
   const [travelData, setTravelData] = useState(null);
@@ -40,14 +42,18 @@ const Page = () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
 
     try {
+      setInitialLoad(false);
+      setLoadingTime(0);
       setDataLoading(true);
-      const response = await axios.get('http://localhost:8080/api/jojothewarrior', {
-        params: {
+
+      const response = await axios.post('https://portfolio-backend-430914.nn.r.appspot.com/api/generate', 
+        { 
           country: country,
           startDate: startDate,
           endDate: endDate,
+          sub: user.sub,
         }
-      });
+      );
       setDataLoading(false);
       setTravelData(response.data);
       console.log(response.data);
@@ -61,7 +67,7 @@ const Page = () => {
   return (
     <>
       <Frame />
-      <CityParallax
+      <CityParallax 
         hasLogo={false}
         searchValue={
           <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
@@ -109,11 +115,12 @@ const Page = () => {
             </div>
           </div>
         }
-        everything_after={ dataLoading && !!travelData ? 
-          <div className="h-full flex">
-          <h1>Loading... {loadingTime}s</h1>
-        </div> : 
-        <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
+        everything_after={ dataLoading ? 
+          <div className="h-full flex justify-center bg-[#252322]">
+            <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
+          </div> 
+          : 
+          <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
           {/* Heading */}
           <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData?.country}</h1>
         
@@ -145,13 +152,47 @@ const Page = () => {
               </div>
               {/* Button Below the Right Card */}
               <div className="flex justify-center">
-                <button className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-110">
+                <a href="/map"
+                className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-105"
+                 >
                   Explore This Trip
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
+        }
+        everything_after_everything_after={
+          <div className="bg-[#252323] border-[#252323] text-wh h-full p-0">
+              <div className="flex justify-center space-x-8">
+                <a
+                  href="#our-team"
+                  className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  Our Team
+                </a>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  Github
+                </a>
+                <a
+                  href="#contact"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  Contact Us
+                </a>
+                <a
+                  href="#other"
+                  className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                  ???
+                </a>
+              </div>
+            </div>
         }
       ></CityParallax>
     </>
