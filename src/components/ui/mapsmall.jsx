@@ -7,7 +7,6 @@ import { ArcLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
 
-
 // Mapbox token for accessing map styles
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 

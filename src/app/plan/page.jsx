@@ -115,7 +115,7 @@ const Page = () => {
             </div>
           </div>
         }
-        everything_after={ dataLoading || !travelData ? 
+        everything_after={ dataLoading ? 
           <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
             <h1 className="text-wh text-4xl">Generating trip... {loadingTime.toFixed(1)}s</h1>
             <ThreeDots
@@ -129,7 +129,12 @@ const Page = () => {
                 wrapperClass=""
             />
           </div> 
-          : 
+          : ( initialLoad ? 
+            <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
+            <h1 className="text-wh text-4xl">Enter a Country, Start Date and End Date</h1>
+            
+          </div> 
+          :
           <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
           {/* Heading */}
           <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData?.country}</h1>
@@ -171,6 +176,7 @@ const Page = () => {
             </div>
           </div>
         </div>
+          )
         }
         everything_after_everything_after={
           <div className="flex justify-center bg-[#252323] text-wh p-10">
