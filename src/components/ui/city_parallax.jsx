@@ -10,7 +10,7 @@ import '../../app/globals.css';
 
 export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
-
+  
   useEffect(() => {
     setIsClient(true);
     // initializes animate on scroll
@@ -27,6 +27,8 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
   if (!isClient) {
     return null; // Render nothing on the server
   }
+
+  console.log("Rendering CityParallax with pages:", pages);
 
   return (
     <>
