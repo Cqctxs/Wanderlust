@@ -8,15 +8,8 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
+import Footer from "../../components/ui/navbar/footer";
 import { ThreeDots } from "react-loader-spinner";
-
-const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
-  const res = await axios.get("http://localhost:8080/api/generate", {
-    params: { country, startDate, endDate, sub },
-    headers: { "Content-Type": "application/json" },
-  });
-  return res.data;
-};
 
 const Page = () => {
   const { user, isLoading } = useUser();
@@ -28,7 +21,6 @@ const Page = () => {
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
   const [travelData, setTravelData] = useState(null);
-  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -57,7 +49,6 @@ const Page = () => {
 
   const handleSubmit = async () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
-    setPlaying(true);
     try {
       setDataLoading(true);
       setLoadingTime(0);
@@ -199,36 +190,7 @@ const Page = () => {
           )
         }
         everything_after_everything_after={
-          <div className="flex justify-center bg-[#252323] text-wh p-10">
-            <div className="flex justify-center space-x-8">
-              <a
-                href="https://gemini.google.com/"
-                className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-              >
-                Gemini AI
-              </a>
-              <a
-                href="https://github.com/Cqctxs/Client-GADC"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-              >
-                Github
-              </a>
-              <a
-                href="mailto:itsaveryleee@gmail.com"
-                className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-              >
-                Contact Us
-              </a>
-              <a
-                href="#other"
-                className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-              >
-                ???
-              </a>
-            </div>
-          </div>
+          <Footer />
         }
       />
     </>
