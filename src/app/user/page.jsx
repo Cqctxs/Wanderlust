@@ -28,7 +28,6 @@ export default function ProfileClient() {
     setOpen(false);
   };
   const fetchPreviousGenerations = async (sub) => {
-    console.log("joshua")
     const res = await axios.post(
       "https://portfolio-backend-430914.nn.r.appspot.com/api/user",
       {

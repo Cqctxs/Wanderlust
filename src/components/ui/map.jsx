@@ -38,7 +38,7 @@ export const MapWrapper = ({ data, location }) => {
             console.log("Flying to:", location);
             map.flyTo({
                 center: [lng, lat],
-                zoom: 7
+                zoom: 15
             });
         } else {
             console.error("Map is not loaded yet or location is undefined.");
