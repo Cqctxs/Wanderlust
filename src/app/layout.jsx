@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* external stylesheets */}
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
       </head>
       <body className={`${offbit.variable} ${product.variable} font-sans`}>

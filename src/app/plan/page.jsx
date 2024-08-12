@@ -1,19 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useMutation } from "@tanstack/react-query";
-import { Frame } from "@/components/ui/navbar/frame";
 import axios from "axios";
-import { CityParallax } from "../../components/ui/city_parallax.jsx";
-
-const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
-  const res = await axios.get("http://localhost:8080/api/generate", {
-    params: { country, startDate, endDate, sub },
-    headers: { "Content-Type": "application/json" },
-  });
-  return res.data;
-};
+import { Frame } from "@/components/ui/navbar/frame";
+import { CityParallax } from "@/components/ui/city_parallax.jsx";
+import { MapSmall } from "@/components/ui/mapsmall";
+import countries from "./countries";
+import travelData from "./sampleTravelData";
+import { ThreeDots } from "react-loader-spinner";
 
 const Page = () => {
   const { user, isLoading } = useUser();
@@ -21,257 +16,174 @@ const Page = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const mutation = useMutation(fetchItinerary);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [dataLoading, setDataLoading] = useState(false);
+  const [loadingTime, setLoadingTime] = useState(0);
+  const [travelData, setTravelData] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    mutation.mutate({ country, startDate, endDate, sub: user.sub });
+  const handleExploreClick = () => {
+    localStorage.setItem('travelData', JSON.stringify(travelData));
   };
 
-  const countries = [
-    { id: 1, name: "Afghanistan" },
-    { id: 2, name: "Albania" },
-    { id: 3, name: "Algeria" },
-    { id: 4, name: "Andorra" },
-    { id: 5, name: "Angola" },
-    { id: 6, name: "Antigua and Barbuda" },
-    { id: 7, name: "Argentina" },
-    { id: 8, name: "Armenia" },
-    { id: 9, name: "Australia" },
-    { id: 10, name: "Austria" },
-    { id: 11, name: "Azerbaijan" },
-    { id: 12, name: "The Bahamas" },
-    { id: 13, name: "Bahrain" },
-    { id: 14, name: "Bangladesh" },
-    { id: 15, name: "Barbados" },
-    { id: 16, name: "Belarus" },
-    { id: 17, name: "Belgium" },
-    { id: 18, name: "Belize" },
-    { id: 19, name: "Benin" },
-    { id: 20, name: "Bhutan" },
-    { id: 21, name: "Bolivia" },
-    { id: 22, name: "Bosnia and Herzegovina" },
-    { id: 23, name: "Botswana" },
-    { id: 24, name: "Brazil" },
-    { id: 25, name: "Brunei" },
-    { id: 26, name: "Bulgaria" },
-    { id: 27, name: "Burkina Faso" },
-    { id: 28, name: "Burundi" },
-    { id: 29, name: "Cabo Verde" },
-    { id: 30, name: "Cambodia" },
-    { id: 31, name: "Cameroon" },
-    { id: 32, name: "Canada" },
-    { id: 33, name: "Central African Republic" },
-    { id: 34, name: "Chad" },
-    { id: 35, name: "Chile" },
-    { id: 36, name: "China" },
-    { id: 37, name: "Colombia" },
-    { id: 38, name: "Comoros" },
-    { id: 39, name: "Congo, Democratic Republic of the" },
-    { id: 40, name: "Congo, Republic of the" },
-    { id: 41, name: "Costa Rica" },
-    { id: 42, name: "Côte d'Ivoire" },
-    { id: 43, name: "Croatia" },
-    { id: 44, name: "Cuba" },
-    { id: 45, name: "Cyprus" },
-    { id: 46, name: "Czech Republic" },
-    { id: 47, name: "Denmark" },
-    { id: 48, name: "Djibouti" },
-    { id: 49, name: "Dominica" },
-    { id: 50, name: "Dominican Republic" },
-    { id: 51, name: "East Timor (Timor-Leste)" },
-    { id: 52, name: "Ecuador" },
-    { id: 53, name: "Egypt" },
-    { id: 54, name: "El Salvador" },
-    { id: 55, name: "Equatorial Guinea" },
-    { id: 56, name: "Eritrea" },
-    { id: 57, name: "Estonia" },
-    { id: 58, name: "Eswatini" },
-    { id: 59, name: "Ethiopia" },
-    { id: 60, name: "Fiji" },
-    { id: 61, name: "Finland" },
-    { id: 62, name: "France" },
-    { id: 63, name: "Gabon" },
-    { id: 64, name: "The Gambia" },
-    { id: 65, name: "Georgia" },
-    { id: 66, name: "Germany" },
-    { id: 67, name: "Ghana" },
-    { id: 68, name: "Greece" },
-    { id: 69, name: "Grenada" },
-    { id: 70, name: "Guatemala" },
-    { id: 71, name: "Guinea" },
-    { id: 72, name: "Guinea-Bissau" },
-    { id: 73, name: "Guyana" },
-    { id: 74, name: "Haiti" },
-    { id: 75, name: "Honduras" },
-    { id: 76, name: "Hungary" },
-    { id: 77, name: "Iceland" },
-    { id: 78, name: "India" },
-    { id: 79, name: "Indonesia" },
-    { id: 80, name: "Iran" },
-    { id: 81, name: "Iraq" },
-    { id: 82, name: "Ireland" },
-    { id: 83, name: "Israel" },
-    { id: 84, name: "Italy" },
-    { id: 85, name: "Jamaica" },
-    { id: 86, name: "Japan" },
-    { id: 87, name: "Jordan" },
-    { id: 88, name: "Kazakhstan" },
-    { id: 89, name: "Kenya" },
-    { id: 90, name: "Kiribati" },
-    { id: 91, name: "Korea, North" },
-    { id: 92, name: "Korea, South" },
-    { id: 93, name: "Kosovo" },
-    { id: 94, name: "Kuwait" },
-    { id: 95, name: "Kyrgyzstan" },
-    { id: 96, name: "Laos" },
-    { id: 97, name: "Latvia" },
-    { id: 98, name: "Lebanon" },
-    { id: 99, name: "Lesotho" },
-    { id: 100, name: "Liberia" },
-    { id: 101, name: "Libya" },
-    { id: 102, name: "Liechtenstein" },
-    { id: 103, name: "Lithuania" },
-    { id: 104, name: "Luxembourg" },
-    { id: 105, name: "Madagascar" },
-    { id: 106, name: "Malawi" },
-    { id: 107, name: "Malaysia" },
-    { id: 108, name: "Maldives" },
-    { id: 109, name: "Mali" },
-    { id: 110, name: "Malta" },
-    { id: 111, name: "Marshall Islands" },
-    { id: 112, name: "Mauritania" },
-    { id: 113, name: "Mauritius" },
-    { id: 114, name: "Mexico" },
-    { id: 115, name: "Micronesia, Federated States of" },
-    { id: 116, name: "Moldova" },
-    { id: 117, name: "Monaco" },
-    { id: 118, name: "Mongolia" },
-    { id: 119, name: "Montenegro" },
-    { id: 120, name: "Morocco" },
-    { id: 121, name: "Mozambique" },
-    { id: 122, name: "Myanmar (Burma)" },
-    { id: 123, name: "Namibia" },
-    { id: 124, name: "Nauru" },
-    { id: 125, name: "Nepal" },
-    { id: 126, name: "Netherlands" },
-    { id: 127, name: "New Zealand" },
-    { id: 128, name: "Nicaragua" },
-    { id: 129, name: "Niger" },
-    { id: 130, name: "Nigeria" },
-    { id: 131, name: "North Macedonia" },
-    { id: 132, name: "Norway" },
-    { id: 133, name: "Oman" },
-    { id: 134, name: "Pakistan" },
-    { id: 135, name: "Palau" },
-    { id: 136, name: "Panama" },
-    { id: 137, name: "Papua New Guinea" },
-    { id: 138, name: "Paraguay" },
-    { id: 139, name: "Peru" },
-    { id: 140, name: "Philippines" },
-    { id: 141, name: "Poland" },
-    { id: 142, name: "Portugal" },
-    { id: 143, name: "Qatar" },
-    { id: 144, name: "Romania" },
-    { id: 145, name: "Russia" },
-    { id: 146, name: "Rwanda" },
-    { id: 147, name: "Saint Kitts and Nevis" },
-    { id: 148, name: "Saint Lucia" },
-    { id: 149, name: "Saint Vincent and the Grenadines" },
-    { id: 150, name: "Samoa" },
-    { id: 151, name: "San Marino" },
-    { id: 152, name: "Sao Tome and Principe" },
-    { id: 153, name: "Saudi Arabia" },
-    { id: 154, name: "Senegal" },
-    { id: 155, name: "Serbia" },
-    { id: 156, name: "Seychelles" },
-    { id: 157, name: "Sierra Leone" },
-    { id: 158, name: "Singapore" },
-    { id: 159, name: "Slovakia" },
-    { id: 160, name: "Slovenia" },
-    { id: 161, name: "Solomon Islands" },
-    { id: 162, name: "Somalia" },
-    { id: 163, name: "South Africa" },
-    { id: 164, name: "Spain" },
-    { id: 165, name: "Sri Lanka" },
-    { id: 166, name: "Sudan" },
-    { id: 167, name: "Sudan, South" },
-    { id: 168, name: "Suriname" },
-    { id: 169, name: "Sweden" },
-    { id: 170, name: "Switzerland" },
-    { id: 171, name: "Syria" },
-    { id: 172, name: "Taiwan" },
-    { id: 173, name: "Tajikistan" },
-    { id: 174, name: "Tanzania" },
-    { id: 175, name: "Thailand" },
-    { id: 176, name: "Togo" },
-    { id: 177, name: "Tonga" },
-    { id: 178, name: "Trinidad and Tobago" },
-    { id: 179, name: "Tunisia" },
-    { id: 180, name: "Turkey" },
-    { id: 181, name: "Turkmenistan" },
-    { id: 182, name: "Tuvalu" },
-    { id: 183, name: "Uganda" },
-    { id: 184, name: "Ukraine" },
-    { id: 185, name: "United Arab Emirates" },
-    { id: 186, name: "United Kingdom" },
-    { id: 187, name: "United States" },
-    { id: 188, name: "Uruguay" },
-    { id: 189, name: "Uzbekistan" },
-    { id: 190, name: "Vanuatu" },
-    { id: 191, name: "Vatican City" },
-    { id: 192, name: "Venezuela" },
-    { id: 193, name: "Vietnam" },
-    { id: 194, name: "Yemen" },
-    { id: 195, name: "Zambia" },
-    { id: 196, name: "Zimbabwe" },
-  ];
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (dataLoading) setLoadingTime(loadingTime + 0.1);
+    }, 100);
+    return () => clearInterval(intervalId);
+  }, [dataLoading, loadingTime]);
+
+  useEffect(() => {
+    // Add a small timeout or force update mechanism if necessary
+    const timer = setTimeout(() => {
+      // Force component update
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [pageNumber]);
+
+  const handleSubmit = async () => {
+    if (dataLoading) return;
+    console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
+    try {
+      setDataLoading(true);
+      setLoadingTime(0);
+      const response = await axios.post('https://portfolio-backend-430914.nn.r.appspot.com/api/generate', 
+        { 
+          country,
+          startDate,
+          endDate,
+          sub: user.sub,
+        }
+      );
+      setTravelData(response.data);
+    } catch (error) {
+      console.error(`omg there's an error ${error}`);
+    } finally {
+      setDataLoading(false);
+      console.log("yay yay we are done");
+    }
+  };
 
   return (
     <>
       <Frame />
-      <CityParallax
+      <CityParallax 
+        pages={2.15}
         hasLogo={false}
         searchValue={
-          <div className="flex z-20 animation_layer parallax justify-center items-center w-full">
-            <div className="grid grid-rows-4 gap-4">
-              <h1 className="row-span-1 flex rounded-lg text-center justify-center items-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+          <div className="flex z-20 animation_layer parallax text-center align-center justify-center mt-56 h-min">
+            <div>
+              <h1 id="top" className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
-              <form onSubmit={handleSubmit} className="row-span-3 w-[50vw]">
-                <select
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  className="w-full p-2 border rounded"
-                >
-                  <option value="" disabled>Select a country</option>
-                  {countries.map((country) => (
-                    <option key={country.id} value={country.name}>
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full p-2 border rounded mt-4"
-                />
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full p-2 border rounded mt-4"
-                />
-                <button type="submit" onSubmit={handleSubmit} className="w-full p-2 border rounded mt-4 bg-blue-500 text-white">
-                  Submit
-                </button>
+              <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex row-span-3 w-[50vw] justify-center">
+                <div className="flex">
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className="w-6/10 drop-shadow-lg pl-6 py-3 border-0 rounded-l-full"
+                  >
+                    <option value="" disabled>Select a country</option>
+                    {countries.map((country) => (
+                      <option key={country.id} value={country.name}>{country.name}</option>
+                    ))}
+                  </select>
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="w-2/10 drop-shadow-lg ml-1 border-0 py-2"
+                  />
+                  <input
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    className="w-2/10 drop-shadow-lg ml-1 py-2 border-0"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    className="w-20 p-2 pr-3 drop-shadow-lg border-0 ml-1 text-2xl rounded-r-full bg-blue-500 text-white"
+                  >
+                    Go
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         }
-        everything_after={<div className="h-full bg-[#252221]"></div>}
-      ></CityParallax>
+        everything_after={ dataLoading ? 
+          <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
+            <h1 className="text-wh text-4xl" data-aos="fade-down">Generating your trip... {loadingTime.toFixed(1)}s</h1>
+            <ThreeDots
+                visible={true}
+                height="12vw"
+                width="15vw"
+                color="#2176ff"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+            />
+          </div> 
+          : ( !travelData ? 
+            <div className="flex h-full flex-col align-center items-center justify-center bg-[#252322]">
+              <h1 className="text-wh text-4xl" data-aos="fade-down">Enter trip details <a href="#search-bar">above</a></h1>
+              <ThreeDots
+                  visible={true}
+                  height="12vw"
+                  width="15vw"
+                  color="#2176ff"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+              />
+            </div> 
+            :
+            <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
+            {/* Heading */}
+            <h1 className="text-wh font-sans text-8xl mb-12" data-aos="fade-up">Your Trip to {travelData?.country}</h1>
+          
+            <div className="flex h-min w-screen mx-8 px-12  space-x-8">
+              {/* Left Card - Map */}
+              <div className="relative  flex w-3/5 bg-[#353130] rounded-2xl shadow-lg overflow-hidden" data-aos="fade-right">
+                <MapSmall data={travelData} />
+              </div>
+              {/* Right Card Container */}
+              <div className="flex flex-col w-2/5 space-y-4" data-aos="fade-left">
+                {/* Right Card - Scrollable Paragraph */}
+                <div className="relative bg-[#353130] rounded-2xl shadow-lg p-8 pb-8 flex flex-col overflow-y-auto h-[500px]">
+                  {/* Content Container */}
+                  <div className="text-wh text-lg flex-1">
+                    <h1 className="text-wh font-sans text-4xl mb-2 text-center">Travel Itinerary</h1>
+                    <ul className="list-disc ml-4 space-y-2 text-2xl text-[#c3c0c0]">
+                      {travelData?.itinerary.map((day, index) => (
+                        <li key={index}>
+                          {day.city} - {day.date}
+                          <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
+                            {day.locations.map((activity, i) => (
+                              <li key={i}>{activity}</li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                {/* Button Below the Right Card */}
+                <div className="flex justify-center">
+                  <a href="/map" onClick={handleExploreClick}
+                  className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-105"
+                  >
+                    Explore This Trip
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          )
+        }
+      />
     </>
   );
 };
