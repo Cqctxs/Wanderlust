@@ -110,7 +110,6 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
 
         .gradient-text:hover {
             margin: 4px;
-            letter-spacing: 1px;
         }
         
         .gradient-text {

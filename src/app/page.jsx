@@ -21,7 +21,7 @@ export default function Home() {
           <div className="h-full mb-[0] bg-[#252322]">
             <div className="pt-20 w-full bg-[#252322]">
               <div
-                className="flex rounded-xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]"
+                className="flex rounded-2xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]"
                 data-aos="fade-right"
               >
                 <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20 leading-tight">
@@ -36,7 +36,7 @@ export default function Home() {
                   <br />
                   <a
                     href="/plan"
-                    className="flex rounded-full bg-blu justify-center py-8 mr-24 transition duration-100 ease-in-out hover:bg-[#ff6128] transform hover:scale-105"
+                    className="flex rounded-full bg-blu justify-center py-6 mr-24 transition duration-100 ease-in-out hover:bg-[#ff6128] transform hover:scale-105"
                   >
                     <h1 className="font-sans text-wh font-extrabold text-5xl">
                       Get started
@@ -45,7 +45,7 @@ export default function Home() {
                 </p>
                 <a href="/map" className="m-0 p-0 w-[55%] ml-10 h-max">
                   <img
-                    className="rounded-r-xl duration-100 transform hover:scale-105"
+                    className="rounded-r-2xl duration-100 transform hover:scale-105"
                     src="/assets/tripexample.png"
                     alt="Trip Example"
                   />

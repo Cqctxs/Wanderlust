@@ -70,12 +70,12 @@ const Page = () => {
       <CityParallax 
         hasLogo={false}
         searchValue={
-          <div className="flex z-20 animation_layer parallax align-center justify-center mt-56 h-min">
+          <div className="flex z-20 animation_layer parallax text-center align-center justify-center mt-56 h-min">
             <div>
               <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
-              <form onSubmit={handleSubmit} className="row-span-3 w-[50vw]">
+              <form onSubmit={handleSubmit} className="flex row-span-3 w-[50vw] justify-center">
                 <div className="flex">
                   <select
                     value={country}
