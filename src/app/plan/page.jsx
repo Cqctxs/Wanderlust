@@ -163,7 +163,7 @@ const Page = () => {
         </div>
         }
         everything_after_everything_after={
-          <div className="bg-[#252323] border-[#252323] text-wh h-full p-0">
+          <div className="flex justify-center bg-[#252323] text-wh p-10">
               <div className="flex justify-center space-x-8">
                 <a
                   href="#our-team"
