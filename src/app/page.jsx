@@ -21,7 +21,7 @@ export default function Home() {
         everything_after={
           <div className="bg-[#252322] h-screen pt-36 w-full">
               <div
-                className="flex rounded-2xl drop-shadow-xl items-center justify-evenly mt-8 ml-32 mr-32 bg-[#353130]"
+                className="flex rounded-2xl drop-shadow-xl items-center justify-evenly mt-16 ml-32 mr-32 bg-[#353130]"
                 data-aos="fade-right"
               >
                 <p className="text-4xl font-sans text-wh w-2/5 pr-4 text-left ml-20 leading-tight">

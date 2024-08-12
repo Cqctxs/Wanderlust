@@ -16,7 +16,7 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
     // initializes animate on scroll
     AOS.init({
         duration: 2000, 
-        delay: 1000, 
+        delay: 100, 
         once: false,
         easing: 'ease',
     });
