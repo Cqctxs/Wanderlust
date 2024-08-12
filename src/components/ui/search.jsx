@@ -13,6 +13,7 @@ const Search = () => {
 
   const handleStartDateChange = (e) => {
     setStartDate(e.target.value);
+    console.log(startDate);
   };
 
   const handleEndDateChange = (e) => {
@@ -41,7 +42,7 @@ const Search = () => {
             type="date"
             value={startDate}
             onChange={handleStartDateChange}
-            className="border-none h-full"
+            className="border-none h-full date-input-wrapper"
         />
         <input
             type="date"
