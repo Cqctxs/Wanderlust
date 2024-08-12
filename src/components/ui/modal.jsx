@@ -15,7 +15,7 @@ import React, { useState } from "react";
 
 import data from "@/app/map/test.json";
 
-export const Modal = ({ onLocationChange }) => {
+export const Modal = ({ data, onLocationChange }) => {
   const [index, setIndex] = useState(0);
   const maxIndex = data.itinerary.length - 1;
 

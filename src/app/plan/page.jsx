@@ -21,6 +21,10 @@ const Page = () => {
   const [loadingTime, setLoadingTime] = useState(0);
   const [travelData, setTravelData] = useState(null);
 
+  const handleExploreClick = () => {
+    localStorage.setItem('travelData', JSON.stringify(travelData));
+  };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (dataLoading) setLoadingTime(loadingTime + 0.1);
@@ -168,7 +172,7 @@ const Page = () => {
                 </div>
                 {/* Button Below the Right Card */}
                 <div className="flex justify-center">
-                  <a href="/map"
+                  <a href="/map" onClick={handleExploreClick}
                   className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-105"
                   >
                     Explore This Trip
