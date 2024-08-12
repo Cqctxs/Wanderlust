@@ -118,7 +118,7 @@ const Page = () => {
             <h1 className="">Loading... {loadingTime.toFixed(1)}s</h1>
           </div> 
           : 
-          <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
+          <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16 pb-40">
           {/* Heading */}
           <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData.country}</h1>
         
