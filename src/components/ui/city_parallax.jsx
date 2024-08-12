@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import Footer from "./navbar/footer";
 import Head from 'next/head';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -10,7 +11,16 @@ import '../../app/globals.css';
 
 export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything_after, everything_after_everything_after }) => {
   const [isClient, setIsClient] = useState(false);
-  
+  const parallaxRef = useRef(null);
+
+  const scrollToTop = () => {
+    console.log("here i am");
+    console.log(!!parallaxRef);
+    if (parallaxRef.current){
+        parallaxRef.current.scrollTo(-100);
+    }
+  }
+
   useEffect(() => {
     setIsClient(true);
     // initializes animate on scroll
@@ -30,7 +40,7 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
 
   return (
     <>
-    <div>
+    <div id="city-parallax-div" style={{ scrollBehavior: 'smooth' }}>
     <style>
         {`
         ::-webkit-scrollbar {
@@ -164,7 +174,7 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
         }
         `}
     </style>
-    <Parallax pages={pages} style={{ top: '0', left: '0' }} className="animation">
+    <Parallax pages={pages} style={{ top: '0', left: '0' }} className="animation" ref={parallaxRef}>
         <ParallaxLayer offset={0} speed={0}>
         <div className="animation_layer parallax" style={{ backgroundImage: "url(/assets/citybg_sunset_2.png)"}}></div>
         </ParallaxLayer>
@@ -203,7 +213,36 @@ export const CityParallax = ({ pages=2.15, hasLogo=true, searchValue, everything
             {everything_after}
         </ParallaxLayer>
         <ParallaxLayer offset={2} speed={0}>
-            {everything_after_everything_after}
+        <div className="flex justify-center bg-[#252323] text-wh p-10">
+            <div className="flex justify-center space-x-8">
+                <a
+                href="#our-team"
+                className="rounded-full bg-[#FF6128] px-8 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                Our Team
+                </a>
+                <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                Github
+                </a>
+                <a
+                href="#contact"
+                className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                Contact Us
+                </a>
+                <a
+                onClick={scrollToTop}
+                className="rounded-full bg-[#FF6128] px-6 py-3 text-lg font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+                >
+                Back to Top
+                </a>
+            </div>
+        </div>
         </ParallaxLayer>
     </Parallax>
     </div>

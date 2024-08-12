@@ -8,7 +8,6 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import Footer from "@/components/ui/navbar/footer";
 import { ThreeDots } from "react-loader-spinner";
 
 const Page = () => {
@@ -21,6 +20,10 @@ const Page = () => {
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
   const [travelData, setTravelData] = useState(null);
+
+  const handleExploreClick = () => {
+    localStorage.setItem('travelData', JSON.stringify(travelData));
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -38,11 +41,12 @@ const Page = () => {
   }, [pageNumber]);
 
   const handleSubmit = async () => {
+    if (dataLoading) return;
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
     try {
       setDataLoading(true);
       setLoadingTime(0);
-      const response = await axios.post('http://localhost:8080/api/generate', 
+      const response = await axios.post('https://portfolio-backend-430914.nn.r.appspot.com/api/generate', 
         { 
           country,
           startDate,
@@ -68,7 +72,7 @@ const Page = () => {
         searchValue={
           <div className="flex z-20 animation_layer parallax text-center align-center justify-center mt-56 h-min">
             <div>
-              <h1 className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
+              <h1 id="top" className="flex text-center drop-shadow-lg justify-center font-sans font-bold text-[1000%] text-wh tracking-tight">
                 Where to?
               </h1>
               <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex row-span-3 w-[50vw] justify-center">
@@ -168,7 +172,7 @@ const Page = () => {
                 </div>
                 {/* Button Below the Right Card */}
                 <div className="flex justify-center">
-                  <a href="/map"
+                  <a href="/map" onClick={handleExploreClick}
                   className="bg-blu text-wh font-sans text-3xl font-bold py-6 px-10 rounded-full shadow-md transition-transform transform hover:scale-105"
                   >
                     Explore This Trip
@@ -178,9 +182,6 @@ const Page = () => {
             </div>
           </div>
           )
-        }
-        everything_after_everything_after={
-          <Footer />
         }
       />
     </>

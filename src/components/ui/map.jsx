@@ -28,7 +28,7 @@ function getTooltip({object}) {
     };
 }  
 
-export const MapWrapper = ({location}) => {
+export const MapWrapper = ({ data, location }) => {
     const mapRef = useRef(null);
 
     useEffect(() => {

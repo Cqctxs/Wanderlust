@@ -1,15 +1,8 @@
 "use client";
 
-import React from "react";
-import {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Button,
-  Box,
-} from "@mui/material";
-import Dialog from "@mui/material/Dialog";
+import React from 'react';
+import { DialogTitle, DialogActions, DialogContent, Button, Box } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
 import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { UserRoundX } from "lucide-react";
