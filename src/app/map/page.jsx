@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react';
 import { MapWrapper } from '@/components/ui/map';
 import { ArrowBigLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -5,6 +8,7 @@ import data from '@/app/map/test.json';
 import { Modal } from '@/components/ui/modal';
 
 export default function MapPage() {
+    const [location, setLocation] = useState(data.itinerary[0].cityCoordinates);
     return (
         <>
         {/* <style>
@@ -45,8 +49,8 @@ export default function MapPage() {
                 </div>
             </div>
         </div> */}
-        <MapWrapper/>
-        <Modal/>
+        <MapWrapper location={location}/>
+        <Modal onLocationChange={setLocation}/>
 
         </>
 
