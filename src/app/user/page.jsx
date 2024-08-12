@@ -4,7 +4,7 @@ import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { UserRoundX } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import Footer from "../../components/ui/navbar/footer";
+import Footer from "@/components/ui/navbar/footer";
 import axios from "axios";
 
 export default function ProfileClient() {
@@ -38,23 +38,23 @@ export default function ProfileClient() {
   if (!user)
     return (
       <div>
-        <div className="flex bg-or h-screen w-screen justify-center items-center">
-          <div className="bg-[#F7F5F2] justify-center items-center mt-12 rounded-xl shadow-md overflow-hidden px-24 pt-24 pb-12 flex flex-col">
-            <div className="flex flex-col items-center justify-center h-full">
-              <UserRoundX size={128} />
-              <h2 className="text-3xl font-semibold text-center text-[#252221] mt-4">
-                No user authenicated, please log in first.
-              </h2>
-              <a
-                href="/api/auth/login"
-                className="rounded-full mt-8 text-wh text-4xl bg-[#FF6128] px-10 py-5 font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
-              >
-                Login
-              </a>
-            </div>
-          </div>
+      <div className="flex bg-or h-screen w-screen justify-center items-center">
+      <div className="bg-[#F7F5F2] justify-center items-center mt-12 rounded-xl shadow-md overflow-hidden px-24 pt-24 pb-12 flex flex-col">
+        <div className="flex flex-col items-center justify-center h-full">
+            <UserRoundX size={128} />
+          <h2 className="text-3xl font-semibold text-center text-[#252221] mt-4">
+            No user authenicated, please log in first.
+          </h2>
+          <a
+          href="/api/auth/login"
+          className="rounded-full mt-8 text-wh text-4xl bg-[#FF6128] px-10 py-5 font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+        >
+          Login
+          </a>
         </div>
-        <Footer />
+      </div>
+      </div>
+      <Footer />
       </div>
     );
 

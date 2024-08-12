@@ -8,7 +8,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
-import Footer from "../../components/ui/navbar/footer";
+import Footer from "@/components/ui/navbar/footer";
 import { ThreeDots } from "react-loader-spinner";
 
 const Page = () => {
