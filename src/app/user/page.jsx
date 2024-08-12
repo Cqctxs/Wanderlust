@@ -173,15 +173,15 @@ export default function ProfileClient() {
 
             {/* Additional User Information Box */}
             <div className="bg-[#F7F5F2] rounded-xl items-center text-center shadow-md overflow-hidden p-8 flex flex-col h-full">
-              <h2 className="text-4xl font-semibold text-[#252221] mb-2">
+              <h2 className="text-4xl font-semibold text-[#252221] mb-1">
                 User Statistics
               </h2>
-              <p className="bg-or w-min text-wh font-sans text-5xl font-bold py-3 px-5 m-2 mt-4 rounded-full">
+              <p className="bg-or w-min text-wh font-sans text-5xl font-bold py-3 px-5 m-1 mt-4 rounded-full">
                 {data.previousGenerations.length + 1}
               </p>
               <p className="text-xl text-gray-600">Trips Generated</p>
-              <p className="bg-or w-min text-wh font-sans text-5xl font-bold py-3 px-5 m-2 mt-4 rounded-full">
-                China
+              <p className="bg-or w-min text-wh font-sans text-5xl font-bold py-4 px-8 m-1 mt-4 rounded-full">
+              {data.previousGenerations[data.previousGenerations.length-1].country}
               </p>
               <p className="text-xl text-gray-600">Your last destination</p>
             </div>
