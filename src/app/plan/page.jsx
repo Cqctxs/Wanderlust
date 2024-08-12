@@ -45,7 +45,7 @@ const Page = () => {
       setLoadingTime(0);
       setDataLoading(true);
 
-      const response = await axios.post('http://localhost:8080/api/generate', 
+      const response = await axios.post('https://portfolio-backend-430914.nn.r.appspot.com/api/generate', 
         { 
           country: country,
           startDate: startDate,
