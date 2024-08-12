@@ -112,7 +112,7 @@ const Page = () => {
         </div> : 
         <div className="h-full bg-[#252322] flex flex-col justify-center items-center px-8 py-16">
           {/* Heading */}
-          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {sampleTravelData.country}</h1>
+          <h1 className="text-wh font-sans text-8xl mb-12">Your Trip to {travelData.country}</h1>
         
           <div className="flex h-min max-w-screen mx-8 space-x-8">
             {/* Left Card - Map */}
@@ -136,7 +136,7 @@ const Page = () => {
                       <li key={index}>
                         {day.city} - {day.date}
                         <ul className="list-disc ml-8 mt-2 text-lg font-extralight text-[#c3c0c0]">
-                          {day.activities.map((activity, i) => (
+                          {day.locations.map((activity, i) => (
                             <li key={i}>{activity}</li>
                           ))}
                         </ul>
