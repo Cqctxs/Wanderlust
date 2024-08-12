@@ -8,6 +8,7 @@ import { CityParallax } from "@/components/ui/city_parallax.jsx";
 import { MapSmall } from "@/components/ui/mapsmall";
 import countries from "./countries";
 import travelData from "./sampleTravelData";
+import ReactHowler from 'react-howler';
 import { ThreeDots } from "react-loader-spinner";
 
 const fetchItinerary = async ({ country, startDate, endDate, sub }) => {
@@ -28,6 +29,7 @@ const Page = () => {
   const [dataLoading, setDataLoading] = useState(false);
   const [loadingTime, setLoadingTime] = useState(0);
   const [travelData, setTravelData] = useState(null);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -56,7 +58,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     console.log(`${country}, ${startDate}, ${endDate} is being GET'd`);
-
+    setPlaying(true);
     try {
       setDataLoading(true);
       setLoadingTime(0);
@@ -79,6 +81,15 @@ const Page = () => {
 
   return (
     <>
+      <ReactHowler 
+        src="/assets/jazz.mp3"
+        playing={playing}
+        volume={1.0}
+        html5={true}
+        onEnd={() => console.log('Playback ended')}
+        onLoad={() => console.log('Audio loaded')}
+        onError={(e) => console.error('Audio error:', e)}
+      />
       <Frame />
       <CityParallax 
         pages={2.15}
