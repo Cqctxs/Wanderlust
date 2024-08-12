@@ -2,6 +2,7 @@
 
 import { Frame } from "@/components/ui/navbar/frame";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { UserRoundX } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Footer from "../../components/ui/navbar/footer";
 import axios from "axios";
@@ -27,14 +28,36 @@ export default function ProfileClient() {
     queryFn: () => fetchPreviousGenerations(user.sub),
     enabled: !!user,
     onSuccess: (data) => {
-      console.log('query succeeded with data: ', data)
+      console.log("query succeeded with data: ", data);
     },
     onError: (error) => {
-      console.log(`query failed with: ${error}`)
-    }
+      console.log(`query failed with: ${error}`);
+    },
   });
 
-  if (!user) return (<p>No user authenticated, please log in first.</p>);
+  if (!user)
+    return (
+      <div>
+        <div className="flex bg-or h-screen w-screen justify-center items-center">
+          <div className="bg-[#F7F5F2] justify-center items-center mt-12 rounded-xl shadow-md overflow-hidden px-24 pt-24 pb-12 flex flex-col">
+            <div className="flex flex-col items-center justify-center h-full">
+              <UserRoundX size={128} />
+              <h2 className="text-3xl font-semibold text-center text-[#252221] mt-4">
+                No user authenicated, please log in first.
+              </h2>
+              <a
+                href="/api/auth/login"
+                className="rounded-full mt-8 text-wh text-4xl bg-[#FF6128] px-10 py-5 font-medium transition duration-100 ease-in-out hover:bg-[#2176FF] transform hover:scale-105"
+              >
+                Login
+              </a>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+
   return (
     <div>
       <Frame />
@@ -83,27 +106,29 @@ export default function ProfileClient() {
             <div className="space-y-4 flex-grow">
               {isPending ? (
                 <p className="text-gray-600">Loading...</p>
+              ) : error && !data ? (
+                <p>Could not find any previous data. Try generating a trip!</p>
               ) : (
-                (error && !data) ? (
-                  <p>Could not find any previous data. Try generating a trip!</p>
-                ) : (
-                  <div className="text-gray-600">
+                <div className="text-gray-600">
                   {data.previousGenerations.map((travelPlan, index) => (
                     <div key={index} className="mb-4">
-                      <h2 className="font-bold">
-                        {travelPlan.country}
-                      </h2>
-                      <p>{travelPlan.itinerary[0].date} to {travelPlan.itinerary[travelPlan.itinerary.length - 1].date}</p>
+                      <h2 className="font-bold">{travelPlan.country}</h2>
+                      <p>
+                        {travelPlan.itinerary[0].date} to{" "}
+                        {
+                          travelPlan.itinerary[travelPlan.itinerary.length - 1]
+                            .date
+                        }
+                      </p>
                     </div>
                   ))}
-                  </div>
-                )
+                </div>
               )}
             </div>
           </div>
         </div>
       </div>
-    <Footer />
+      <Footer />
     </div>
   );
 }
